@@ -116,6 +116,17 @@ public:
   bool operator!=(const Punto<T> &other) const { return !(*this == other); }
 
   /**
+   * @brief Orden lexicografico: primero x, luego y.
+   * @param other Punto a comparar.
+   * @return true si este punto va antes que other.
+   * @note Exacto, sin la tolerancia de operator==: std::sort necesita un orden
+   *       estricto consistente.
+   */
+  bool operator<(const Punto<T> &other) const {
+    return x < other.x || (x == other.x && y < other.y);
+  }
+
+  /**
    * @brief Imprime el punto en formato (x,y).
    * @param os Flujo de salida.
    * @param p Punto a imprimir.

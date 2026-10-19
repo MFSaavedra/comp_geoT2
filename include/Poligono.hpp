@@ -40,6 +40,9 @@ private:
   }
 
 public:
+  /** @brief Construye un poligono sin vertices. */
+  Poligono() = default;
+
   /**
    * @brief Construye el poligono con los puntos dados, en ese orden.
    * @param puntos Vertices del poligono.
@@ -70,6 +73,34 @@ public:
    * @return El area en double, sin signo.
    */
   double area() const { return std::fabs(areaConSigno()); }
+
+  /**
+   * @brief Deja el poligono en CCW y comenzando en su menor vertice
+   *        (orden lexicografico de Punto).
+   * @note Forma canonica: dos cerraduras convexas del mismo conjunto quedan
+   *       con los mismos vertices en el mismo orden, y se comparan con ==.
+   */
+  void normalizar() {
+    hacerCCW();
+    std::rotate(puntos.begin(), std::min_element(puntos.begin(), puntos.end()),
+                puntos.end());
+  }
+
+  /**
+   * @brief Compara dos poligonos vertice a vertice, en el orden guardado.
+   * @param other Poligono a comparar.
+   * @return true si tienen los mismos vertices en el mismo orden.
+   */
+  bool operator==(const Poligono<T> &other) const {
+    return puntos == other.puntos;
+  }
+
+  /**
+   * @brief Verifica si 2 poligonos son distintos.
+   * @param other Poligono a comparar.
+   * @return true si difieren en algun vertice o en la cantidad.
+   */
+  bool operator!=(const Poligono<T> &other) const { return !(*this == other); }
 
   /**
    * @brief Acceso al punto en la posicion i.

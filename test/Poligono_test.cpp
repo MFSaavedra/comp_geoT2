@@ -54,3 +54,22 @@ TEST(Poligono, Salida) {
   os << Poligono<int>(cuadradoCCW);
   EXPECT_EQ(os.str(), "[(0,0),(1,0),(1,1),(0,1)]");
 }
+
+TEST(Poligono, ConstructorVacio) {
+  EXPECT_EQ(Poligono<int>().cantidadPuntos(), 0);
+}
+
+TEST(Poligono, Normalizar) {
+  Poligono<int> p({{1, 1}, {1, 0}, {0, 0}, {0, 1}}); // CW, empieza en (1,1)
+  p.normalizar();
+  EXPECT_EQ(p, Poligono<int>(cuadradoCCW)); // CCW y desde (0,0)
+  Poligono<int> vacio;
+  vacio.normalizar(); // no falla sin vertices
+  EXPECT_EQ(vacio.cantidadPuntos(), 0);
+}
+
+TEST(Poligono, Igualdad) {
+  EXPECT_EQ(Poligono<int>(cuadradoCCW), Poligono<int>(cuadradoCCW));
+  EXPECT_NE(Poligono<int>(cuadradoCCW), Poligono<int>(cuadradoCW)); // otro orden
+  EXPECT_NE(Poligono<int>(cuadradoCCW), Poligono<int>({{0, 0}, {1, 0}}));
+}
