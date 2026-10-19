@@ -1,0 +1,601 @@
+\documentclass[11pt,letterpaper]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[spanish,es-noshorthands,es-tabla]{babel}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage[margin=2.3cm]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage{enumitem}
+\usepackage{textcomp}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage[capitalise,nameinlink,spanish]{cleveref}
+\usepackage{tabularx}
+\usepackage[section]{placeins}
+\crefname{table}{Tabla}{Tablas}
+\Crefname{table}{Tabla}{Tablas}
+\crefname{section}{Sección}{Secciones}
+\Crefname{section}{Sección}{Secciones}
+\crefname{subsection}{Sección}{Secciones}
+\Crefname{subsection}{Sección}{Secciones}
+\hypersetup{colorlinks=true,linkcolor=blue!50!black,urlcolor=blue!60!black,citecolor=blue!50!black}
+\setlist{itemsep=2pt,topsep=4pt}
+
+\input{resultados.tex}
+\input{exactitud.tex}
+
+\newcommand{\inc}{\textsf{Incremental}}
+\newcommand{\ran}{\textsf{Random Incremental}}
+\newcommand{\code}[1]{\texttt{#1}}
+
+\title{Tarea 2: Cerradura convexa\\[2pt]
+  \large CC5502 Geometría Computacional --- ANALISIS}
+\author{Matias Saavedra}
+\date{Octubre 2026}
+
+\begin{document}
+\maketitle
+
+\section{Objetivo y preguntas}
+
+Se implementaron dos algoritmos de cerradura convexa en C++, sobre las clases
+\code{Punto}, \code{Vector} y \code{Poligono} de la Tarea~1: el \inc{} (ordenar,
+construir el \emph{upper hull} y devolverse construyendo el \emph{lower hull}) y
+el \ran{} de la sección~2 de las notas de CMU que cita el
+enunciado~\cite{cmu}. Los dos son $O(n\log n)$ (el segundo en esperanza), así
+que el análisis asintótico no dice cuál conviene: lo deciden las constantes y
+cómo depende cada uno de la forma de la entrada. Siguiendo la Lectura~2
+\cite{moret}, las preguntas se fijaron antes de medir:
+
+\begin{enumerate}[label=\textbf{P\arabic*}]
+  \item ¿Crece el tiempo de cada algoritmo como $n\log n$?
+  \item Con puntos aleatorios uniformes, ¿cuál es más rápido y por cuánto?
+  \item ¿Cómo depende el tiempo del porcentaje de puntos que forman la
+        cerradura? ¿Hay un porcentaje desde el cual conviene uno u otro, y se
+        puede determinar?
+  \item ¿Qué cambia entre coordenadas enteras (\code{int}) y reales
+        (\code{double})?
+  \item ¿Coinciden las cerraduras cuando hay puntos colineales en el borde, y
+        cuando no los hay?
+\end{enumerate}
+
+
+\section{Implementación}
+
+\subsection{Estructura}
+
+El código está en los headers de \code{include/}, porque todo es template
+(\code{T} = \code{int} o \code{double}). Siguiendo el patrón Strategy,
+\code{EstrategiaCerradura<T>} declara el método
+\begin{center}
+\code{virtual Poligono<T> apply(const std::vector<Punto<T>> \&nube) = 0;}
+\end{center}
+y de ella heredan \code{IncrementalAlgorithm} y \code{RandomIncrementalAlgorithm}. Los generadores de nubes siguen el mismo
+patrón: \code{GeneradorPuntos<T>} declara \code{generar(n, rng)} y de él
+heredan \code{GeneradorUniforme}, \code{GeneradorCircunferencia} y
+\code{GeneradorCuadrado}. El programa del experimento solo recorre listas de
+estrategias y generadores.
+
+Los dos algoritmos usan un único predicado geométrico, \code{orientacion(a, b,
+c)}: el signo del producto cruz $(b-a)\times(c-a)$, calculado con
+\code{Vector::productoCruz} de la Tarea~1. Con \code{T} entero las
+coordenadas se promueven a \code{long long} antes de restar, y el signo es
+exacto mientras $|x|,|y|<2^{30}$; con \code{double} el producto se redondea.
+De la Tarea~1 se agregaron \code{Punto::operator<} (orden lexicográfico), un
+constructor vacío de \code{Poligono}, \code{Poligono::normalizar} y
+\code{Poligono::operator==}.
+
+\subsection{Incremental}
+
+Ordena los puntos por $x$ (y por $y$ a igual $x$), elimina los repetidos y
+recorre la lista de izquierda a derecha construyendo el \emph{upper hull}: como
+el punto nuevo es el extremo derecho de los ya vistos, siempre es vértice de su
+cerradura, y basta agregarlo al final y sacar los últimos mientras los tres
+últimos no formen una vuelta a la derecha. Luego se devuelve de derecha a
+izquierda con la misma regla para el \emph{lower hull}
+(\cite{deberg}, sección~1.1). Cada punto entra y sale de la cadena a lo más una
+vez por recorrido, así que tras el orden $O(n\log n)$ el resto es $O(n)$, y el
+costo \emph{no depende} de cuántos puntos quedan en la cerradura.
+
+\subsection{Random Incremental}
+
+Baraja los puntos (\code{std::shuffle} con \code{std::mt19937\_64} y una
+semilla fija), toma un triángulo no degenerado y agrega los demás puntos en ese
+orden. La dificultad es saber, para cada punto nuevo, si está dentro y qué
+aristas ve. Como en \cite{cmu}, se fija un punto $C$ interior (el centroide del
+triángulo inicial; la cerradura solo crece, así que $C$ sigue dentro) y cada
+punto que falta por insertar guarda la arista que cruza el rayo $C\to q$. Esa
+arista es visible desde $q$ exactamente cuando $q$ está fuera, de modo que
+\emph{$q$ está fuera si y solo si está estrictamente a la derecha de su arista}:
+una sola orientación. Cada arista guarda, a su vez, la ``cubeta'' de puntos que
+la apuntan. Al insertar $q$:
+
+\begin{enumerate}
+  \item se recorre la cerradura desde la arista de $q$ hacia ambos lados
+        mientras las aristas sean visibles, hasta los vértices $l$ y $r$;
+  \item se sacan las cubetas de las aristas visibles y la cadena $l\ldots r$ se
+        reemplaza por $l\to q\to r$;
+  \item cada punto de esas cubetas cruza ahora $l\to q$ o $q\to r$, según de qué
+        lado del rayo $C\to q$ esté, y pasa a esa cubeta; si ya no ve su nueva
+        arista, está dentro de la cerradura y se descarta para siempre.
+\end{enumerate}
+
+Por análisis hacia atrás, el número esperado de reasignaciones es a lo más
+$2nH_n\approx 2n\ln n$ para cualquier entrada \cite{cmu}: la esperanza es sobre
+el barajado, no sobre los datos. El descarte del paso~3 no está en las notas;
+no cambia la cota pero hace que el trabajo dependa de cuántos puntos siguen
+fuera de la cerradura, que es lo que mide la pregunta~P3. El método
+\code{getReasignaciones()} entrega el contador para el experimento.
+
+\paragraph{Calidad de la implementación.} Moret advierte que una implementación
+descuidada cambia las conclusiones \cite{moret}. Se midieron tres versiones del
+\ran{} con la misma nube de $n=10^6$ puntos
+(\code{resultados/versiones\_random\_incremental.txt}). Guardar las cubetas
+como listas enlazadas a través de un arreglo por punto tardaba 1\,997\,ms con
+todos los puntos en la cerradura; agrupar los campos de cada punto en un
+\code{struct} casi no cambió el tiempo (1\,923\,ms), y guardar cada cubeta en un
+\code{std::vector<int>} contiguo lo bajó a 1\,624\,ms (con $p=10$\,\%: 371, 445
+y 334\,ms). Se usó esta última, que además es la más simple. El perfil
+(\code{valgrind --tool=callgrind}) muestra que el costo restante son las
+operaciones mismas, unas 125 instrucciones por reasignación (dos orientaciones,
+la cubeta nueva y su crecimiento), más la latencia de memoria cuando $n$ ya no
+cabe en el caché.
+
+\subsection{Supuestos y decisiones}
+\label{sec:supuestos}
+
+\begin{itemize}
+  \item \textbf{Salida canónica.} Ambos algoritmos entregan solo los vértices
+        extremos (un punto colineal sobre una arista no es vértice, y los
+        repetidos aparecen una vez), en sentido antihorario y desde el menor
+        vértice en orden lexicográfico. Así ``cerraduras idénticas'' es
+        comparar vértice a vértice (\code{Poligono::operator==}). Con todos los
+        puntos colineales la cerradura es el segmento entre los extremos.
+  \item \textbf{Colineales en el \inc.} Se saca el último punto de la cadena
+        cuando la orientación es $\ge 0$, no solo $>0$.
+  \item \textbf{Colineales en el \ran.} La prueba ``$q$ está fuera'' es estricta
+        (un punto sobre el borde está dentro), pero el recorrido del paso~1 no:
+        también elimina una arista cuya recta pasa por $q$. Si $q$ está en la
+        prolongación de una arista, el vértice que comparten deja de ser
+        extremo; con un recorrido estricto quedaría como vértice colineal y las
+        cerraduras no coincidirían. Las notas suponen que no hay tres puntos
+        colineales; esta regla es lo que hace falta sin ese supuesto.
+  \item \textbf{Triángulo inicial.} Se toma el primer punto distinto del primero
+        y luego el primero no colineal con ambos: con coordenadas enteras o
+        colineales los tres primeros puntos del barajado pueden no servir.
+  \item \textbf{$C$ exacto.} El centroide $C=(a+b+c)/3$ no tiene coordenadas
+        enteras, y un triángulo entero puede no tener ningún punto entero en su
+        interior. Las orientaciones respecto de $C$ se calculan con $3p-(a+b+c)$,
+        que es $3$ veces el vector $C\to p$. Con \code{T} entero esto es exacto
+        en \code{long long} si $|x|,|y|<2^{28}$; los generadores usan
+        $|x|,|y|\le 1.42\cdot 10^{8}<2^{28}$.
+  \item \textbf{Aritmética inexacta.} Con \code{double} no se garantiza que
+        ambos algoritmos coincidan. El recorrido del paso~1 tiene topes para no
+        dar la vuelta completa a la cerradura si los signos se contradicen.
+\end{itemize}
+
+\subsection{Generadores}
+
+Los tres trabajan en \code{double}, con coordenadas de hasta $R=10^8$, y con
+\code{T} entero redondean al entero más cercano: con la misma semilla, la nube
+\code{int} es la nube \code{double} redondeada, y la única diferencia entre los
+dos tipos es el redondeo.
+
+\begin{itemize}
+  \item \code{GeneradorUniforme}: $n$ puntos uniformes en $[-R,R]^2$. Su
+        cerradura tiene en esperanza unos $\tfrac{8}{3}\ln n$ vértices
+        \cite{renyi}, unos \resUniHEsperado{} para $n=10^6$ (se midió una
+        mediana de \resUniH): es el caso de un porcentaje muy pequeño en la
+        cerradura.
+  \item \code{GeneradorCircunferencia(p)}: $k=\max(3,pn)$ puntos equiespaciados
+        sobre la circunferencia de radio $R$, con un desfase aleatorio, y el
+        resto uniforme en el disco inscrito en ese $k$-ágono, de radio
+        $0.999\,R\cos(\pi/k)$. Los interiores quedan estrictamente dentro del
+        polígono, y no solo del círculo: si se sortearan en el disco de radio
+        $R$, los que caen entre una arista y el arco serían vértices y el
+        porcentaje real sería mayor que el pedido. Así, con \code{double} la
+        cerradura tiene exactamente $k$ vértices, sin colineales.
+  \item \code{GeneradorCuadrado(p, $\theta$)}: las 4 esquinas y $\max(0,pn-4)$
+        puntos más sobre los lados del cuadrado $[-R,R]^2$ rotado en $\theta$, y
+        el resto dentro. Con $\theta=0$ los lados son horizontales y verticales
+        y la colinealidad es exacta en ambos tipos; con $\theta=30^\circ$ los
+        puntos están sobre la recta solo en los reales: en \code{double} quedan a
+        un redondeo de ella, y en \code{int} a medio entero.
+\end{itemize}
+
+\section{Diseño experimental}
+
+\begin{table}[!htbp]
+\centering
+\caption{Partes del experimento. Cada caso se mide con \code{int} y con
+  \code{double}.}
+\label{tab:diseno}
+\small
+\begin{tabularx}{\linewidth}{@{}lXll@{}}
+\toprule
+Parte & Generador & $n$ & Repeticiones \\
+\midrule
+Escalamiento & uniforme; circunferencia 100\,\%
+  & $1,2,5\cdot 10^{4}$; $1,2,5\cdot 10^{5}$; $10^{6}$ & 10 nubes \\
+Porcentaje & circunferencia con $p$ = 0.1, 0.2, 0.5, 1, 2, 5, 10, 20, 50 y 100\,\%
+  & $10^{4}$, $10^{5}$, $10^{6}$ & 10 nubes \\
+Colinealidad & cuadrado $0^\circ$ y $30^\circ$; circunferencia ($p=10$\,\%)
+  & $10^{4}$, $10^{5}$, $10^{6}$ & 10 nubes \\
+Varianza & uniforme; circunferencia 100\,\% & $10^{6}$ & 1 nube, 20 semillas \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+En total son \resCasos{} casos (\cref{tab:diseno}); en cada uno se genera una
+nube y se miden ambos algoritmos sobre esa misma nube.
+
+\begin{itemize}
+  \item \textbf{Medidas.} El tiempo de \code{apply} (que incluye la copia de la
+        entrada y el orden o el barajado; no incluye generar la nube), el
+        tamaño $h$ de cada cerradura, si las dos son idénticas y, para el
+        \ran, el número de reasignaciones. Esta última es una medida
+        estructural \cite{moret}: se reproduce exactamente y explica el tiempo.
+  \item \textbf{Tiempo.} Con \code{std::chrono::steady\_clock}. Cada medición
+        repite \code{apply} hasta juntar al menos 50\,ms y divide, para que la
+        resolución del reloj no domine con $n$ pequeño. Se reporta la mediana
+        de las 10 nubes y, en los gráficos, la banda entre los cuartiles.
+  \item \textbf{Confusores controlados.} Ambos algoritmos sobre la misma nube; el
+        orden de medición se alterna entre nubes; el \ran{} libera su memoria
+        de trabajo al terminar, como el \inc, para que las repeticiones
+        reserven memoria igual que la primera; el proceso se fija a un núcleo
+        (\code{taskset -c 3}) en una máquina sin otra carga.
+  \item \textbf{Variabilidad.} La parte ``varianza'' mide una misma nube con 20
+        semillas del barajado: separa la variabilidad propia del \ran{} de la
+        que viene de cambiar de nube.
+  \item \textbf{Reproducibilidad.} Las semillas son fijas
+        (\code{std::mt19937\_64}; la nube $i$ de tamaño $n$ usa la semilla
+        $1\,000\,003\,i+n$ y el algoritmo la semilla $i+1$). $h$, las
+        reasignaciones y las coincidencias se reproducen exactamente.
+  \item \textbf{Máquina.} Intel Core i7-9750H (6 núcleos, 2.6\,GHz base y hasta
+        4.5\,GHz, caché L3 de 12\,MiB), 16\,GB de RAM, Linux 7.2.9 (Arch), g++
+        16.2.1 con \code{-O3 -DNDEBUG} (\code{Release} de CMake), C++17. El
+        regulador de frecuencia (\code{powersave}, con turbo) no se fijó: es la
+        principal fuente de ruido en los tiempos.
+\end{itemize}
+
+
+\section{Resultados}
+
+\subsection{Las cerraduras coinciden}
+
+En \resIguales{} de los \resCasos{} casos las dos cerraduras son idénticas:
+\resIgualesEsc{} en el escalamiento, \resIgualesPor{} en el porcentaje,
+\resIgualesVar{} en la varianza y \resIgualesCol{} en la colinealidad. Las 30
+diferencias son todas del mismo caso, el cuadrado rotado en $30^\circ$ con
+\code{double}, y se analizan en la \cref{sec:colineal}.
+
+\subsection{Escalamiento con \texorpdfstring{$n$}{n} (P1)}
+
+\begin{figure}[!htbp]
+\centering
+\includegraphics[width=\linewidth]{figuras/escalamiento.pdf}\\[4pt]
+\includegraphics[width=\linewidth]{figuras/escalamiento_normalizado.pdf}
+\caption{Arriba: tiempo de \code{apply} contra $n$ (mediana de 10 nubes y banda
+  intercuartil). Abajo: el mismo tiempo dividido por $n\log_2 n$; una curva
+  horizontal es un crecimiento $n\log n$.}
+\label{fig:escalamiento}
+\end{figure}
+
+La \cref{fig:escalamiento} confirma el $n\log n$ del \inc: entre $n=10^4$ y
+$10^6$ tarda entre \resIncNormMin{} y \resIncNormMax{}\,ns por $n\log_2 n$ con
+puntos uniformes, y lo mismo con todos los puntos en la cerradura: su costo no
+depende de $h$.
+
+El \ran{} con todos los puntos en la cerradura es el peor caso de su análisis.
+La cantidad de operaciones sí crece como $n\log n$: con $n=10^6$ hace
+\resReasigTodos{} reasignaciones ($\resReasigTodosPorN\,n$), bajo la cota
+$2nH_n=\resReasigTodosCota$, y en la \cref{fig:reasignaciones} las
+reasignaciones por punto siguen a $2\ln n$. Pero el tiempo por $n\log_2 n$
+sube de \resCirRanNormMin{} a \resCirRanNormMax{}\,ns: lo que crece es el
+costo de \emph{cada} reasignación, de \resCostoPequeMin--\resCostoPequeMax\,ns
+con $n\le 10^5$ a hasta \resCostoGrandeMax\,ns con $n=10^6$. El quiebre está
+entre $2\cdot 10^5$ y $5\cdot 10^5$ puntos, donde los datos del algoritmo
+(unos 60 bytes por punto entre el punto, sus enlaces y su cubeta) dejan de
+caber en los 12\,MiB del caché L3, y cada reasignación toca un punto en una
+posición aleatoria de la memoria. El \inc{} no sufre ese efecto: \code{std::sort}
+y los recorridos acceden a la memoria en orden.
+
+Con \code{int} y todos los puntos ``en la cerradura'', la curva del \ran{} se
+dobla hacia abajo desde $n=2\cdot 10^5$: no es el algoritmo sino la entrada, que
+pierde vértices al redondear (\cref{sec:enteros}).
+
+\subsection{Porcentaje de puntos en la cerradura (P2 y P3)}
+
+\begin{figure}[!htbp]
+\centering
+\includegraphics[width=\linewidth]{figuras/porcentaje.pdf}
+\caption{Arriba: tiempo contra el porcentaje de puntos en la cerradura
+  (circunferencia), mediana de 10 nubes. Abajo: cociente entre las medianas;
+  bajo la línea en 1 el \ran{} es más rápido.}
+\label{fig:porcentaje}
+\end{figure}
+
+La \cref{fig:porcentaje} muestra lo que se esperaba de los mecanismos: el
+\inc{} es plano en el porcentaje, y el \ran{} es plano hasta cerca de un 5\,\% y
+luego crece, hasta ser \resCirDCociente{} veces más lento con todos los puntos
+en la cerradura y $n=10^6$ (\resCirICociente{} con \code{int}).
+
+\paragraph{Puntos aleatorios (P2).} Con $n=10^6$ puntos uniformes la cerradura
+tiene una mediana de \resUniH{} vértices (se esperaban unos
+\resUniHEsperado), menos de un 0.004\,\%. Los dos algoritmos tardan casi lo
+mismo, y cuál gana depende de $n$ (\cref{fig:escalamiento}, abajo a la
+izquierda): en tamaños intermedios el \ran{} es algo más rápido (el cociente
+$t_\text{ran}/t_\text{inc}$ llega a \resUniCocMinD{} con $n=\resUniCocMinND$ en
+\code{double} y a \resUniCocMinI{} con $n=\resUniCocMinNI$ en \code{int}),
+pero con $n=10^6$ es más lento: \resUniDRan{} contra \resUniDInc{}\,ms en
+\code{double} (cociente \resUniDCociente) y \resUniIRan{} contra
+\resUniIInc{}\,ms en \code{int} (\resUniICociente).
+
+\paragraph{El porcentaje de cruce (P3).} La \cref{tab:cruce} interpola, para
+cada $n$, el porcentaje en que el cociente cruza 1. El \ran{} es más rápido
+solo con $n=10^5$ y menos de un 2--3\,\% de los puntos en la cerradura, y por
+poco (un 7\,\% con \code{double}). Con $n=10^4$ y $n=10^6$ el \inc{} es más rápido
+en todos los porcentajes. Es la misma ventana de tamaños intermedios que se ve
+con los puntos uniformes, medidos en siete tamaños.
+
+\begin{table}[!htbp]
+\centering
+\caption{Cociente de tiempos $t_\text{ran}/t_\text{inc}$ en los extremos del
+  rango de porcentajes, y porcentaje en que cruza 1.}
+\label{tab:cruce}
+\begin{tabular}{@{}lrrrl@{}}
+\toprule
+Tipo & $n$ & con 0.1\,\% & con 100\,\% & Cruce \\
+\midrule
+\tablaCruce
+\bottomrule
+\end{tabular}
+\end{table}
+
+¿Por qué el cruce depende así de $n$? Con un porcentaje pequeño casi todos los
+puntos quedan dentro después de pocas inserciones y se descartan: el \ran{} hace
+entre \resRporNMin{} y \resRporNMax{} reasignaciones por punto, \emph{sin
+importar} $n$, es decir, trabajo lineal. El \inc{} sigue haciendo $n\log n$.
+Escribiendo $t_\text{inc}=c_\text{inc}\,n\log_2 n$ y
+$t_\text{ran}=c_\text{ran}\,R$, con $R$ las reasignaciones, el cociente se separa
+en dos factores:
+\[
+  \frac{t_\text{ran}}{t_\text{inc}}
+  = \underbrace{\frac{R/n}{\log_2 n}}_{\text{operaciones}}\;\cdot\;
+    \underbrace{\frac{c_\text{ran}}{c_\text{inc}}}_{\text{costo por operación}}.
+\]
+La \cref{tab:descomposicion} muestra los dos factores. El de operaciones baja de
+$0.32$ a $0.20$ al pasar de $10^4$ a $10^6$, porque $R/n$ es constante y
+$\log_2 n$ crece: favorece cada vez más al \ran. Pero una reasignación cuesta
+entre 3 y 4 veces lo que cuesta una unidad de $n\log_2 n$ del \inc{} mientras
+los datos caben en el caché, y casi 6 veces con $n=10^6$. Con $n=10^5$ el primer
+factor ya bajó lo suficiente y el segundo todavía no sube: ahí está la única
+ventana en que gana el \ran.
+
+\begin{table}[!htbp]
+\centering
+\caption{Descomposición del cociente de tiempos con un 0.1\,\% de los puntos
+  en la cerradura (medianas de 10 nubes). $c_\text{inc}$ en ns por $n\log_2 n$,
+  $c_\text{ran}$ en ns por reasignación.}
+\label{tab:descomposicion}
+\begin{tabular}{@{}lrrrrrrrr@{}}
+\toprule
+Tipo & $n$ & $\log_2 n$ & $R/n$ & $\frac{R/n}{\log_2 n}$ & $c_\text{inc}$ &
+  $c_\text{ran}$ & $\frac{c_\text{ran}}{c_\text{inc}}$ &
+  $\frac{t_\text{ran}}{t_\text{inc}}$ \\
+\midrule
+\tablaDescomposicion
+\bottomrule
+\end{tabular}
+\end{table}
+
+Entonces el porcentaje de cruce sí se puede determinar, pero no es un número
+fijo: depende de $n$ y de la máquina, y aquí existe solo en una ventana
+alrededor de $n=10^5$. La descomposición sugiere una hipótesis para otro ciclo
+de experimentos (no se midió): con $n$ mucho mayor, cuando todos los accesos
+del \ran{} ya fallan en el caché, $c_\text{ran}/c_\text{inc}$ dejaría de crecer
+mientras $\log_2 n$ sigue creciendo, y el \ran{} volvería a ganar con
+porcentajes pequeños.
+
+\begin{figure}[!htbp]
+\centering
+\includegraphics[width=\linewidth]{figuras/reasignaciones.pdf}
+\caption{Izquierda: reasignaciones por punto del \ran, contra el porcentaje en
+  la cerradura; las líneas punteadas son la cota $2\ln n$ de cada $n$.
+  Derecha: con coordenadas \code{int}, fracción de los puntos pedidos en la
+  circunferencia que siguen siendo vértices después de redondear.}
+\label{fig:reasignaciones}
+\end{figure}
+
+\subsection{Variabilidad}
+
+\begin{table}[!htbp]
+\centering
+\caption{Una misma nube de $10^6$ puntos medida con 20 semillas del barajado
+  (el \inc{} no usa la semilla: su variación es solo de la máquina). Tiempos en
+  ms; CV es el coeficiente de variación.}
+\label{tab:varianza}
+\small
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{@{}lllrrrrr@{}}
+\toprule
+Tipo & Nube & Algoritmo & Media & Desv. & CV & Reasignaciones & CV \\
+\midrule
+\tablaVarianza
+\bottomrule
+\end{tabular}
+\end{table}
+
+La \cref{tab:varianza} separa dos fuentes de variación. La del algoritmo se ve
+en las reasignaciones, que son exactas: con puntos uniformes varían un 20\,\%
+entre semillas (dependen de cuán grande sea la cerradura de los primeros
+puntos insertados, que es lo que permite descartar a los demás), y el tiempo
+sigue esa variación (correlación \resCorrUniD{} con \code{double},
+\resCorrUniI{} con \code{int}). Con todos los puntos en la cerradura las
+reasignaciones varían solo un 2\,\%, y la variación del tiempo, de un
+10\,\%, no se correlaciona con ellas (\resCorrCirD{} y \resCorrCirI): es de la
+máquina. La misma nube con la misma semilla, medida al principio y al final del
+experimento, difiere entre \resRuidoMin{} y \resRuidoMax\,\%; el regulador de
+frecuencia de un notebook no se puede fijar sin permisos de administrador.
+Por eso los resultados se apoyan en medianas de comparaciones pareadas (los dos
+algoritmos sobre la misma nube, uno después del otro) y en las cuentas de
+operaciones, y una diferencia menor a un 10\,\% entre los algoritmos, como la
+ventana de $n=10^5$, debe leerse con cautela.
+
+\subsection{Enteros y reales (P4)}
+\label{sec:enteros}
+
+\paragraph{Velocidad.} Con la misma carga de trabajo (puntos uniformes, misma
+$h$), \code{int} es más rápido: el \inc{} tarda \resIntDoubleUniInc{} y el \ran{}
+\resIntDoubleUniRan{} veces lo que tardan con \code{double} con $n=10^6$. Una
+razón es la memoria: \code{Punto<T>} guarda también la coordenada $z$ de la
+Tarea~1, así que un \code{Punto<int>} ocupa 12 bytes y un \code{Punto<double>}
+24, y ambos algoritmos mueven puntos completos.
+
+\paragraph{Exactitud.} Con \code{int} todas las orientaciones son exactas (por
+el rango de coordenadas de los supuestos), y las dos cerraduras coincidieron en
+todos los casos, también con puntos colineales. Con \code{double} solo
+coinciden mientras ninguna orientación dudosa decida algo
+(\cref{sec:colineal}).
+
+\paragraph{El redondeo cambia la entrada.} Al redondear puntos de la
+circunferencia, dos vecinos quedan separados de la cuerda de sus vecinos por
+apenas $R(1-\cos\frac{2\pi}{k})\approx 2\pi^2R/k^2$, y el redondeo los mueve
+hasta medio entero. Con $R=10^8$ esa separación baja de 1 cuando
+$k>\pi\sqrt{2R}\approx 44\,000$, y entonces muchos puntos dejan de estar en
+posición convexa. La \cref{fig:reasignaciones} (derecha) lo confirma: las
+pérdidas empiezan con $k=50\,000$ (5\,\% de $10^6$ y 50\,\% de $10^5$), y con
+$n=10^6$ y 100\,\% pedido solo quedan \resIntTodosH{} vértices. No es un
+problema del generador sino de los enteros: en una grilla de $N\times N$ caben
+a lo más del orden de $N^{2/3}$ puntos en posición estrictamente convexa
+\cite{jarnik}. Con \code{int} el porcentaje real se mide en la salida y es el
+que corresponde usar.
+
+\subsection{Puntos colineales (P5)}
+\label{sec:colineal}
+
+\begin{table}[!htbp]
+\centering
+\caption{Cerraduras con un 10\,\% de los puntos en el borde, 10 nubes por
+  fila: porcentaje de nubes con cerraduras idénticas y rango del número de
+  vértices de cada algoritmo.}
+\label{tab:colineal}
+\begin{tabular}{@{}llrrrr@{}}
+\toprule
+Nube & Tipo & $n$ & Idénticas & $h$ \inc & $h$ \ran \\
+\midrule
+\tablaColinealidad
+\bottomrule
+\end{tabular}
+\end{table}
+
+La \cref{tab:colineal} tiene tres situaciones:
+
+\begin{itemize}
+  \item \textbf{Colinealidad exacta} (cuadrado sin rotar, \code{int} y
+        \code{double}): los puntos de los lados tienen exactamente la misma $x$ o
+        la misma $y$, las orientaciones dan 0 sin error, y ambos algoritmos
+        entregan las 4 esquinas. Las reglas de la \cref{sec:supuestos} (sacar con
+        orientación $\ge 0$; prueba estricta y recorrido no estricto) bastan.
+  \item \textbf{Sin colineales} (circunferencia): siempre coinciden, también con
+        \code{double}, porque los vértices están lejos de ser colineales
+        comparados con el error de redondeo.
+  \item \textbf{Colinealidad que el tipo no representa} (cuadrado rotado en
+        $30^\circ$): con \code{int} los puntos redondeados ya no son
+        colineales, pero las orientaciones son exactas y ambos algoritmos
+        calculan la misma cerradura, la de los puntos enteros que sobresalen de
+        cada lado (25 a 58 vértices). Con \code{double} los puntos quedan a un
+        redondeo de la recta, las orientaciones entre ellos son del tamaño del
+        error, y las cerraduras \emph{nunca} coinciden.
+\end{itemize}
+
+Para saber cuál de las dos es la correcta en el último caso, se recalculó la
+cerradura de los mismos \code{double} con aritmética racional exacta
+(\code{analisis/exactitud.py}, con \code{fractions.Fraction}; cada
+\code{double} es un racional). La \cref{tab:exactitud} muestra que
+\emph{ninguno} de los dos algoritmos entrega la cerradura exacta, y que fallan de
+maneras opuestas. El \inc{} agrega vértices que no lo son: cuando el signo de
+una orientación casi nula sale mal, cree ver una vuelta a la derecha y deja en
+la cadena un punto que debía sacar. El \ran{} pierde vértices verdaderos: el
+mismo error en la prueba ``está fuera'' descarta un punto, y el descarte es
+para siempre. Además, como el resultado del \ran{} depende del orden de
+inserción, con \code{double} cambia con la semilla.
+
+\begin{table}[!htbp]
+\centering
+\caption{Cuadrado rotado en $30^\circ$ con \code{double}, comparado con la
+  cerradura exacta de los mismos puntos (10 nubes por fila): nubes en que la
+  cerradura calculada es la exacta, y promedio de vértices exactos que faltan y
+  de vértices calculados que sobran.}
+\label{tab:exactitud}
+\begin{tabular}{@{}rrrrrrrr@{}}
+\toprule
+& & \multicolumn{3}{c}{\inc} & \multicolumn{3}{c}{\ran} \\
+\cmidrule(lr){3-5}\cmidrule(l){6-8}
+$n$ & $h$ exacta & Exactas & Faltan & Sobran & Exactas & Faltan & Sobran \\
+\midrule
+\tablaExactitud
+\bottomrule
+\end{tabular}
+\end{table}
+
+Como pide el enunciado, los algoritmos no se hicieron consistentes en este caso:
+hacerlo requiere predicados exactos (por ejemplo, los adaptativos de Shewchuk) o
+coordenadas enteras. Con los supuestos de este trabajo, la respuesta práctica
+es usar coordenadas enteras cuando la entrada tiene colinealidades.
+
+\section{Conclusiones}
+
+\begin{enumerate}[label=\textbf{P\arabic*}]
+  \item Ambos algoritmos hacen $\Theta(n\log n)$ operaciones (el \ran{} en su peor
+        caso, con todos los puntos en la cerradura). El \inc{} también lo
+        cumple en tiempo, con unos 7\,ns por $n\log_2 n$; el \ran{} se aleja de
+        $n\log n$ en tiempo porque cada operación se encarece cuando los datos
+        no caben en el caché.
+  \item Con puntos uniformes los dos tienen tiempos parecidos: el \ran{} es
+        hasta un 10--16\,\% más rápido en tamaños intermedios y un
+        14--16\,\% más lento con $n=10^6$.
+  \item El \inc{} no depende del porcentaje de puntos en la cerradura; el \ran{}
+        hace trabajo lineal hasta un 5\,\% y luego crece hasta ser casi 10 veces
+        más lento con el 100\,\%. El \ran{} gana solo en tamaños intermedios
+        (aquí, $n=10^5$) y con menos de un 2--3\,\% en la cerradura; el
+        porcentaje de cruce se puede determinar
+        experimentalmente, pero depende de $n$ y de la máquina, por la
+        competencia entre $\log n$ y el costo de memoria
+        (\cref{tab:descomposicion}).
+  \item Con la misma entrada, \code{int} es un 10--12\,\% más rápido y hace
+        exactas todas las decisiones. Pero el redondeo cambia la entrada: al
+        redondear una circunferencia de radio $10^8$, desde unos $44\,000$
+        puntos estos dejan de estar en posición convexa.
+  \item Con colinealidad exacta o sin colineales, ambas cerraduras coinciden
+        siempre; con puntos casi colineales en \code{double} nunca coinciden,
+        y ninguna es la exacta: el \inc{} agrega vértices y el \ran{} los
+        pierde.
+\end{enumerate}
+
+En la práctica, el \inc{} es la mejor opción general: es más simple, su tiempo
+no depende de la entrada y es más rápido en casi todos los casos medidos.
+
+
+
+\begin{thebibliography}{9}
+\bibitem{cmu} G.~Miller, J.~Li. \emph{Lecture Notes: Quicksort and Random
+  Incremental Convex Hull}. 15-451 Algorithms, Carnegie Mellon University.
+  \url{https://www.cs.cmu.edu/~15451-f20/LectureNotes/2D-ConvexHull.pdf}
+\bibitem{deberg} M.~de Berg, O.~Cheong, M.~van Kreveld, M.~Overmars.
+  \emph{Computational Geometry: Algorithms and Applications}, 3.\textsuperscript{a}
+  ed. Springer, 2008. Sección~1.1.
+\bibitem{moret} B.~M.~E.~Moret. \emph{Towards a Discipline of Experimental
+  Algorithmics}. DIMACS Series in Discrete Mathematics and Theoretical
+  Computer Science, vol.~59, 2002.
+\bibitem{renyi} A.~Rényi, R.~Sulanke. Über die konvexe Hülle von $n$ zufällig
+  gewählten Punkten. \emph{Z. Wahrscheinlichkeitstheorie}, 2:75--84, 1963.
+\bibitem{jarnik} V.~Jarník. Über die Gitterpunkte auf konvexen Kurven.
+  \emph{Math. Z.}, 24:500--518, 1926.
+\end{thebibliography}
+
+\end{document}

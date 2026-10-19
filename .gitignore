@@ -39,3 +39,5 @@ venv/
 
 # Datos pesados
 *.pdf
+# ... salvo el informe, que es parte de la entrega
+!/ANALISIS.pdf
