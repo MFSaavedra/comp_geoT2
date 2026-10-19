@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['de_20diseño_0',['Notas de diseño',['../index.html#autotoc_md8',1,'']]],
-  ['diseño_1',['Notas de diseño',['../index.html#autotoc_md8',1,'']]],
-  ['documentación_2',['Documentación',['../index.html#autotoc_md7',1,'']]]
+  ['a_20la_20tarea_201_0',['Agregados a la Tarea 1',['../index.html#autotoc_md13',1,'']]],
+  ['agregados_20a_20la_20tarea_201_1',['Agregados a la Tarea 1',['../index.html#autotoc_md13',1,'']]]
 ];

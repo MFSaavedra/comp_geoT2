@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['los_20tests_0',['Ejecutar los tests',['../index.html#autotoc_md4',1,'']]]
+  ['hacerccw_0',['hacerCCW',['../classPoligono.html#ab12d62d05ff99715322e38fe12539cf6',1,'Poligono']]]
 ];

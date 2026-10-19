@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.18.0"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>comp_geoT1: Referencia de la plantilla de la clase Punto&lt; T &gt;</title>
+<title>comp_geoT2: Referencia de la plantilla de la clase Punto&lt; T &gt;</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="codefolding.js"></script>
 <script type="text/javascript" src="clipboard.js"></script>
@@ -25,9 +25,9 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">comp_geoT1
+   <div id="projectname">comp_geoT2
    </div>
-   <div id="projectbrief">Tarea 1 - CC5502 Geometría Computacional</div>
+   <div id="projectbrief">Tarea 2 - CC5502 Geometría Computacional: cerradura convexa</div>
   </td>
  </tr>
  </tbody>
@@ -146,6 +146,8 @@ T&#160;</td><td class="memItemRight"><b>getZ</b> () const</td></tr>
 <tr class="memdesc:a7e3269326f2951eb40c1957835cb5858"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compara dos puntos componente a componente.  <br /></td></tr>
 <tr class="memitem:a7efdefd5eb1e6ab5a49e637d9c767b21" id="r_a7efdefd5eb1e6ab5a49e637d9c767b21"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a7efdefd5eb1e6ab5a49e637d9c767b21">operator!=</a> (const <a class="el" href="classPunto.html">Punto</a>&lt; T &gt; &amp;other) const</td></tr>
 <tr class="memdesc:a7efdefd5eb1e6ab5a49e637d9c767b21"><td class="mdescLeft">&#160;</td><td class="mdescRight">Verifica si 2 puntos son distintos.  <br /></td></tr>
+<tr class="memitem:ab20059d94cabcc097e45ce4bfa21c0f9" id="r_ab20059d94cabcc097e45ce4bfa21c0f9"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#ab20059d94cabcc097e45ce4bfa21c0f9">operator&lt;</a> (const <a class="el" href="classPunto.html">Punto</a>&lt; T &gt; &amp;other) const</td></tr>
+<tr class="memdesc:ab20059d94cabcc097e45ce4bfa21c0f9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Orden lexicografico: primero x, luego y.  <br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pri-static-methods" class="groupheader"><a id="pri-static-methods" name="pri-static-methods"></a>
 Métodos privados estáticos</h2></td></tr>
@@ -484,6 +486,43 @@ template&lt;typename T&gt; </div>
   </dd>
 </dl>
 <dl class="section return"><dt>Devuelve</dt><dd>true si difieren en alguna coordenada. </dd></dl>
+
+</div>
+</div>
+<a id="ab20059d94cabcc097e45ce4bfa21c0f9" name="ab20059d94cabcc097e45ce4bfa21c0f9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab20059d94cabcc097e45ce4bfa21c0f9">&#9670;&#160;</a></span>operator&lt;()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool <a class="el" href="classPunto.html">Punto</a>&lt; T &gt;::operator&lt; </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classPunto.html">Punto</a>&lt; T &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>other</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Orden lexicografico: primero x, luego y. </p>
+<dl class="params"><dt>Parámetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">other</td><td><a class="el" href="classPunto.html" title="Punto en el plano, con una coordenada z auxiliar.">Punto</a> a comparar. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Devuelve</dt><dd>true si este punto va antes que other. </dd></dl>
+<dl class="section note"><dt>Nota</dt><dd>Exacto, sin la tolerancia de operator==: std::sort necesita un orden estricto consistente. </dd></dl>
 
 </div>
 </div>

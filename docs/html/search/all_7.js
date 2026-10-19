@@ -1,6 +1,8 @@
 var searchData=
 [
-  ['magnitud_0',['magnitud',['../classVector.html#acd9673f09a6567e99c9bb023049f41ae',1,'Vector']]],
-  ['main_1',['main',['../index.html#autotoc_md5',1,'Ejecutar el main'],['../main_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4',1,'main():&#160;main.cpp']]],
-  ['main_2ecpp_2',['main.cpp',['../main_8cpp.html',1,'']]]
+  ['ia_0',['Declaración de uso de IA',['../index.html#autotoc_md14',1,'']]],
+  ['incrementalalgorithm_1',['IncrementalAlgorithm',['../classIncrementalAlgorithm.html',1,'']]],
+  ['incrementalalgorithm_2ehpp_2',['IncrementalAlgorithm.hpp',['../IncrementalAlgorithm_8hpp.html',1,'']]],
+  ['informe_3',['Regenerar el informe',['../index.html#autotoc_md7',1,'']]],
+  ['insertar_4',['insertar',['../classRandomIncrementalAlgorithm.html#add4352b9a7a4d1587df1fed7aff3d4c6',1,'RandomIncrementalAlgorithm']]]
 ];

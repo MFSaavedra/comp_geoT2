@@ -1,5 +1,6 @@
 var searchData=
 [
-  ['p_0',['p',['../classVector.html#a69301371d91169797c9a395bdc45065f',1,'Vector']]],
-  ['puntos_1',['puntos',['../classPoligono.html#aad8c5f100b5267b6c3e3aaca31b615b8',1,'Poligono']]]
+  ['angulo_0',['angulo',['../classGeneradorCuadrado.html#ae0e2db5eea0bf8bfc17518da7a8cec63',1,'GeneradorCuadrado']]],
+  ['ant_1',['ant',['../classRandomIncrementalAlgorithm.html#a44a8143b943482996fdd545e1c8f29c4',1,'RandomIncrementalAlgorithm']]],
+  ['arista_2',['arista',['../classRandomIncrementalAlgorithm.html#a54c4fda63e6e7c7653725a3c78048d44',1,'RandomIncrementalAlgorithm']]]
 ];

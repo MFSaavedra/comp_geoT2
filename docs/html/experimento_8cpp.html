@@ -1,0 +1,403 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.18.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>comp_geoT2: Referencia del archivo src/experimento.cpp</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="codefolding.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">comp_geoT2
+   </div>
+   <div id="projectbrief">Tarea 2 - CC5502 Geometría Computacional: cerradura convexa</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generado por Doxygen 1.18.0 -->
+<script type="text/javascript">
+let searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', codefold.init);
+</script>
+<script type="application/json" id="doxygen-config">
+{
+  "relPath": "",
+  "generateTreeView": true,
+  "searchEngine": true,
+  "serverBasedSearch": false,
+  "disableIndex": false,
+  "dynamicMenus": true,
+  "fullSidebar": false
+}
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<div id="main-nav-mobile">
+<div class="sm sm-dox"><input id="main-menu-state" type="checkbox"/>
+<label class="main-menu-btn" for="main-menu-state">
+<span class="main-menu-btn-icon"></span> Toggle main menu visibility</label>
+<span id="searchBoxPos1"></span>
+</div>
+</div><!-- main-nav-mobile -->
+<div id="main-nav">
+  <ul class="sm sm-dox" id="main-menu">
+    <li id="searchBoxPos2">
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="Buscar" accesskey="S"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+    </li>
+  </ul>
+</div><!-- main-nav -->
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded',() => { initNavTree('experimento_8cpp.html','',''); });
+</script>
+<div id="container">
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Cargando...</div>
+<div class="SRStatus" id="Searching">Buscando...</div>
+<div class="SRStatus" id="NoMatches">Nada coincide</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">Referencia del archivo experimento.cpp</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>Experimento completo de ANALISIS.pdf; escribe un archivo CSV.  
+<a href="#details">Más...</a></p>
+<div class="textblock"><code>#include &lt;cstdint&gt;</code><br />
+<code>#include &lt;fstream&gt;</code><br />
+<code>#include &lt;iostream&gt;</code><br />
+<code>#include &lt;random&gt;</code><br />
+<code>#include &lt;string&gt;</code><br />
+<code>#include &lt;vector&gt;</code><br />
+<code>#include &quot;<a class="el" href="GeneradorPuntos_8hpp_source.html">GeneradorPuntos.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="IncrementalAlgorithm_8hpp_source.html">IncrementalAlgorithm.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="Medicion_8hpp_source.html">Medicion.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="RandomIncrementalAlgorithm_8hpp_source.html">RandomIncrementalAlgorithm.hpp</a>&quot;</code><br />
+</div><div class="textblock"><div class="dynheader">
+Gráfico de dependencias incluidas en experimento.cpp:</div>
+<div class="dyncontent">
+<div class="center"><img src="experimento_8cpp__incl.png" border="0" usemap="#asrc_2experimento_8cpp" loading="lazy" alt=""/></div>
+<map name="asrc_2experimento_8cpp" id="asrc_2experimento_8cpp">
+<area shape="rect" title="Experimento completo de ANALISIS.pdf; escribe un archivo CSV." alt="" coords="957,5,1112,33"/>
+<area shape="rect" title=" " alt="" coords="30,157,95,184"/>
+<area shape="poly" title=" " alt="" coords="954,28,743,50,483,84,298,116,111,159,109,154,297,111,482,78,742,45,959,26"/>
+<area shape="rect" title=" " alt="" coords="1240,81,1312,109"/>
+<area shape="poly" title=" " alt="" coords="1078,31,1227,78,1222,78,1077,36"/>
+<area shape="rect" title=" " alt="" coords="1336,81,1415,109"/>
+<area shape="poly" title=" " alt="" coords="1100,31,1324,80,1318,81,1100,36"/>
+<area shape="rect" title=" " alt="" coords="5,232,77,260"/>
+<area shape="poly" title=" " alt="" coords="954,24,675,42,498,59,320,84,271,89,227,90,149,89,115,93,82,104,51,125,19,158,13,172,13,187,26,219,21,220,8,188,8,171,15,155,47,121,80,100,114,88,149,84,227,84,271,84,319,78,497,54,675,37,959,22"/>
+<area shape="rect" title=" " alt="" coords="1056,232,1114,260"/>
+<area shape="poly" title=" " alt="" coords="1047,31,1065,53,1078,80,1087,116,1091,154,1090,219,1086,215,1086,154,1082,117,1073,82,1060,56,1045,36"/>
+<area shape="rect" title=" " alt="" coords="971,308,1034,336"/>
+<area shape="poly" title=" " alt="" coords="1053,31,1078,52,1100,79,1133,127,1158,170,1165,191,1167,213,1162,236,1149,262,1128,283,1103,299,1076,310,1049,317,1049,312,1074,305,1101,294,1125,279,1144,258,1157,235,1162,213,1160,192,1153,172,1128,130,1096,83,1074,56,1052,36"/>
+<area shape="rect" href="GeneradorPuntos_8hpp.html" title="Generadores de nubes de puntos de prueba (patron Strategy)." alt="" coords="395,157,556,184"/>
+<area shape="poly" title=" " alt="" coords="954,20,841,24,709,33,645,40,588,51,541,65,508,83,497,95,489,110,480,143,476,140,484,108,492,92,505,79,539,60,586,46,644,35,708,27,841,19,959,19"/>
+<area shape="rect" href="IncrementalAlgorithm_8hpp.html" title="Algoritmo incremental: ordenar, construir el upper hull y luego el lower hull (de Berg et al...." alt="" coords="872,81,1063,109"/>
+<area shape="poly" title=" " alt="" coords="1025,32,991,72,988,67,1020,35"/>
+<area shape="rect" href="Medicion_8hpp.html" title="Medicion de tiempos de ejecucion." alt="" coords="1439,81,1547,109"/>
+<area shape="poly" title=" " alt="" coords="1112,29,1426,80,1421,81,1112,34"/>
+<area shape="rect" href="RandomIncrementalAlgorithm_8hpp.html" title="Algoritmo incremental aleatorio con listas de conflicto (notas de 15&#45;451 de CMU, seccion 2...." alt="" coords="518,81,764,109"/>
+<area shape="poly" title=" " alt="" coords="961,35,727,80,726,75,966,33"/>
+<area shape="poly" title=" " alt="" coords="397,188,93,239,91,234,398,182"/>
+<area shape="poly" title=" " alt="" coords="557,179,1043,238,1039,241,557,184"/>
+<area shape="poly" title=" " alt="" coords="557,175,689,194,763,209,835,230,910,262,972,300,967,299,907,267,833,235,762,214,688,199,557,181"/>
+<area shape="rect" title=" " alt="" coords="774,384,858,411"/>
+<area shape="poly" title=" " alt="" coords="557,174,624,181,693,192,753,208,776,219,792,231,813,263,823,300,825,337,822,370,818,367,819,337,817,301,808,265,788,234,773,223,751,213,692,198,623,187,557,180"/>
+<area shape="rect" title=" " alt="" coords="400,384,463,411"/>
+<area shape="poly" title=" " alt="" coords="405,186,304,211,263,224,243,234,233,256,235,278,248,299,270,318,327,353,388,381,383,380,325,358,267,323,244,302,230,280,227,256,239,230,261,219,303,206,410,184"/>
+<area shape="rect" title=" " alt="" coords="549,308,618,336"/>
+<area shape="poly" title=" " alt="" coords="486,182,568,295,563,295,484,187"/>
+<area shape="rect" title=" " alt="" coords="119,384,211,411"/>
+<area shape="poly" title=" " alt="" coords="392,184,296,206,254,219,227,234,202,265,186,301,175,337,170,370,165,367,170,336,181,299,198,262,223,230,252,214,295,201,397,182"/>
+<area shape="rect" href="Punto_8hpp.html" title="Clase Punto: punto en un espacio bidimensional." alt="" coords="388,308,475,336"/>
+<area shape="poly" title=" " alt="" coords="474,183,442,295,438,291,470,186"/>
+<area shape="poly" title=" " alt="" coords="476,329,761,385,756,386,475,334"/>
+<area shape="poly" title=" " alt="" coords="434,334,434,370,430,366,430,338"/>
+<area shape="poly" title=" " alt="" coords="391,335,226,382,225,377,386,335"/>
+<area shape="rect" title=" " alt="" coords="318,384,377,411"/>
+<area shape="poly" title=" " alt="" coords="419,335,375,376,373,371,414,337"/>
+<area shape="rect" title=" " alt="" coords="487,384,563,411"/>
+<area shape="poly" title=" " alt="" coords="449,334,499,375,494,374,447,339"/>
+<area shape="poly" title=" " alt="" coords="980,106,1020,155,1069,221,1064,219,1016,158,978,112"/>
+<area shape="poly" title=" " alt="" coords="995,107,1029,126,1067,154,1102,189,1129,231,1132,246,1129,260,1111,283,1081,300,1049,312,1047,307,1079,295,1107,278,1125,258,1127,246,1124,233,1098,192,1063,158,1026,131,994,112"/>
+<area shape="poly" title=" " alt="" coords="1005,107,1059,130,1114,165,1136,186,1151,209,1156,234,1149,261,1126,296,1096,324,1061,347,1022,364,943,386,873,396,873,391,942,381,1020,359,1058,342,1092,320,1122,292,1144,259,1150,234,1146,211,1132,189,1111,169,1057,135,1005,112"/>
+<area shape="poly" title=" " alt="" coords="907,110,843,131,773,159,714,192,663,234,631,266,604,298,601,294,627,263,659,230,711,187,771,154,841,126,912,108"/>
+<area shape="rect" href="EstrategiaCerradura_8hpp.html" title="Interfaz comun de los algoritmos de cerradura convexa (patron Strategy)." alt="" coords="783,157,963,184"/>
+<area shape="poly" title=" " alt="" coords="953,108,903,149,900,145,948,110"/>
+<area shape="rect" href="Geometria_8hpp.html" title="Predicados geometricos que comparten los algoritmos de cerradura." alt="" coords="252,157,371,184"/>
+<area shape="poly" title=" " alt="" coords="869,105,654,127,387,159,386,154,653,122,874,103"/>
+<area shape="poly" title=" " alt="" coords="911,182,1044,230,1039,230,911,188"/>
+<area shape="poly" title=" " alt="" coords="917,182,956,201,974,215,989,231,1002,261,1005,294,1001,291,997,263,984,234,970,218,953,206,917,187"/>
+<area shape="poly" title=" " alt="" coords="825,184,662,235,478,304,476,299,660,230,820,186"/>
+<area shape="rect" href="Poligono_8hpp.html" title="Clase Poligono: poligono en un espacio bidimensional." alt="" coords="672,232,778,260"/>
+<area shape="poly" title=" " alt="" coords="849,184,766,228,764,223,844,186"/>
+<area shape="poly" title=" " alt="" coords="775,258,959,308,954,308,774,263"/>
+<area shape="poly" title=" " alt="" coords="734,258,802,371,797,370,731,262"/>
+<area shape="poly" title=" " alt="" coords="717,259,682,299,658,320,631,338,479,385,477,380,629,333,655,316,678,296,712,261"/>
+<area shape="poly" title=" " alt="" coords="702,260,623,303,621,298,697,261"/>
+<area shape="poly" title=" " alt="" coords="675,260,491,309,489,303,670,261"/>
+<area shape="poly" title=" " alt="" coords="723,258,707,298,694,319,677,338,654,355,629,368,578,387,577,382,627,363,652,350,674,334,690,316,703,296,719,262"/>
+<area shape="poly" title=" " alt="" coords="254,187,191,208,164,221,148,234,140,250,136,267,135,303,143,339,155,370,149,369,138,340,130,304,130,266,135,248,144,231,162,216,189,203,258,183"/>
+<area shape="poly" title=" " alt="" coords="323,182,414,295,409,296,321,187"/>
+<area shape="rect" href="Vector_8hpp.html" title="Clase Vector: vector matematico en el plano." alt="" coords="254,232,343,260"/>
+<area shape="poly" title=" " alt="" coords="311,183,306,218,301,216,308,187"/>
+<area shape="poly" title=" " alt="" coords="323,258,398,300,393,301,322,263"/>
+<area shape="poly" title=" " alt="" coords="308,258,338,295,379,334,426,360,475,381,470,381,423,365,375,338,334,299,306,263"/>
+<area shape="rect" title=" " alt="" coords="1460,157,1526,184"/>
+<area shape="poly" title=" " alt="" coords="1495,107,1495,143,1491,139,1491,111"/>
+<area shape="poly" title=" " alt="" coords="516,106,330,126,222,141,111,159,109,154,221,135,329,121,520,103"/>
+<area shape="poly" title=" " alt="" coords="516,105,384,124,312,139,242,159,217,172,192,187,92,229,89,224,189,182,214,167,240,154,310,134,383,119,520,102"/>
+<area shape="poly" title=" " alt="" coords="764,101,869,119,924,134,976,154,1015,181,1062,222,1056,221,1012,186,973,159,922,139,868,125,764,107"/>
+<area shape="poly" title=" " alt="" coords="657,107,708,144,773,182,818,197,856,202,894,209,937,230,969,260,991,296,986,294,965,264,934,235,892,214,856,207,817,202,771,187,705,148,656,112"/>
+<area shape="poly" title=" " alt="" coords="650,106,680,144,720,182,747,197,772,203,796,211,820,231,838,256,846,280,847,305,842,336,831,371,827,367,837,335,842,305,841,281,833,258,816,234,794,215,770,208,745,202,717,186,676,147,649,112"/>
+<area shape="poly" title=" " alt="" coords="640,107,593,294,589,291,636,110"/>
+<area shape="poly" title=" " alt="" coords="683,107,820,151,814,152,682,112"/>
+<area shape="poly" title=" " alt="" coords="579,111,387,155,385,150,584,108"/>
+<area shape="rect" title=" " alt="" coords="119,157,179,184"/>
+<area shape="poly" title=" " alt="" coords="516,110,365,131,197,159,195,160,192,155,197,154,364,126,520,108"/>
+</map>
+</div>
+</div><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-func-members" class="groupheader"><a id="func-members" name="func-members"></a>
+Funciones</h2></td></tr>
+<tr class="memitem:a2da6d9c27b6d5cf3a532b30238c41fea" id="r_a2da6d9c27b6d5cf3a532b30238c41fea"><td class="memTemplParams" colspan="2">template&lt;typename T&gt; </td></tr>
+<tr class="memitem:a2da6d9c27b6d5cf3a532b30238c41fea template"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a2da6d9c27b6d5cf3a532b30238c41fea">medirCaso</a> (std::ostream &amp;csv, const std::string &amp;experimento, const std::string &amp;tipo, const std::string &amp;caso, double parametro, const <a class="el" href="classGeneradorPuntos.html">GeneradorPuntos</a>&lt; T &gt; &amp;g, std::size_t n, int instancia, std::uint64_t semilla)</td></tr>
+<tr class="memdesc:a2da6d9c27b6d5cf3a532b30238c41fea"><td class="mdescLeft">&#160;</td><td class="mdescRight">Mide ambas estrategias sobre una nube y escribe sus dos filas.  <br /></td></tr>
+<tr class="memitem:a5ef1b33055ce7999b9a7fb734c63b3af" id="r_a5ef1b33055ce7999b9a7fb734c63b3af"><td class="memTemplParams" colspan="2">template&lt;typename T&gt; </td></tr>
+<tr class="memitem:a5ef1b33055ce7999b9a7fb734c63b3af template"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a5ef1b33055ce7999b9a7fb734c63b3af">correrTodo</a> (std::ostream &amp;csv, const std::string &amp;tipo)</td></tr>
+<tr class="memdesc:a5ef1b33055ce7999b9a7fb734c63b3af"><td class="mdescLeft">&#160;</td><td class="mdescRight">Corre las cuatro partes del experimento con coordenadas de tipo T.  <br /></td></tr>
+<tr class="memitem:a3c04138a5bfe5d72780bb7e82a18e627" id="r_a3c04138a5bfe5d72780bb7e82a18e627"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#a3c04138a5bfe5d72780bb7e82a18e627">main</a> (int argc, char **argv)</td></tr>
+<tr class="memdesc:a3c04138a5bfe5d72780bb7e82a18e627"><td class="mdescLeft">&#160;</td><td class="mdescRight">Corre el experimento completo.  <br /></td></tr>
+</table>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Descripción detallada</h2>
+<div class="textblock"><p>Experimento completo de ANALISIS.pdf; escribe un archivo CSV. </p>
+<p>Uso: experimento [archivo.csv] (por defecto resultados/datos.csv)</p>
+<p>Hay cuatro partes, cada una con int y con double:</p><ul>
+<li>escalamiento: tiempo vs n, con puntos uniformes y con todos en la cerradura;</li>
+<li>porcentaje: tiempo vs porcentaje de puntos en la cerradura, para tres n;</li>
+<li>colinealidad: cerraduras con y sin puntos colineales;</li>
+<li>varianza: una misma nube con 20 semillas del algoritmo aleatorio.</li>
+</ul>
+<p>Cada caso genera una nube, mide ambas estrategias sobre ella y escribe una fila por estrategia. Las semillas son fijas: las operaciones contadas (h, reasignaciones) se reproducen exactamente; los tiempos dependen de la maquina. </p>
+</div><a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Documentación de funciones</h2>
+<a id="a2da6d9c27b6d5cf3a532b30238c41fea" name="a2da6d9c27b6d5cf3a532b30238c41fea"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2da6d9c27b6d5cf3a532b30238c41fea">&#9670;&#160;</a></span>medirCaso()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">void medirCaso </td>
+          <td>(</td>
+          <td class="paramtype">std::ostream &amp;</td>          <td class="paramname"><span class="paramname"><em>csv</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>experimento</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>tipo</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>caso</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double</td>          <td class="paramname"><span class="paramname"><em>parametro</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classGeneradorPuntos.html">GeneradorPuntos</a>&lt; T &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>g</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::size_t</td>          <td class="paramname"><span class="paramname"><em>n</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>instancia</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::uint64_t</td>          <td class="paramname"><span class="paramname"><em>semilla</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Mide ambas estrategias sobre una nube y escribe sus dos filas. </p>
+<dl class="tparams"><dt>Parámetros de plantilla</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">T</td><td>Tipo de las coordenadas. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parámetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">csv</td><td>Archivo de salida. </td></tr>
+    <tr><td class="paramname">experimento</td><td>Parte del experimento. </td></tr>
+    <tr><td class="paramname">tipo</td><td>Nombre del tipo de las coordenadas. </td></tr>
+    <tr><td class="paramname">caso</td><td>Nombre del generador con sus parametros. </td></tr>
+    <tr><td class="paramname">parametro</td><td>Porcentaje en la cerradura (o en el borde del cuadrado). </td></tr>
+    <tr><td class="paramname">g</td><td>Generador de la nube. </td></tr>
+    <tr><td class="paramname">n</td><td>Cantidad de puntos. </td></tr>
+    <tr><td class="paramname">instancia</td><td>Numero de instancia; fija la semilla de la nube. </td></tr>
+    <tr><td class="paramname">semilla</td><td>Semilla del algoritmo aleatorio. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a5ef1b33055ce7999b9a7fb734c63b3af" name="a5ef1b33055ce7999b9a7fb734c63b3af"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5ef1b33055ce7999b9a7fb734c63b3af">&#9670;&#160;</a></span>correrTodo()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">void correrTodo </td>
+          <td>(</td>
+          <td class="paramtype">std::ostream &amp;</td>          <td class="paramname"><span class="paramname"><em>csv</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>tipo</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Corre las cuatro partes del experimento con coordenadas de tipo T. </p>
+<dl class="tparams"><dt>Parámetros de plantilla</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">T</td><td>Tipo de las coordenadas. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parámetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">csv</td><td>Archivo de salida. </td></tr>
+    <tr><td class="paramname">tipo</td><td>Nombre del tipo de las coordenadas. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a3c04138a5bfe5d72780bb7e82a18e627" name="a3c04138a5bfe5d72780bb7e82a18e627"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3c04138a5bfe5d72780bb7e82a18e627">&#9670;&#160;</a></span>main()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int main </td>
+          <td>(</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>argc</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char **</td>          <td class="paramname"><span class="paramname"><em>argv</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Corre el experimento completo. </p>
+<dl class="params"><dt>Parámetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">argc</td><td>Cantidad de argumentos. </td></tr>
+    <tr><td class="paramname">argv</td><td>argv[1], opcional: archivo CSV de salida. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Devuelve</dt><dd>0 si se pudo escribir el archivo. </dd></dl>
+
+</div>
+</div>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<div id="page-nav" class="page-nav-panel">
+<div id="page-nav-resize-handle"></div>
+<div id="page-nav-tree">
+<div id="page-nav-contents">
+</div><!-- page-nav-contents -->
+</div><!-- page-nav-tree -->
+</div><!-- page-nav -->
+</div><!-- container -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><b>src</b></li><li class="navelem"><a href="experimento_8cpp.html">experimento.cpp</a></li>
+    <li class="footer">Generado por <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.18.0 </li>
+  </ul>
+</div>
+</body>
+</html>

@@ -1,11 +1,6 @@
 var searchData=
 [
-  ['p_0',['p',['../classVector.html#a69301371d91169797c9a395bdc45065f',1,'Vector']]],
-  ['poligono_1',['Poligono',['../classPoligono.html',1,'Poligono&lt; T &gt;'],['../classPoligono.html#a8f00289d84db1c5453d453bb6c5cb0f6',1,'Poligono::Poligono()']]],
-  ['poligono_2ehpp_2',['Poligono.hpp',['../Poligono_8hpp.html',1,'']]],
-  ['productocruz_3',['productoCruz',['../classVector.html#a23d8a6c0188380978a3d7ab0e89c5dfe',1,'Vector']]],
-  ['productopunto_4',['productoPunto',['../classVector.html#a9827f398e33f14f7366e27aa46a722db',1,'Vector']]],
-  ['punto_5',['Punto',['../classPunto.html',1,'Punto&lt; T &gt;'],['../classPunto.html#a53ddef91de1715180b1ccf4ac052d3a4',1,'Punto::Punto()'],['../classPunto.html#a8087900eaff2bced8d06f1f844d11b22',1,'Punto::Punto(T x, T y)'],['../classPunto.html#a2ba00b253377255520d987164eb1c647',1,'Punto::Punto(T x, T y, T z)'],['../classPunto.html#aeee915f880ecda5723c0365c78804d9d',1,'Punto::Punto(const Punto&lt; T &gt; &amp;other)']]],
-  ['punto_2ehpp_6',['Punto.hpp',['../Punto_8hpp.html',1,'']]],
-  ['puntos_7',['puntos',['../classPoligono.html#aad8c5f100b5267b6c3e3aaca31b615b8',1,'Poligono']]]
+  ['ninguna_0',['NINGUNA',['../classRandomIncrementalAlgorithm.html#a873bed1db06a409f27268439ffadc441',1,'RandomIncrementalAlgorithm']]],
+  ['nombre_1',['nombre',['../classEstrategiaCerradura.html#a06ec9a6cec9a5afd477aad4f22218511',1,'EstrategiaCerradura::nombre()'],['../classGeneradorPuntos.html#a5a4e287659e8af63ff35bf43ff00ae79',1,'GeneradorPuntos::nombre()'],['../classGeneradorUniforme.html#a7ac456bac3ceb9311bd1f6b7944472e9',1,'GeneradorUniforme::nombre()'],['../classGeneradorCircunferencia.html#a12f085b0bdad9e635dd07469f528c0cf',1,'GeneradorCircunferencia::nombre()'],['../classGeneradorCuadrado.html#af1f62b643a614ab11da3ebc3fdbb4e06',1,'GeneradorCuadrado::nombre()'],['../classIncrementalAlgorithm.html#ab0bfe0ddcce236f9193cb5726b9d853d',1,'IncrementalAlgorithm::nombre()'],['../classRandomIncrementalAlgorithm.html#a6433975b01d7396bc607a392ea00403c',1,'RandomIncrementalAlgorithm::nombre()']]],
+  ['normalizar_2',['normalizar',['../classPoligono.html#aab384411b21bab28c8b44578e78954de',1,'Poligono']]]
 ];

@@ -1,8 +1,8 @@
 # Configuracion de Doxygen. Solo se listan los valores que difieren del
 # default; generar con `doxygen` desde la raiz, salida en docs/html/.
 
-PROJECT_NAME           = comp_geoT1
-PROJECT_BRIEF          = "Tarea 1 - CC5502 Geometría Computacional"
+PROJECT_NAME           = comp_geoT2
+PROJECT_BRIEF          = "Tarea 2 - CC5502 Geometría Computacional: cerradura convexa"
 OUTPUT_LANGUAGE        = Spanish
 
 INPUT                  = include src README.md
@@ -10,8 +10,9 @@ USE_MDFILE_AS_MAINPAGE = README.md
 OUTPUT_DIRECTORY       = docs
 GENERATE_LATEX         = NO
 
-# Los helpers privados (Punto::casiIgual, Poligono::areaConSigno) llevan las
-# notas de diseno; sin esto Doxygen los omite.
+# Los helpers privados (Punto::casiIgual, Poligono::areaConSigno, los pasos de
+# RandomIncrementalAlgorithm) llevan las notas de diseno; sin esto Doxygen los
+# omite.
 EXTRACT_PRIVATE        = YES
 
 # Mantiene el orden de declaracion del header en vez de ordenar alfabeticamente.
@@ -20,5 +21,6 @@ SORT_MEMBER_DOCS       = NO
 # Sin mensajes de progreso; los warnings (miembros sin documentar) se mantienen.
 QUIET                  = YES
 
-# Diagramas de colaboracion entre clases; requiere graphviz (`dot`).
-# HAVE_DOT             = YES
+# Diagramas de herencia entre clases (las dos jerarquias Strategy); requiere
+# graphviz (`dot`).
+HAVE_DOT               = YES

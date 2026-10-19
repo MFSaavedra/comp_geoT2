@@ -1,5 +1,9 @@
 var searchData=
 [
-  ['vector_0',['Vector',['../classVector.html',1,'Vector&lt; T &gt;'],['../classVector.html#a032e6c0fdeb70dd478be03f3b352e8ef',1,'Vector::Vector(T x, T y)'],['../classVector.html#a54134ff12d09ce692667fe5c578ee2e9',1,'Vector::Vector(T x, T y, T z)'],['../classVector.html#a57f73f9f2ccf56ecdd9fd775a4c175c5',1,'Vector::Vector(const Punto&lt; T &gt; &amp;p)'],['../classVector.html#ad0ed347210040680329535d7e4d16ae1',1,'Vector::Vector(const Vector&lt; T &gt; &amp;other)']]],
-  ['vector_2ehpp_1',['Vector.hpp',['../Vector_8hpp.html',1,'']]]
+  ['semilla_0',['semilla',['../classRandomIncrementalAlgorithm.html#ade39c0d67a384ef010fe5c0587fbd145',1,'RandomIncrementalAlgorithm']]],
+  ['sig_1',['sig',['../classRandomIncrementalAlgorithm.html#a02d6eedf9858232bf12faeb3fc4ab5f3',1,'RandomIncrementalAlgorithm']]],
+  ['sin_20cmake_2',['Sin CMake',['../index.html#autotoc_md10',1,'']]],
+  ['sumax_3',['sumaX',['../classRandomIncrementalAlgorithm.html#a4c80dd5f0c62ad90a905b65f341bc0aa',1,'RandomIncrementalAlgorithm']]],
+  ['sumay_4',['sumaY',['../classRandomIncrementalAlgorithm.html#a80078882edb9c6545de2b082e9444666',1,'RandomIncrementalAlgorithm']]],
+  ['supuestos_5',['Supuestos',['../index.html#autotoc_md12',1,'']]]
 ];

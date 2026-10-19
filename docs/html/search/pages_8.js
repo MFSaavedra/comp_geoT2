@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['tests_0',['Ejecutar los tests',['../index.html#autotoc_md4',1,'']]]
+  ['regenerar_20el_20informe_0',['Regenerar el informe',['../index.html#autotoc_md7',1,'']]],
+  ['requisitos_1',['Requisitos',['../index.html#autotoc_md3',1,'']]]
 ];

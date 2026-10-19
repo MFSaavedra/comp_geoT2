@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.18.0"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>comp_geoT1: comp_geoT1</title>
+<title>comp_geoT2: comp_geoT2</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="codefolding.js"></script>
 <script type="text/javascript" src="clipboard.js"></script>
@@ -25,9 +25,9 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">comp_geoT1
+   <div id="projectname">comp_geoT2
    </div>
-   <div id="projectbrief">Tarea 1 - CC5502 Geometría Computacional</div>
+   <div id="projectbrief">Tarea 2 - CC5502 Geometría Computacional: cerradura convexa</div>
   </td>
  </tr>
  </tbody>
@@ -109,66 +109,127 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('index.html',''
 </div>
 
 <div><div class="header">
-  <div class="headertitle"><div class="title">comp_geoT1 </div></div>
+  <div class="headertitle"><div class="title">comp_geoT2 </div></div>
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><p><a class="anchor" id="md_README"></a></p>
-<p>Tarea 1 del curso CC5502 Geometría Computacional (DCC): las clases <span class="tt"><a class="el" href="classPunto.html" title="Punto en el plano, con una coordenada z auxiliar.">Punto</a></span>, <span class="tt"><a class="el" href="classVector.html" title="Vector en el plano, guardado como el Punto que va del origen a su extremo.">Vector</a></span> y <span class="tt"><a class="el" href="classPoligono.html" title="Poligono en el plano, dado por sus vertices en orden.">Poligono</a></span> con templates, sus tests y un <span class="tt"><a class="el" href="main_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title="Instancia las tres clases y ejercita sus metodos.">main</a></span> de ejemplo.</p>
+<p>Tarea 2 del curso CC5502 Geometría Computacional (DCC): cerradura convexa. Implementa, sobre las clases <span class="tt"><a class="el" href="classPunto.html" title="Punto en el plano, con una coordenada z auxiliar.">Punto</a></span>, <span class="tt"><a class="el" href="classVector.html" title="Vector en el plano, guardado como el Punto que va del origen a su extremo.">Vector</a></span> y <span class="tt"><a class="el" href="classPoligono.html" title="Poligono en el plano, dado por sus vertices en orden.">Poligono</a></span> de la Tarea 1, dos algoritmos de cerradura convexa con el patrón Strategy, generadores de nubes de puntos de prueba y un experimento que los compara. El análisis está en <span class="tt">ANALISIS.pdf</span>.</p>
+<ul>
+<li><b>Incremental</b> (<span class="tt"><a class="el" href="classIncrementalAlgorithm.html" title="Cerradura convexa incremental sobre los puntos ordenados, O(n log n).">IncrementalAlgorithm</a></span>): ordena los puntos, construye el upper hull de izquierda a derecha y luego, devolviéndose, el lower hull. O(n log n).</li>
+<li><b>Random Incremental</b> (<span class="tt"><a class="el" href="classRandomIncrementalAlgorithm.html" title="Cerradura convexa incremental en orden aleatorio, O(n log n) esperado.">RandomIncrementalAlgorithm</a></span>): parte de un triángulo e inserta los demás puntos en orden aleatorio; cada punto que falta por insertar recuerda una arista que ve (sección 2 de las notas de CMU que cita el enunciado). O(n log n) esperado.</li>
+</ul>
+<p>Ambos heredan de <span class="tt"><a class="el" href="classEstrategiaCerradura.html" title="Estrategia de calculo de la cerradura convexa de una nube de puntos.">EstrategiaCerradura</a></span> y sobreescriben <span class="tt"><a class="el" href="classPoligono.html" title="Poligono en el plano, dado por sus vertices en orden.">Poligono</a>&lt;T&gt; apply(const std::vector&lt;<a class="el" href="classPunto.html" title="Punto en el plano, con una coordenada z auxiliar.">Punto</a>&lt;T&gt;&gt; &amp;nube)</span>. Los dos entregan la cerradura de la misma forma, así que se comparan con <span class="tt">==</span>:</p>
+<ul>
+<li>solo los vértices extremos: los puntos colineales sobre una arista y los repetidos no aparecen;</li>
+<li>en sentido antihorario (CCW), desde el menor vértice en orden lexicográfico (<span class="tt"><a class="el" href="classPoligono.html#aab384411b21bab28c8b44578e78954de" title="Deja el poligono en CCW y comenzando en su menor vertice (orden lexicografico de Punto).">Poligono::normalizar</a></span>);</li>
+<li>con todos los puntos colineales, el segmento entre los dos extremos.</li>
+</ul>
 <h1 class="doxsection"><a class="anchor" id="autotoc_md1"></a>
 Estructura</h1>
 <div class="fragment"><div class="line">.</div>
 <div class="line">├── CMakeLists.txt</div>
 <div class="line">├── Doxyfile</div>
-<div class="line">├── docs/html/             # documentación generada con Doxygen</div>
+<div class="line">├── ANALISIS.pdf                    # el informe (se compila desde analisis/)</div>
+<div class="line">├── analisis/</div>
+<div class="line">│   ├── ANALISIS.tex                # fuente del informe</div>
+<div class="line">│   ├── graficos.py                 # figuras y tablas desde resultados/datos.csv</div>
+<div class="line">│   ├── resultados.tex              # números y tablas generados por graficos.py</div>
+<div class="line">│   ├── exactitud.cpp, exactitud.py # verificación exacta del caso casi colineal</div>
+<div class="line">│   └── exactitud.tex               # tabla generada por exactitud.py</div>
+<div class="line">├── docs/html/                      # documentación generada con Doxygen</div>
 <div class="line">├── include/</div>
-<div class="line">│   ├── Punto.hpp          # Punto&lt;T&gt;</div>
-<div class="line">│   ├── Vector.hpp         # Vector&lt;T&gt;, compone un Punto&lt;T&gt;</div>
-<div class="line">│   └── Poligono.hpp       # Poligono&lt;T&gt;, guarda un std::vector&lt;Punto&lt;T&gt;&gt;</div>
+<div class="line">│   ├── Punto.hpp, Vector.hpp, Poligono.hpp   # Tarea 1 (con algunos agregados)</div>
+<div class="line">│   ├── Geometria.hpp               # orientacion() y mismoPunto()</div>
+<div class="line">│   ├── EstrategiaCerradura.hpp     # interfaz Strategy de los algoritmos</div>
+<div class="line">│   ├── IncrementalAlgorithm.hpp</div>
+<div class="line">│   ├── RandomIncrementalAlgorithm.hpp</div>
+<div class="line">│   ├── GeneradorPuntos.hpp         # interfaz Strategy y los tres generadores</div>
+<div class="line">│   └── Medicion.hpp                # medirMs()</div>
+<div class="line">├── resultados/</div>
+<div class="line">│   ├── datos.csv                   # salida del experimento usada en el informe</div>
+<div class="line">│   └── versiones_random_incremental.txt   # tiempos de tres implementaciones</div>
 <div class="line">├── src/</div>
-<div class="line">│   └── main.cpp           # instancia las tres clases y usa sus métodos</div>
-<div class="line">└── test/</div>
-<div class="line">    ├── Punto_test.cpp     # un TEST de Google Test por método público</div>
-<div class="line">    ├── Vector_test.cpp</div>
-<div class="line">    └── Poligono_test.cpp</div>
-</div><!-- fragment --><p>Como las clases son templates, todo su código vive en los headers de <span class="tt">include/</span>; <span class="tt">src/</span> solo contiene el <span class="tt"><a class="el" href="main_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title="Instancia las tres clases y ejercita sus metodos.">main</a></span>.</p>
-<h1 class="doxsection"><a class="anchor" id="autotoc_md2"></a>
+<div class="line">│   ├── main.cpp                    # ejemplo y comparación rápida</div>
+<div class="line">│   └── experimento.cpp             # experimento completo -&gt; CSV</div>
+<div class="line">└── test/                           # Google Test</div>
+</div><!-- fragment --><p>Como todo son templates, el código vive en los headers de <span class="tt">include/</span>; <span class="tt">src/</span> solo contiene los dos programas.</p>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md2"></a>
+Generadores</h2>
+<p>Todos heredan de <span class="tt"><a class="el" href="classGeneradorPuntos.html" title="Estrategia de generacion de una nube de puntos de prueba.">GeneradorPuntos</a></span> y trabajan en un disco de radio 10^8; con coordenadas <span class="tt">int</span> se redondea al entero más cercano.</p>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">Generador  </th><th class="markdownTableHeadNone">Nube  </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone"><span class="tt"><a class="el" href="classGeneradorUniforme.html" title="Puntos uniformes en el cuadrado [-RADIO, RADIO]^2.">GeneradorUniforme</a></span>  </td><td class="markdownTableBodyNone">n puntos uniformes en un cuadrado  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone"><span class="tt"><a class="el" href="classGeneradorCircunferencia.html" title="Un porcentaje de los puntos sobre una circunferencia y el resto uniforme en el interior: la cerradura...">GeneradorCircunferencia(p)</a></span>  </td><td class="markdownTableBodyNone">p·n puntos sobre una circunferencia (la cerradura) y el resto uniforme dentro; sin colineales  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone"><span class="tt"><a class="el" href="classGeneradorCuadrado.html" title="Un porcentaje de los puntos sobre el borde de un cuadrado y el resto uniforme en su interior: la cerr...">GeneradorCuadrado</a>(p, ángulo)</span>  </td><td class="markdownTableBodyNone">p·n puntos sobre el borde de un cuadrado rotado (con las 4 esquinas) y el resto dentro; con colineales  </td></tr>
+</table>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md3"></a>
 Requisitos</h1>
 <ul>
 <li>CMake ≥ 3.14 y un compilador con soporte de C++17 (<span class="tt">g++</span> o <span class="tt">clang++</span>).</li>
-<li>Google Test, opcional: si está instalado (<span class="tt">libgtest-dev</span> en Debian/Ubuntu, <span class="tt">gtest</span> en Arch) se usa; si no, CMake lo descarga de GitHub al configurar por primera vez.</li>
+<li>Google Test, opcional: si está instalado (<span class="tt">libgtest-dev</span> en Debian/Ubuntu, <span class="tt">gtest</span> en Arch) se usa; si no, CMake lo descarga de GitHub al configurar.</li>
+<li>Para regenerar el informe: Python 3 con <span class="tt">pandas</span> y <span class="tt">matplotlib</span>, y LaTeX (<span class="tt">latexmk</span>, <span class="tt">pdflatex</span>).</li>
 </ul>
-<h1 class="doxsection"><a class="anchor" id="autotoc_md3"></a>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md4"></a>
 Compilar</h1>
 <p>Desde la raíz del repositorio:</p>
 <div class="fragment"><div class="line">cmake -S . -B build</div>
 <div class="line">cmake --build build</div>
-</div><!-- fragment --><p>Esto genera <span class="tt">build/main</span> y <span class="tt">build/geo_tests</span>.</p>
-<h1 class="doxsection"><a class="anchor" id="autotoc_md4"></a>
+</div><!-- fragment --><p>Genera <span class="tt">build/main</span>, <span class="tt">build/experimento</span> y <span class="tt">build/geo_tests</span>. Si no se indica otro, el tipo de build es <span class="tt">Release</span> (con optimización): sin optimización los tiempos medidos no son representativos.</p>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md5"></a>
+Ejecutar</h1>
+<div class="fragment"><div class="line">./build/main</div>
+</div><!-- fragment --><p>Calcula la cerradura de un ejemplo pequeño con ambas estrategias y luego, para cada generador, <span class="tt">int</span> y <span class="tt">double</span>, y n = 10^4, 10^5 y 10^6, mide las dos sobre la misma nube e indica si las cerraduras son idénticas (unos 10 segundos). Termina con código 0 si todas coinciden.</p>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md6"></a>
+Experimento completo</h1>
+<div class="fragment"><div class="line">mkdir -p resultados</div>
+<div class="line">taskset -c 3 ./build/experimento resultados/datos.csv   # unos 8 minutos</div>
+</div><!-- fragment --><p><span class="tt">taskset</span> fija el proceso a un núcleo y es opcional (Linux). El CSV tiene una fila por algoritmo y caso: experimento, tipo, generador, porcentaje, n, instancia, semilla, algoritmo, tiempo (ms), h, reasignaciones y si las dos cerraduras fueron idénticas. Las semillas son fijas: h, las reasignaciones y las coincidencias se reproducen exactamente; los tiempos dependen de la máquina.</p>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md7"></a>
+Regenerar el informe</h1>
+<div class="fragment"><div class="line">python3 analisis/graficos.py</div>
+<div class="line">cd analisis &amp;&amp; latexmk -pdf ANALISIS.tex &amp;&amp; cp ANALISIS.pdf ..</div>
+</div><!-- fragment --><p><span class="tt">graficos.py</span> escribe las figuras en <span class="tt">analisis/figuras/</span> y los números que cita el informe en <span class="tt">analisis/resultados.tex</span>.</p>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md8"></a>
+Verificación exacta del caso casi colineal</h2>
+<p>Para el cuadrado rotado con <span class="tt">double</span>, el informe compara ambas cerraduras con la cerradura exacta de los mismos puntos, calculada con aritmética racional:</p>
+<div class="fragment"><div class="line">g++ -std=c++17 -O2 -Iinclude analisis/exactitud.cpp -o build/exactitud</div>
+<div class="line">mkdir -p build/exactitud_datos &amp;&amp; ./build/exactitud build/exactitud_datos</div>
+<div class="line">python3 analisis/exactitud.py build/exactitud_datos   # ~1 minuto</div>
+</div><!-- fragment --><p>Escribe la tabla en <span class="tt">analisis/exactitud.tex</span>.</p>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md9"></a>
 Ejecutar los tests</h1>
 <div class="fragment"><div class="line">cd build &amp;&amp; ctest --output-on-failure</div>
-</div><!-- fragment --><p><span class="tt">ctest</span> lista cada caso (<span class="tt">Punto.Distancia</span>, <span class="tt">Poligono.Area</span>, ...) con su resultado. Para ver la salida completa de Google Test, ejecutar el binario directamente:</p>
-<div class="fragment"><div class="line">./build/geo_tests</div>
-</div><!-- fragment --><h1 class="doxsection"><a class="anchor" id="autotoc_md5"></a>
-Ejecutar el main</h1>
-<div class="fragment"><div class="line">./build/main</div>
-</div><!-- fragment --><h1 class="doxsection"><a class="anchor" id="autotoc_md6"></a>
+</div><!-- fragment --><p>o, para ver la salida completa de Google Test, <span class="tt">./build/geo_tests</span>.</p>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md10"></a>
 Sin CMake</h1>
 <p>Con Google Test instalado en el sistema:</p>
-<div class="fragment"><div class="line">g++ -std=c++17 -Iinclude src/main.cpp -o main &amp;&amp; ./main</div>
+<div class="fragment"><div class="line">g++ -std=c++17 -O3 -Iinclude src/main.cpp -o main &amp;&amp; ./main</div>
+<div class="line">g++ -std=c++17 -O3 -Iinclude src/experimento.cpp -o experimento</div>
 <div class="line">g++ -std=c++17 -Iinclude test/*.cpp -lgtest -lgtest_main -pthread -o geo_tests &amp;&amp; ./geo_tests</div>
-</div><!-- fragment --><h1 class="doxsection"><a class="anchor" id="autotoc_md7"></a>
+</div><!-- fragment --><h1 class="doxsection"><a class="anchor" id="autotoc_md11"></a>
 Documentación</h1>
-<p>Los headers están comentados con Doxygen. Con <span class="tt">doxygen</span> instalado, desde la raíz del repositorio:</p>
+<p>Los headers están comentados con Doxygen. Desde la raíz del repositorio:</p>
 <div class="fragment"><div class="line">doxygen</div>
 </div><!-- fragment --><p>genera la documentación en <span class="tt">docs/html/index.html</span>.</p>
-<h1 class="doxsection"><a class="anchor" id="autotoc_md8"></a>
-Notas de diseño</h1>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md12"></a>
+Supuestos</h1>
 <ul>
-<li><span class="tt"><a class="el" href="classPunto.html" title="Punto en el plano, con una coordenada z auxiliar.">Punto</a>&lt;T&gt;</span> guarda una coordenada <span class="tt">z</span> (0 al construir con dos valores) para que <span class="tt"><a class="el" href="classVector.html" title="Vector en el plano, guardado como el Punto que va del origen a su extremo.">Vector</a>&lt;T&gt;::productoCruz</span> pueda retornar un vector, como pide el enunciado: el producto cruz de dos vectores 2D es un escalar sobre el eje z. <span class="tt">operator&lt;&lt;</span> imprime solo <span class="tt">(x,y)</span>.</li>
-<li><span class="tt">distancia</span>, <span class="tt">magnitud</span> y <span class="tt">area</span> retornan <span class="tt">double</span> aunque <span class="tt">T</span> sea entero, y promueven a <span class="tt">double</span> antes de operar para no truncar ni desbordar.</li>
-<li><span class="tt">operator==</span> es exacto con tipos enteros y tolerante con punto flotante.</li>
-<li><span class="tt">esCCW</span>, <span class="tt">hacerCCW</span> y <span class="tt">area</span> se apoyan en la misma área con signo (fórmula del shoelace): el signo da la orientación, invertir los puntos la cambia y el valor absoluto es el área. </li>
+<li>Con coordenadas enteras, |coordenadas| &lt; 2^28: así el producto cruz, que se calcula en <span class="tt">long long</span>, es exacto también en los cálculos con el centroide del Random Incremental. Los generadores usan |coordenadas| ≤ 1.42·10^8.</li>
+<li>Con <span class="tt">double</span> el producto cruz se redondea; con puntos casi colineales los algoritmos pueden no coincidir (ver <span class="tt">ANALISIS.pdf</span>, sección de colinealidad).</li>
 </ul>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md13"></a>
+Agregados a la Tarea 1</h1>
+<ul>
+<li><span class="tt">Punto::operator&lt;</span>: orden lexicográfico exacto, para ordenar.</li>
+<li><span class="tt"><a class="el" href="classPoligono.html" title="Poligono en el plano, dado por sus vertices en orden.">Poligono()</a></span>: polígono vacío; <span class="tt"><a class="el" href="classPoligono.html#aab384411b21bab28c8b44578e78954de" title="Deja el poligono en CCW y comenzando en su menor vertice (orden lexicografico de Punto).">Poligono::normalizar()</a></span>: forma canónica (CCW, desde el menor vértice); <span class="tt"><a class="el" href="classPoligono.html#ad494e088f0c1b96fd00f4192d19277a2" title="Compara dos poligonos vertice a vertice, en el orden guardado.">Poligono::operator==</a></span> y <span class="tt">operator!=</span>.</li>
+</ul>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md14"></a>
+Declaración de uso de IA</h1>
+<p>Se utilizó Claude (Opus 5.5) para implementar el código, los tests y el experimento, para discutir conceptos e ideas de diseño, y para redactar el informe y la documentación. </p>
 </div></div><!-- PageDoc -->
 <a href="doxygen_crawl.html"></a>
 </div><!-- contents -->

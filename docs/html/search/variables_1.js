@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['x_0',['x',['../classPunto.html#a3d12582abff845ae622b380475cb90e4',1,'Punto']]]
+  ['cubeta_0',['cubeta',['../classRandomIncrementalAlgorithm.html#a827ce0af76a2a6a2cd3a7d5073339d03',1,'RandomIncrementalAlgorithm']]]
 ];

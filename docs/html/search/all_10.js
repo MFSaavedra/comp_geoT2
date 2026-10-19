@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['y_0',['y',['../classPunto.html#a783162390f31db4454f349ed0ca39379',1,'Punto']]]
+  ['uso_20de_20ia_0',['Declaración de uso de IA',['../index.html#autotoc_md14',1,'']]]
 ];

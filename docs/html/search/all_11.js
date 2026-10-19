@@ -1,4 +1,6 @@
 var searchData=
 [
-  ['z_0',['z',['../classPunto.html#a9251ddb23a6da7a9c2fa15d23aad74e1',1,'Punto']]]
+  ['vector_0',['Vector',['../classVector.html',1,'Vector&lt; T &gt;'],['../classVector.html#a032e6c0fdeb70dd478be03f3b352e8ef',1,'Vector::Vector(T x, T y)'],['../classVector.html#a54134ff12d09ce692667fe5c578ee2e9',1,'Vector::Vector(T x, T y, T z)'],['../classVector.html#a57f73f9f2ccf56ecdd9fd775a4c175c5',1,'Vector::Vector(const Punto&lt; T &gt; &amp;p)'],['../classVector.html#ad0ed347210040680329535d7e4d16ae1',1,'Vector::Vector(const Vector&lt; T &gt; &amp;other)']]],
+  ['vector_2ehpp_1',['Vector.hpp',['../Vector_8hpp.html',1,'']]],
+  ['verificación_20exacta_20del_20caso_20casi_20colineal_2',['Verificación exacta del caso casi colineal',['../index.html#autotoc_md8',1,'']]]
 ];

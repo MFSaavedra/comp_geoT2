@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['vector_0',['Vector',['../classVector.html#a032e6c0fdeb70dd478be03f3b352e8ef',1,'Vector::Vector(T x, T y)'],['../classVector.html#a54134ff12d09ce692667fe5c578ee2e9',1,'Vector::Vector(T x, T y, T z)'],['../classVector.html#a57f73f9f2ccf56ecdd9fd775a4c175c5',1,'Vector::Vector(const Punto&lt; T &gt; &amp;p)'],['../classVector.html#ad0ed347210040680329535d7e4d16ae1',1,'Vector::Vector(const Vector&lt; T &gt; &amp;other)']]]
+  ['nombre_0',['nombre',['../classEstrategiaCerradura.html#a06ec9a6cec9a5afd477aad4f22218511',1,'EstrategiaCerradura::nombre()'],['../classGeneradorPuntos.html#a5a4e287659e8af63ff35bf43ff00ae79',1,'GeneradorPuntos::nombre()'],['../classGeneradorUniforme.html#a7ac456bac3ceb9311bd1f6b7944472e9',1,'GeneradorUniforme::nombre()'],['../classGeneradorCircunferencia.html#a12f085b0bdad9e635dd07469f528c0cf',1,'GeneradorCircunferencia::nombre()'],['../classGeneradorCuadrado.html#af1f62b643a614ab11da3ebc3fdbb4e06',1,'GeneradorCuadrado::nombre()'],['../classIncrementalAlgorithm.html#ab0bfe0ddcce236f9193cb5726b9d853d',1,'IncrementalAlgorithm::nombre()'],['../classRandomIncrementalAlgorithm.html#a6433975b01d7396bc607a392ea00403c',1,'RandomIncrementalAlgorithm::nombre()']]],
+  ['normalizar_1',['normalizar',['../classPoligono.html#aab384411b21bab28c8b44578e78954de',1,'Poligono']]]
 ];

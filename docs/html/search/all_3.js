@@ -1,8 +1,9 @@
 var searchData=
 [
-  ['ejecutar_20el_20main_0',['Ejecutar el main',['../index.html#autotoc_md5',1,'']]],
-  ['ejecutar_20los_20tests_1',['Ejecutar los tests',['../index.html#autotoc_md4',1,'']]],
-  ['el_20main_2',['Ejecutar el main',['../index.html#autotoc_md5',1,'']]],
-  ['esccw_3',['esCCW',['../classPoligono.html#ab3eba848318334c6803ffc90419cea1c',1,'Poligono']]],
-  ['estructura_4',['Estructura',['../index.html#autotoc_md1',1,'']]]
+  ['de_20ia_0',['Declaración de uso de IA',['../index.html#autotoc_md14',1,'']]],
+  ['de_20uso_20de_20ia_1',['Declaración de uso de IA',['../index.html#autotoc_md14',1,'']]],
+  ['declaración_20de_20uso_20de_20ia_2',['Declaración de uso de IA',['../index.html#autotoc_md14',1,'']]],
+  ['del_20caso_20casi_20colineal_3',['Verificación exacta del caso casi colineal',['../index.html#autotoc_md8',1,'']]],
+  ['distancia_4',['distancia',['../classPunto.html#aac60104616eccb67f0d1acb8b220db53',1,'Punto']]],
+  ['documentación_5',['Documentación',['../index.html#autotoc_md11',1,'']]]
 ];

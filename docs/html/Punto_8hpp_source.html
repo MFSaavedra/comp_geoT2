@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.18.0"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>comp_geoT1: Archivo de código fuente include/Punto.hpp</title>
+<title>comp_geoT2: Archivo de código fuente include/Punto.hpp</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="codefolding.js"></script>
 <script type="text/javascript" src="clipboard.js"></script>
@@ -25,9 +25,9 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">comp_geoT1
+   <div id="projectname">comp_geoT2
    </div>
-   <div id="projectbrief">Tarea 1 - CC5502 Geometría Computacional</div>
+   <div id="projectbrief">Tarea 2 - CC5502 Geometría Computacional: cerradura convexa</div>
   </td>
  </tr>
  </tbody>
@@ -181,16 +181,22 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('Punto_8hpp_sou
 <div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span></div>
 <div class="line"><a id="l00116" name="l00116"></a><span class="lineno"><a class="line" href="classPunto.html#a7efdefd5eb1e6ab5a49e637d9c767b21">  116</a></span>  <span class="keywordtype">bool</span> <a class="code hl_function" href="classPunto.html#a7efdefd5eb1e6ab5a49e637d9c767b21">operator!=</a>(<span class="keyword">const</span> <a class="code hl_function" href="classPunto.html#a53ddef91de1715180b1ccf4ac052d3a4">Punto&lt;T&gt;</a> &amp;other)<span class="keyword"> const </span>{ <span class="keywordflow">return</span> !(*<span class="keyword">this</span> == other); }</div>
 <div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span></div>
-<div class="foldopen" id="foldopen00124" data-start="{" data-end="}">
-<div class="line"><a id="l00124" name="l00124"></a><span class="lineno"><a class="line" href="classPunto.html#a4aee870f74991f7f1e2aa30766be23ec">  124</a></span>  <span class="keyword">friend</span> std::ostream &amp;<a class="code hl_friend" href="classPunto.html#a4aee870f74991f7f1e2aa30766be23ec">operator&lt;&lt;</a>(std::ostream &amp;os, <span class="keyword">const</span> <a class="code hl_function" href="classPunto.html#a53ddef91de1715180b1ccf4ac052d3a4">Punto&lt;T&gt;</a> &amp;p) {</div>
-<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>    <span class="keywordflow">return</span> os &lt;&lt; <span class="stringliteral">&quot;(&quot;</span> &lt;&lt; p.<a class="code hl_variable" href="classPunto.html#a3d12582abff845ae622b380475cb90e4">x</a> &lt;&lt; <span class="stringliteral">&quot;,&quot;</span> &lt;&lt; p.<a class="code hl_variable" href="classPunto.html#a783162390f31db4454f349ed0ca39379">y</a> &lt;&lt; <span class="stringliteral">&quot;)&quot;</span>;</div>
-<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>  }</div>
+<div class="foldopen" id="foldopen00125" data-start="{" data-end="}">
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno"><a class="line" href="classPunto.html#ab20059d94cabcc097e45ce4bfa21c0f9">  125</a></span>  <span class="keywordtype">bool</span> <a class="code hl_function" href="classPunto.html#ab20059d94cabcc097e45ce4bfa21c0f9">operator&lt;</a>(<span class="keyword">const</span> <a class="code hl_function" href="classPunto.html#a53ddef91de1715180b1ccf4ac052d3a4">Punto&lt;T&gt;</a> &amp;other)<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>    <span class="keywordflow">return</span> <a class="code hl_variable" href="classPunto.html#a3d12582abff845ae622b380475cb90e4">x</a> &lt; other.<a class="code hl_variable" href="classPunto.html#a3d12582abff845ae622b380475cb90e4">x</a> || (<a class="code hl_variable" href="classPunto.html#a3d12582abff845ae622b380475cb90e4">x</a> == other.<a class="code hl_variable" href="classPunto.html#a3d12582abff845ae622b380475cb90e4">x</a> &amp;&amp; <a class="code hl_variable" href="classPunto.html#a783162390f31db4454f349ed0ca39379">y</a> &lt; other.<a class="code hl_variable" href="classPunto.html#a783162390f31db4454f349ed0ca39379">y</a>);</div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>  }</div>
 </div>
-<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>};</div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span></div>
+<div class="foldopen" id="foldopen00135" data-start="{" data-end="}">
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno"><a class="line" href="classPunto.html#a4aee870f74991f7f1e2aa30766be23ec">  135</a></span>  <span class="keyword">friend</span> std::ostream &amp;<a class="code hl_friend" href="classPunto.html#a4aee870f74991f7f1e2aa30766be23ec">operator&lt;&lt;</a>(std::ostream &amp;os, <span class="keyword">const</span> <a class="code hl_function" href="classPunto.html#a53ddef91de1715180b1ccf4ac052d3a4">Punto&lt;T&gt;</a> &amp;p) {</div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span>    <span class="keywordflow">return</span> os &lt;&lt; <span class="stringliteral">&quot;(&quot;</span> &lt;&lt; p.<a class="code hl_variable" href="classPunto.html#a3d12582abff845ae622b380475cb90e4">x</a> &lt;&lt; <span class="stringliteral">&quot;,&quot;</span> &lt;&lt; p.<a class="code hl_variable" href="classPunto.html#a783162390f31db4454f349ed0ca39379">y</a> &lt;&lt; <span class="stringliteral">&quot;)&quot;</span>;</div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span>  }</div>
+</div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span>};</div>
 </div>
 <div class="ttc" id="aclassPunto_html_a2ba00b253377255520d987164eb1c647"><div class="ttname"><a href="classPunto.html#a2ba00b253377255520d987164eb1c647">Punto::Punto</a></div><div class="ttdeci">Punto(T x, T y, T z)</div><div class="ttdoc">Construye un punto 3D.</div><div class="ttdef"><b>Definición</b> Punto.hpp:61</div></div>
 <div class="ttc" id="aclassPunto_html_a3d12582abff845ae622b380475cb90e4"><div class="ttname"><a href="classPunto.html#a3d12582abff845ae622b380475cb90e4">Punto::x</a></div><div class="ttdeci">T x</div><div class="ttdoc">Coordenada x.</div><div class="ttdef"><b>Definición</b> Punto.hpp:20</div></div>
-<div class="ttc" id="aclassPunto_html_a4aee870f74991f7f1e2aa30766be23ec"><div class="ttname"><a href="classPunto.html#a4aee870f74991f7f1e2aa30766be23ec">Punto::operator&lt;&lt;</a></div><div class="ttdeci">friend std::ostream &amp; operator&lt;&lt;(std::ostream &amp;os, const Punto&lt; T &gt; &amp;p)</div><div class="ttdoc">Imprime el punto en formato (x,y).</div><div class="ttdef"><b>Definición</b> Punto.hpp:124</div></div>
+<div class="ttc" id="aclassPunto_html_a4aee870f74991f7f1e2aa30766be23ec"><div class="ttname"><a href="classPunto.html#a4aee870f74991f7f1e2aa30766be23ec">Punto::operator&lt;&lt;</a></div><div class="ttdeci">friend std::ostream &amp; operator&lt;&lt;(std::ostream &amp;os, const Punto&lt; T &gt; &amp;p)</div><div class="ttdoc">Imprime el punto en formato (x,y).</div><div class="ttdef"><b>Definición</b> Punto.hpp:135</div></div>
 <div class="ttc" id="aclassPunto_html_a4d5993d531172fe43562d07393ef4ef2"><div class="ttname"><a href="classPunto.html#a4d5993d531172fe43562d07393ef4ef2">Punto::casiIgual</a></div><div class="ttdeci">static bool casiIgual(T a, T b)</div><div class="ttdoc">Igualdad tolerante en punto flotante, exacta en enteros.</div><div class="ttdef"><b>Definición</b> Punto.hpp:30</div></div>
 <div class="ttc" id="aclassPunto_html_a53ddef91de1715180b1ccf4ac052d3a4"><div class="ttname"><a href="classPunto.html#a53ddef91de1715180b1ccf4ac052d3a4">Punto::Punto</a></div><div class="ttdeci">Punto()</div><div class="ttdoc">Construye el punto en el origen.</div><div class="ttdef"><b>Definición</b> Punto.hpp:46</div></div>
 <div class="ttc" id="aclassPunto_html_a684802be5e0537a84322928d6445da39"><div class="ttname"><a href="classPunto.html#a684802be5e0537a84322928d6445da39">Punto::getY</a></div><div class="ttdeci">T getY() const</div><div class="ttdoc">Retorna la coordenada y.</div><div class="ttdef"><b>Definición</b> Punto.hpp:81</div></div>
@@ -202,6 +208,7 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('Punto_8hpp_sou
 <div class="ttc" id="aclassPunto_html_a9251ddb23a6da7a9c2fa15d23aad74e1"><div class="ttname"><a href="classPunto.html#a9251ddb23a6da7a9c2fa15d23aad74e1">Punto::z</a></div><div class="ttdeci">T z</div><div class="ttdoc">Coordenada z auxiliar; recibe el resultado de productoCruz.</div><div class="ttdef"><b>Definición</b> Punto.hpp:22</div></div>
 <div class="ttc" id="aclassPunto_html_aa0c828d7404f02f7fa7eb467219467fb"><div class="ttname"><a href="classPunto.html#aa0c828d7404f02f7fa7eb467219467fb">Punto::operator=</a></div><div class="ttdeci">Punto&lt; T &gt; &amp; operator=(const Punto&lt; T &gt; &amp;other)=default</div><div class="ttdoc">Asignacion por copia.</div></div>
 <div class="ttc" id="aclassPunto_html_aac60104616eccb67f0d1acb8b220db53"><div class="ttname"><a href="classPunto.html#aac60104616eccb67f0d1acb8b220db53">Punto::distancia</a></div><div class="ttdeci">double distancia(const Punto&lt; T &gt; &amp;other) const</div><div class="ttdoc">Distancia euclidiana entre este punto y otro.</div><div class="ttdef"><b>Definición</b> Punto.hpp:94</div></div>
+<div class="ttc" id="aclassPunto_html_ab20059d94cabcc097e45ce4bfa21c0f9"><div class="ttname"><a href="classPunto.html#ab20059d94cabcc097e45ce4bfa21c0f9">Punto::operator&lt;</a></div><div class="ttdeci">bool operator&lt;(const Punto&lt; T &gt; &amp;other) const</div><div class="ttdoc">Orden lexicografico: primero x, luego y.</div><div class="ttdef"><b>Definición</b> Punto.hpp:125</div></div>
 <div class="ttc" id="aclassPunto_html_ad8afde09633583503688f11986794f1f"><div class="ttname"><a href="classPunto.html#ad8afde09633583503688f11986794f1f">Punto::getX</a></div><div class="ttdeci">T getX() const</div><div class="ttdoc">Retorna la coordenada x.</div><div class="ttdef"><b>Definición</b> Punto.hpp:78</div></div>
 <div class="ttc" id="aclassPunto_html_aeee915f880ecda5723c0365c78804d9d"><div class="ttname"><a href="classPunto.html#aeee915f880ecda5723c0365c78804d9d">Punto::Punto</a></div><div class="ttdeci">Punto(const Punto&lt; T &gt; &amp;other)</div><div class="ttdoc">Constructor de copia.</div><div class="ttdef"><b>Definición</b> Punto.hpp:67</div></div>
 </div><!-- fragment --></div><!-- contents -->

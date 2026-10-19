@@ -11,6 +11,7 @@ var classPunto =
     [ "distancia", "classPunto.html#aac60104616eccb67f0d1acb8b220db53", null ],
     [ "operator==", "classPunto.html#a7e3269326f2951eb40c1957835cb5858", null ],
     [ "operator!=", "classPunto.html#a7efdefd5eb1e6ab5a49e637d9c767b21", null ],
+    [ "operator<", "classPunto.html#ab20059d94cabcc097e45ce4bfa21c0f9", null ],
     [ "operator<<", "classPunto.html#a4aee870f74991f7f1e2aa30766be23ec", null ],
     [ "x", "classPunto.html#a3d12582abff845ae622b380475cb90e4", null ],
     [ "y", "classPunto.html#a783162390f31db4454f349ed0ca39379", null ],

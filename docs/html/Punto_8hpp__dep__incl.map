@@ -1,0 +1,29 @@
+<map id="include/Punto.hpp" name="include/Punto.hpp">
+<area shape="rect" id="Node000001" title="Clase Punto: punto en un espacio bidimensional." alt="" coords="287,5,424,33"/>
+<area shape="rect" id="Node000002" href="$EstrategiaCerradura_8hpp.html" title="Interfaz comun de los algoritmos de cerradura convexa (patron Strategy)." alt="" coords="240,157,471,184"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="401,38,424,52,442,68,452,88,449,110,437,126,423,139,391,158,389,154,420,135,433,122,444,108,447,89,438,72,421,56,401,43"/>
+<area shape="rect" id="Node000007" href="$GeneradorPuntos_8hpp.html" title="Generadores de nubes de puntos de prueba (patron Strategy)." alt="" coords="501,241,714,268"/>
+<area shape="poly" id="edge8_Node000001_Node000007" title=" " alt="" coords="400,37,435,56,468,79,512,121,550,166,602,241,597,240,546,169,508,124,464,83,432,60,400,43"/>
+<area shape="rect" id="Node000008" href="$Geometria_8hpp.html" title="Predicados geometricos que comparten los algoritmos de cerradura." alt="" coords="47,157,216,184"/>
+<area shape="poly" id="edge11_Node000001_Node000008" title=" " alt="" coords="322,44,153,158,149,154,324,39"/>
+<area shape="rect" id="Node000009" href="$Poligono_8hpp.html" title="Clase Poligono: poligono en un espacio bidimensional." alt="" coords="277,81,434,109"/>
+<area shape="poly" id="edge14_Node000001_Node000009" title=" " alt="" coords="357,46,358,82,353,80,354,51"/>
+<area shape="rect" id="Node000010" href="$Vector_8hpp.html" title="Clase Vector: vector matematico en el plano." alt="" coords="61,81,202,109"/>
+<area shape="poly" id="edge16_Node000001_Node000010" title=" " alt="" coords="299,40,173,83,170,78,303,36"/>
+<area shape="rect" id="Node000003" href="$IncrementalAlgorithm_8hpp.html" title="Algoritmo incremental: ordenar, construir el upper hull y luego el lower hull (de Berg et al...." alt="" coords="234,241,477,268"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="357,198,358,242,353,239,354,202"/>
+<area shape="rect" id="Node000006" href="$RandomIncrementalAlgorithm_8hpp.html" title="Algoritmo incremental aleatorio con listas de conflicto (notas de 15&#45;451 de CMU, seccion 2...." alt="" coords="5,232,210,277"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="299,191,174,234,172,229,303,188"/>
+<area shape="rect" id="Node000004" href="$experimento_8cpp.html" title="Experimento completo de ANALISIS.pdf; escribe un archivo CSV." alt="" coords="201,325,355,353"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="335,279,292,327,289,322,330,281"/>
+<area shape="rect" id="Node000005" href="$main_8cpp.html" title="Ejemplo de uso de las estrategias y comparacion rapida entre ellas." alt="" coords="379,325,484,353"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="379,277,422,325,417,324,377,282"/>
+<area shape="poly" id="edge6_Node000006_Node000004" title=" " alt="" coords="167,282,253,324,248,325,166,287"/>
+<area shape="poly" id="edge7_Node000006_Node000005" title=" " alt="" coords="208,279,382,323,377,326,208,284"/>
+<area shape="poly" id="edge9_Node000007_Node000004" title=" " alt="" coords="543,273,332,327,330,322,537,273"/>
+<area shape="poly" id="edge10_Node000007_Node000005" title=" " alt="" coords="568,275,461,327,459,322,563,276"/>
+<area shape="poly" id="edge12_Node000008_Node000003" title=" " alt="" coords="182,187,322,239,317,242,181,193"/>
+<area shape="poly" id="edge13_Node000008_Node000006" title=" " alt="" coords="125,197,116,233,111,231,122,202"/>
+<area shape="poly" id="edge15_Node000009_Node000002" title=" " alt="" coords="357,122,358,157,353,155,354,127"/>
+<area shape="poly" id="edge17_Node000010_Node000008" title=" " alt="" coords="132,122,134,157,129,156,131,127"/>
+</map>

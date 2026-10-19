@@ -1,0 +1,13 @@
+<map id="include/Punto.hpp" name="include/Punto.hpp">
+<area shape="rect" id="Node000001" title="Clase Punto: punto en un espacio bidimensional." alt="" coords="160,5,298,33"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,81,90,109"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="198,36,95,77,93,72,195,31"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="114,81,176,109"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="216,33,173,73,170,68,211,34"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="200,81,258,109"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="231,32,231,67,227,64,227,35"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="282,81,357,109"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="246,31,294,71,289,71,244,36"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="382,81,473,109"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="265,31,380,75,375,76,264,36"/>
+</map>

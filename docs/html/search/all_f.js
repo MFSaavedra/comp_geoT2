@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['x_0',['x',['../classPunto.html#a3d12582abff845ae622b380475cb90e4',1,'Punto']]]
+  ['tarea_201_0',['Agregados a la Tarea 1',['../index.html#autotoc_md13',1,'']]],
+  ['tests_1',['Ejecutar los tests',['../index.html#autotoc_md9',1,'']]]
 ];

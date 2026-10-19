@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['notas_20de_20diseño_0',['Notas de diseño',['../index.html#autotoc_md8',1,'']]]
+  ['generadores_0',['Generadores',['../index.html#autotoc_md2',1,'']]]
 ];

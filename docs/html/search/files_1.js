@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['poligono_2ehpp_0',['Poligono.hpp',['../Poligono_8hpp.html',1,'']]],
-  ['punto_2ehpp_1',['Punto.hpp',['../Punto_8hpp.html',1,'']]]
+  ['generadorpuntos_2ehpp_0',['GeneradorPuntos.hpp',['../GeneradorPuntos_8hpp.html',1,'']]],
+  ['geometria_2ehpp_1',['Geometria.hpp',['../Geometria_8hpp.html',1,'']]]
 ];

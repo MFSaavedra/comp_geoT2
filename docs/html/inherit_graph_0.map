@@ -1,0 +1,7 @@
+<map id="Gráfico de jerarquía de clases" name="Gráfico de jerarquía de clases">
+<area shape="rect" id="Node000000" href="$classEstrategiaCerradura.html" title="Estrategia de calculo de la cerradura convexa de una nube de puntos." alt="" coords="5,32,195,60"/>
+<area shape="rect" id="Node000001" href="$classIncrementalAlgorithm.html" title="Cerradura convexa incremental sobre los puntos ordenados, O(n log n)." alt="" coords="270,5,471,33"/>
+<area shape="poly" id="edge1_Node000000_Node000001" title=" " alt="" coords="210,32,272,29,267,30,211,38"/>
+<area shape="rect" id="Node000002" href="$classRandomIncrementalAlgorithm.html" title="Cerradura convexa incremental en orden aleatorio, O(n log n) esperado." alt="" coords="243,57,498,85"/>
+<area shape="poly" id="edge2_Node000000_Node000002" title=" " alt="" coords="211,54,245,59,240,59,211,59"/>
+</map>

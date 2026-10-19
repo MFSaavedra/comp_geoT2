@@ -1,0 +1,319 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.18.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>comp_geoT2: Archivo de código fuente include/GeneradorPuntos.hpp</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="codefolding.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">comp_geoT2
+   </div>
+   <div id="projectbrief">Tarea 2 - CC5502 Geometría Computacional: cerradura convexa</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generado por Doxygen 1.18.0 -->
+<script type="text/javascript">
+let searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', codefold.init);
+</script>
+<script type="application/json" id="doxygen-config">
+{
+  "relPath": "",
+  "generateTreeView": true,
+  "searchEngine": true,
+  "serverBasedSearch": false,
+  "disableIndex": false,
+  "dynamicMenus": true,
+  "fullSidebar": false
+}
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<div id="main-nav-mobile">
+<div class="sm sm-dox"><input id="main-menu-state" type="checkbox"/>
+<label class="main-menu-btn" for="main-menu-state">
+<span class="main-menu-btn-icon"></span> Toggle main menu visibility</label>
+<span id="searchBoxPos1"></span>
+</div>
+</div><!-- main-nav-mobile -->
+<div id="main-nav">
+  <ul class="sm sm-dox" id="main-menu">
+    <li id="searchBoxPos2">
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="Buscar" accesskey="S"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+    </li>
+  </ul>
+</div><!-- main-nav -->
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded',() => { initNavTree('GeneradorPuntos_8hpp_source.html','',''); });
+</script>
+<div id="container">
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Cargando...</div>
+<div class="SRStatus" id="Searching">Buscando...</div>
+<div class="SRStatus" id="NoMatches">Nada coincide</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">GeneradorPuntos.hpp</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="GeneradorPuntos_8hpp.html">Ir a la documentación de este archivo.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span> </div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#pragma once</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span> </div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &lt;algorithm&gt;</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#include &lt;cmath&gt;</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#include &lt;cstddef&gt;</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#include &lt;random&gt;</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#include &lt;string&gt;</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#include &lt;type_traits&gt;</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="preprocessor">#include &lt;vector&gt;</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span> </div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="preprocessor">#include &quot;<a class="code" href="Punto_8hpp.html">Punto.hpp</a>&quot;</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span></div>
+<div class="foldopen" id="foldopen00027" data-start="{" data-end="};">
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno"><a class="line" href="classGeneradorPuntos.html">   27</a></span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt; <span class="keyword">class </span><a class="code hl_class" href="classGeneradorPuntos.html">GeneradorPuntos</a> {</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno"><a class="line" href="classGeneradorPuntos.html#a8625f8567adfc38fd243e966491c39c5">   30</a></span>  <span class="keyword">virtual</span> <a class="code hl_function" href="classGeneradorPuntos.html#a8625f8567adfc38fd243e966491c39c5">~GeneradorPuntos</a>() = <span class="keywordflow">default</span>;</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span></div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno"><a class="line" href="classGeneradorPuntos.html#a7fe553457717b6c1b9ee34b9b2dbdb9f">   38</a></span>  <span class="keyword">virtual</span> std::vector&lt;Punto&lt;T&gt;&gt; <a class="code hl_function" href="classGeneradorPuntos.html#a7fe553457717b6c1b9ee34b9b2dbdb9f">generar</a>(std::size_t n,</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>                                        std::mt19937_64 &amp;rng) <span class="keyword">const</span> = 0;</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span></div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno"><a class="line" href="classGeneradorPuntos.html#a5a4e287659e8af63ff35bf43ff00ae79">   42</a></span>  <span class="keyword">virtual</span> std::string <a class="code hl_function" href="classGeneradorPuntos.html#a5a4e287659e8af63ff35bf43ff00ae79">nombre</a>() <span class="keyword">const</span> = 0;</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span> </div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span><span class="keyword">protected</span>:</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno"><a class="line" href="classGeneradorPuntos.html#a7d670237f8a320c5cbd850d04fe61401">   47</a></span>  <span class="keyword">static</span> <span class="keyword">constexpr</span> <span class="keywordtype">double</span> <a class="code hl_variable" href="classGeneradorPuntos.html#a7d670237f8a320c5cbd850d04fe61401">RADIO</a> = 1e8;</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno"><a class="line" href="classGeneradorPuntos.html#aab2254d15ac2a38883659d1ed67e833c">   48</a></span>  <span class="keyword">static</span> <span class="keyword">constexpr</span> <span class="keywordtype">double</span> <a class="code hl_variable" href="classGeneradorPuntos.html#aab2254d15ac2a38883659d1ed67e833c">PI</a> = 3.14159265358979323846; </div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span></div>
+<div class="foldopen" id="foldopen00056" data-start="{" data-end="}">
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno"><a class="line" href="classGeneradorPuntos.html#a70e8a47053e12f4600c6691c01d4a733">   56</a></span>  <span class="keyword">static</span> <a class="code hl_class" href="classPunto.html">Punto&lt;T&gt;</a> <a class="code hl_function" href="classGeneradorPuntos.html#a70e8a47053e12f4600c6691c01d4a733">crear</a>(<span class="keywordtype">double</span> x, <span class="keywordtype">double</span> y) {</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>    <span class="keywordflow">if</span> <span class="keyword">constexpr</span> (std::is_integral_v&lt;T&gt;) {</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>      <span class="keywordflow">return</span> <a class="code hl_function" href="classPunto.html#a53ddef91de1715180b1ccf4ac052d3a4">Punto&lt;T&gt;</a>(<span class="keyword">static_cast&lt;</span>T<span class="keyword">&gt;</span>(std::llround(x)),</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>                      <span class="keyword">static_cast&lt;</span>T<span class="keyword">&gt;</span>(std::llround(y)));</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>    } <span class="keywordflow">else</span> {</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>      <span class="keywordflow">return</span> <a class="code hl_function" href="classPunto.html#a53ddef91de1715180b1ccf4ac052d3a4">Punto&lt;T&gt;</a>(<span class="keyword">static_cast&lt;</span>T<span class="keyword">&gt;</span>(x), <span class="keyword">static_cast&lt;</span>T<span class="keyword">&gt;</span>(y));</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>    }</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>  }</div>
+</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span></div>
+<div class="foldopen" id="foldopen00072" data-start="{" data-end="}">
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno"><a class="line" href="classGeneradorPuntos.html#a500b79ab85c7ea15ab32346c60133781">   72</a></span>  <span class="keyword">static</span> std::size_t <a class="code hl_function" href="classGeneradorPuntos.html#a500b79ab85c7ea15ab32346c60133781">cantidad</a>(<span class="keywordtype">double</span> porcentaje, std::size_t n,</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>                              std::size_t minimo) {</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>    <span class="keyword">const</span> <span class="keyword">auto</span> k = <span class="keyword">static_cast&lt;</span>std::size_t<span class="keyword">&gt;</span>(std::llround(porcentaje * n));</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>    <span class="keywordflow">return</span> std::min(n, std::max(minimo, k));</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>  }</div>
+</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>};</div>
+</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span></div>
+<div class="foldopen" id="foldopen00085" data-start="{" data-end="};">
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno"><a class="line" href="classGeneradorUniforme.html">   85</a></span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt; <span class="keyword">class </span><a class="code hl_class" href="classGeneradorUniforme.html">GeneradorUniforme</a> : <span class="keyword">public</span> <a class="code hl_class" href="classGeneradorPuntos.html">GeneradorPuntos</a>&lt;T&gt; {</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span><span class="keyword">public</span>:</div>
+<div class="foldopen" id="foldopen00093" data-start="{" data-end="}">
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno"><a class="line" href="classGeneradorUniforme.html#a1f67e2b3a6421bc20380ac47d2d7f081">   93</a></span>  std::vector&lt;Punto&lt;T&gt;&gt; <a class="code hl_function" href="classGeneradorUniforme.html#a1f67e2b3a6421bc20380ac47d2d7f081">generar</a>(std::size_t n,</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>                                std::mt19937_64 &amp;rng)<span class="keyword"> const override </span>{</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>    std::uniform_real_distribution&lt;double&gt; u(-this-&gt;<a class="code hl_variable" href="classGeneradorPuntos.html#a7d670237f8a320c5cbd850d04fe61401">RADIO</a>, this-&gt;<a class="code hl_variable" href="classGeneradorPuntos.html#a7d670237f8a320c5cbd850d04fe61401">RADIO</a>);</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>    std::vector&lt;Punto&lt;T&gt;&gt; puntos;</div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>    puntos.reserve(n);</div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>    <span class="keywordflow">for</span> (std::size_t i = 0; i &lt; n; ++i) {</div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>      <span class="keyword">const</span> <span class="keywordtype">double</span> x = u(rng); <span class="comment">// en dos lineas: el orden de evaluacion</span></div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>      <span class="keyword">const</span> <span class="keywordtype">double</span> y = u(rng); <span class="comment">// de los argumentos no esta definido</span></div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>      puntos.push_back(this-&gt;<a class="code hl_function" href="classGeneradorPuntos.html#a70e8a47053e12f4600c6691c01d4a733">crear</a>(x, y));</div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>    }</div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>    <span class="keywordflow">return</span> puntos;</div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>  }</div>
+</div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span></div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno"><a class="line" href="classGeneradorUniforme.html#a7ac456bac3ceb9311bd1f6b7944472e9">  107</a></span>  std::string <a class="code hl_function" href="classGeneradorUniforme.html#a7ac456bac3ceb9311bd1f6b7944472e9">nombre</a>()<span class="keyword"> const override </span>{ <span class="keywordflow">return</span> <span class="stringliteral">&quot;uniforme&quot;</span>; }</div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>};</div>
+</div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span></div>
+<div class="foldopen" id="foldopen00122" data-start="{" data-end="};">
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno"><a class="line" href="classGeneradorCircunferencia.html">  122</a></span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt; <span class="keyword">class </span><a class="code hl_function" href="classGeneradorCircunferencia.html#ac3e7b3ac2879fcf3b61787eac4250f05">GeneradorCircunferencia</a> : <span class="keyword">public</span> <a class="code hl_class" href="classGeneradorPuntos.html">GeneradorPuntos</a>&lt;T&gt; {</div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno"><a class="line" href="classGeneradorCircunferencia.html#ac3e7b3ac2879fcf3b61787eac4250f05">  128</a></span>  <span class="keyword">explicit</span> <a class="code hl_function" href="classGeneradorCircunferencia.html#ac3e7b3ac2879fcf3b61787eac4250f05">GeneradorCircunferencia</a>(<span class="keywordtype">double</span> <a class="code hl_variable" href="classGeneradorCircunferencia.html#aad276563d4216c9555c5cbb6e6c6605c">porcentaje</a>) : <a class="code hl_variable" href="classGeneradorCircunferencia.html#aad276563d4216c9555c5cbb6e6c6605c">porcentaje</a>(<a class="code hl_variable" href="classGeneradorCircunferencia.html#aad276563d4216c9555c5cbb6e6c6605c">porcentaje</a>) {}</div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span></div>
+<div class="foldopen" id="foldopen00137" data-start="{" data-end="}">
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno"><a class="line" href="classGeneradorCircunferencia.html#af4c1c3066a96d766ca9d0b19a6d065e4">  137</a></span>  std::vector&lt;Punto&lt;T&gt;&gt; <a class="code hl_function" href="classGeneradorCircunferencia.html#af4c1c3066a96d766ca9d0b19a6d065e4">generar</a>(std::size_t n,</div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span>                                std::mt19937_64 &amp;rng)<span class="keyword"> const override </span>{</div>
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span>    <span class="keyword">const</span> <span class="keywordtype">double</span> R = this-&gt;<a class="code hl_variable" href="classGeneradorPuntos.html#a7d670237f8a320c5cbd850d04fe61401">RADIO</a>, pi = this-&gt;<a class="code hl_variable" href="classGeneradorPuntos.html#aab2254d15ac2a38883659d1ed67e833c">PI</a>;</div>
+<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span>    <span class="keyword">const</span> std::size_t k = this-&gt;<a class="code hl_function" href="classGeneradorPuntos.html#a500b79ab85c7ea15ab32346c60133781">cantidad</a>(<a class="code hl_variable" href="classGeneradorCircunferencia.html#aad276563d4216c9555c5cbb6e6c6605c">porcentaje</a>, n, 3);</div>
+<div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span>    std::uniform_real_distribution&lt;double&gt; u01(0.0, 1.0);</div>
+<div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span>    std::vector&lt;Punto&lt;T&gt;&gt; puntos;</div>
+<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span>    puntos.reserve(n);</div>
+<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span> </div>
+<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span>    <span class="keyword">const</span> <span class="keywordtype">double</span> desfase = 2 * pi * u01(rng);</div>
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span>    <span class="keywordflow">for</span> (std::size_t i = 0; i &lt; k; ++i) {</div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span>      <span class="keyword">const</span> <span class="keywordtype">double</span> angulo = desfase + 2 * pi * i / k;</div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span>      puntos.push_back(this-&gt;<a class="code hl_function" href="classGeneradorPuntos.html#a70e8a47053e12f4600c6691c01d4a733">crear</a>(R * std::cos(angulo), R * std::sin(angulo)));</div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span>    }</div>
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span> </div>
+<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span>    <span class="keyword">const</span> <span class="keywordtype">double</span> radioInterior = 0.999 * R * std::cos(pi / k);</div>
+<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span>    <span class="keywordflow">for</span> (std::size_t i = k; i &lt; n; ++i) {</div>
+<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span>      <span class="keyword">const</span> <span class="keywordtype">double</span> rho = radioInterior * std::sqrt(u01(rng)); <span class="comment">// uniforme en area</span></div>
+<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span>      <span class="keyword">const</span> <span class="keywordtype">double</span> angulo = 2 * pi * u01(rng);</div>
+<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span>      puntos.push_back(this-&gt;<a class="code hl_function" href="classGeneradorPuntos.html#a70e8a47053e12f4600c6691c01d4a733">crear</a>(rho * std::cos(angulo), rho * std::sin(angulo)));</div>
+<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span>    }</div>
+<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span> </div>
+<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span>    std::shuffle(puntos.begin(), puntos.end(), rng);</div>
+<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span>    <span class="keywordflow">return</span> puntos;</div>
+<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span>  }</div>
+</div>
+<div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span></div>
+<div class="line"><a id="l00163" name="l00163"></a><span class="lineno"><a class="line" href="classGeneradorCircunferencia.html#a12f085b0bdad9e635dd07469f528c0cf">  163</a></span>  std::string <a class="code hl_function" href="classGeneradorCircunferencia.html#a12f085b0bdad9e635dd07469f528c0cf">nombre</a>()<span class="keyword"> const override </span>{ <span class="keywordflow">return</span> <span class="stringliteral">&quot;circunferencia&quot;</span>; }</div>
+<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span> </div>
+<div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00166" name="l00166"></a><span class="lineno"><a class="line" href="classGeneradorCircunferencia.html#aad276563d4216c9555c5cbb6e6c6605c">  166</a></span>  <span class="keywordtype">double</span> <a class="code hl_variable" href="classGeneradorCircunferencia.html#aad276563d4216c9555c5cbb6e6c6605c">porcentaje</a>; </div>
+<div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span>};</div>
+</div>
+<div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span></div>
+<div class="foldopen" id="foldopen00181" data-start="{" data-end="};">
+<div class="line"><a id="l00181" name="l00181"></a><span class="lineno"><a class="line" href="classGeneradorCuadrado.html">  181</a></span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt; <span class="keyword">class </span><a class="code hl_function" href="classGeneradorCuadrado.html#a0d082c665b986550a8882ac5ac9c37d9">GeneradorCuadrado</a> : <span class="keyword">public</span> <a class="code hl_class" href="classGeneradorPuntos.html">GeneradorPuntos</a>&lt;T&gt; {</div>
+<div class="line"><a id="l00182" name="l00182"></a><span class="lineno">  182</span><span class="keyword">public</span>:</div>
+<div class="foldopen" id="foldopen00188" data-start="{" data-end="}">
+<div class="line"><a id="l00188" name="l00188"></a><span class="lineno"><a class="line" href="classGeneradorCuadrado.html#a0d082c665b986550a8882ac5ac9c37d9">  188</a></span>  <a class="code hl_function" href="classGeneradorCuadrado.html#a0d082c665b986550a8882ac5ac9c37d9">GeneradorCuadrado</a>(<span class="keywordtype">double</span> <a class="code hl_variable" href="classGeneradorCuadrado.html#a4ff45b1725092d31c779d4bce3441d49">porcentaje</a>, <span class="keywordtype">double</span> <a class="code hl_variable" href="classGeneradorCuadrado.html#ae0e2db5eea0bf8bfc17518da7a8cec63">angulo</a>)</div>
+<div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span>      : <a class="code hl_variable" href="classGeneradorCuadrado.html#a4ff45b1725092d31c779d4bce3441d49">porcentaje</a>(<a class="code hl_variable" href="classGeneradorCuadrado.html#a4ff45b1725092d31c779d4bce3441d49">porcentaje</a>), <a class="code hl_variable" href="classGeneradorCuadrado.html#ae0e2db5eea0bf8bfc17518da7a8cec63">angulo</a>(<a class="code hl_variable" href="classGeneradorCuadrado.html#ae0e2db5eea0bf8bfc17518da7a8cec63">angulo</a>) {}</div>
+</div>
+<div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span></div>
+<div class="foldopen" id="foldopen00197" data-start="{" data-end="}">
+<div class="line"><a id="l00197" name="l00197"></a><span class="lineno"><a class="line" href="classGeneradorCuadrado.html#aefe1f0badeb14a32fe3ff40d5ca645b0">  197</a></span>  std::vector&lt;Punto&lt;T&gt;&gt; <a class="code hl_function" href="classGeneradorCuadrado.html#aefe1f0badeb14a32fe3ff40d5ca645b0">generar</a>(std::size_t n,</div>
+<div class="line"><a id="l00198" name="l00198"></a><span class="lineno">  198</span>                                std::mt19937_64 &amp;rng)<span class="keyword"> const override </span>{</div>
+<div class="line"><a id="l00199" name="l00199"></a><span class="lineno">  199</span>    <span class="keyword">const</span> <span class="keywordtype">double</span> R = this-&gt;<a class="code hl_variable" href="classGeneradorPuntos.html#a7d670237f8a320c5cbd850d04fe61401">RADIO</a>;</div>
+<div class="line"><a id="l00200" name="l00200"></a><span class="lineno">  200</span>    <span class="keyword">const</span> std::size_t k = this-&gt;<a class="code hl_function" href="classGeneradorPuntos.html#a500b79ab85c7ea15ab32346c60133781">cantidad</a>(<a class="code hl_variable" href="classGeneradorCuadrado.html#a4ff45b1725092d31c779d4bce3441d49">porcentaje</a>, n, 4);</div>
+<div class="line"><a id="l00201" name="l00201"></a><span class="lineno">  201</span>    std::uniform_real_distribution&lt;double&gt; lado(-R, R);</div>
+<div class="line"><a id="l00202" name="l00202"></a><span class="lineno">  202</span>    std::uniform_real_distribution&lt;double&gt; dentro(-0.999 * R, 0.999 * R);</div>
+<div class="line"><a id="l00203" name="l00203"></a><span class="lineno">  203</span>    std::uniform_int_distribution&lt;int&gt; cualLado(0, 3);</div>
+<div class="line"><a id="l00204" name="l00204"></a><span class="lineno">  204</span>    std::vector&lt;Punto&lt;T&gt;&gt; puntos;</div>
+<div class="line"><a id="l00205" name="l00205"></a><span class="lineno">  205</span>    puntos.reserve(n);</div>
+<div class="line"><a id="l00206" name="l00206"></a><span class="lineno">  206</span> </div>
+<div class="line"><a id="l00207" name="l00207"></a><span class="lineno">  207</span>    <span class="keyword">const</span> <span class="keywordtype">double</span> esquinas[4][2] = {{-R, -R}, {R, -R}, {R, R}, {-R, R}};</div>
+<div class="line"><a id="l00208" name="l00208"></a><span class="lineno">  208</span>    <span class="keywordflow">for</span> (std::size_t i = 0; i &lt; n; ++i) {</div>
+<div class="line"><a id="l00209" name="l00209"></a><span class="lineno">  209</span>      <span class="keywordtype">double</span> x, y;</div>
+<div class="line"><a id="l00210" name="l00210"></a><span class="lineno">  210</span>      <span class="keywordflow">if</span> (i &lt; 4 &amp;&amp; i &lt; k) {</div>
+<div class="line"><a id="l00211" name="l00211"></a><span class="lineno">  211</span>        x = esquinas[i][0];</div>
+<div class="line"><a id="l00212" name="l00212"></a><span class="lineno">  212</span>        y = esquinas[i][1];</div>
+<div class="line"><a id="l00213" name="l00213"></a><span class="lineno">  213</span>      } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (i &lt; k) {</div>
+<div class="line"><a id="l00214" name="l00214"></a><span class="lineno">  214</span>        <span class="keyword">const</span> <span class="keywordtype">double</span> t = lado(rng);</div>
+<div class="line"><a id="l00215" name="l00215"></a><span class="lineno">  215</span>        <span class="keywordflow">switch</span> (cualLado(rng)) {</div>
+<div class="line"><a id="l00216" name="l00216"></a><span class="lineno">  216</span>        <span class="keywordflow">case</span> 0: x = t, y = -R; <span class="keywordflow">break</span>;</div>
+<div class="line"><a id="l00217" name="l00217"></a><span class="lineno">  217</span>        <span class="keywordflow">case</span> 1: x = R, y = t; <span class="keywordflow">break</span>;</div>
+<div class="line"><a id="l00218" name="l00218"></a><span class="lineno">  218</span>        <span class="keywordflow">case</span> 2: x = t, y = R; <span class="keywordflow">break</span>;</div>
+<div class="line"><a id="l00219" name="l00219"></a><span class="lineno">  219</span>        <span class="keywordflow">default</span>: x = -R, y = t; <span class="keywordflow">break</span>;</div>
+<div class="line"><a id="l00220" name="l00220"></a><span class="lineno">  220</span>        }</div>
+<div class="line"><a id="l00221" name="l00221"></a><span class="lineno">  221</span>      } <span class="keywordflow">else</span> {</div>
+<div class="line"><a id="l00222" name="l00222"></a><span class="lineno">  222</span>        x = dentro(rng);</div>
+<div class="line"><a id="l00223" name="l00223"></a><span class="lineno">  223</span>        y = dentro(rng);</div>
+<div class="line"><a id="l00224" name="l00224"></a><span class="lineno">  224</span>      }</div>
+<div class="line"><a id="l00225" name="l00225"></a><span class="lineno">  225</span>      puntos.push_back(<a class="code hl_function" href="classGeneradorCuadrado.html#a531cf20b3cb092e5c046c95b9ba477c6">rotado</a>(x, y));</div>
+<div class="line"><a id="l00226" name="l00226"></a><span class="lineno">  226</span>    }</div>
+<div class="line"><a id="l00227" name="l00227"></a><span class="lineno">  227</span> </div>
+<div class="line"><a id="l00228" name="l00228"></a><span class="lineno">  228</span>    std::shuffle(puntos.begin(), puntos.end(), rng);</div>
+<div class="line"><a id="l00229" name="l00229"></a><span class="lineno">  229</span>    <span class="keywordflow">return</span> puntos;</div>
+<div class="line"><a id="l00230" name="l00230"></a><span class="lineno">  230</span>  }</div>
+</div>
+<div class="line"><a id="l00231" name="l00231"></a><span class="lineno">  231</span></div>
+<div class="line"><a id="l00233" name="l00233"></a><span class="lineno"><a class="line" href="classGeneradorCuadrado.html#af1f62b643a614ab11da3ebc3fdbb4e06">  233</a></span>  std::string <a class="code hl_function" href="classGeneradorCuadrado.html#af1f62b643a614ab11da3ebc3fdbb4e06">nombre</a>()<span class="keyword"> const override </span>{ <span class="keywordflow">return</span> <span class="stringliteral">&quot;cuadrado&quot;</span>; }</div>
+<div class="line"><a id="l00234" name="l00234"></a><span class="lineno">  234</span> </div>
+<div class="line"><a id="l00235" name="l00235"></a><span class="lineno">  235</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00236" name="l00236"></a><span class="lineno"><a class="line" href="classGeneradorCuadrado.html#a4ff45b1725092d31c779d4bce3441d49">  236</a></span>  <span class="keywordtype">double</span> <a class="code hl_variable" href="classGeneradorCuadrado.html#a4ff45b1725092d31c779d4bce3441d49">porcentaje</a>; </div>
+<div class="line"><a id="l00237" name="l00237"></a><span class="lineno"><a class="line" href="classGeneradorCuadrado.html#ae0e2db5eea0bf8bfc17518da7a8cec63">  237</a></span>  <span class="keywordtype">double</span> <a class="code hl_variable" href="classGeneradorCuadrado.html#ae0e2db5eea0bf8bfc17518da7a8cec63">angulo</a>;     </div>
+<div class="line"><a id="l00238" name="l00238"></a><span class="lineno">  238</span></div>
+<div class="foldopen" id="foldopen00246" data-start="{" data-end="}">
+<div class="line"><a id="l00246" name="l00246"></a><span class="lineno"><a class="line" href="classGeneradorCuadrado.html#a531cf20b3cb092e5c046c95b9ba477c6">  246</a></span>  <a class="code hl_class" href="classPunto.html">Punto&lt;T&gt;</a> <a class="code hl_function" href="classGeneradorCuadrado.html#a531cf20b3cb092e5c046c95b9ba477c6">rotado</a>(<span class="keywordtype">double</span> x, <span class="keywordtype">double</span> y)<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l00247" name="l00247"></a><span class="lineno">  247</span>    <span class="keyword">const</span> <span class="keywordtype">double</span> c = std::cos(<a class="code hl_variable" href="classGeneradorCuadrado.html#ae0e2db5eea0bf8bfc17518da7a8cec63">angulo</a>), s = std::sin(<a class="code hl_variable" href="classGeneradorCuadrado.html#ae0e2db5eea0bf8bfc17518da7a8cec63">angulo</a>);</div>
+<div class="line"><a id="l00248" name="l00248"></a><span class="lineno">  248</span>    <span class="keywordflow">return</span> this-&gt;<a class="code hl_function" href="classGeneradorPuntos.html#a70e8a47053e12f4600c6691c01d4a733">crear</a>(c * x - s * y, s * x + c * y);</div>
+<div class="line"><a id="l00249" name="l00249"></a><span class="lineno">  249</span>  }</div>
+</div>
+<div class="line"><a id="l00250" name="l00250"></a><span class="lineno">  250</span>};</div>
+</div>
+<div class="ttc" id="aPunto_8hpp_html"><div class="ttname"><a href="Punto_8hpp.html">Punto.hpp</a></div><div class="ttdoc">Clase Punto: punto en un espacio bidimensional.</div></div>
+<div class="ttc" id="aclassGeneradorCircunferencia_html_a12f085b0bdad9e635dd07469f528c0cf"><div class="ttname"><a href="classGeneradorCircunferencia.html#a12f085b0bdad9e635dd07469f528c0cf">GeneradorCircunferencia::nombre</a></div><div class="ttdeci">std::string nombre() const override</div><div class="ttdoc">Nombre del generador.</div><div class="ttdef"><b>Definición</b> GeneradorPuntos.hpp:163</div></div>
+<div class="ttc" id="aclassGeneradorCircunferencia_html_aad276563d4216c9555c5cbb6e6c6605c"><div class="ttname"><a href="classGeneradorCircunferencia.html#aad276563d4216c9555c5cbb6e6c6605c">GeneradorCircunferencia::porcentaje</a></div><div class="ttdeci">double porcentaje</div><div class="ttdoc">Fraccion de los puntos sobre la circunferencia.</div><div class="ttdef"><b>Definición</b> GeneradorPuntos.hpp:166</div></div>
+<div class="ttc" id="aclassGeneradorCircunferencia_html_ac3e7b3ac2879fcf3b61787eac4250f05"><div class="ttname"><a href="classGeneradorCircunferencia.html#ac3e7b3ac2879fcf3b61787eac4250f05">GeneradorCircunferencia::GeneradorCircunferencia</a></div><div class="ttdeci">GeneradorCircunferencia(double porcentaje)</div><div class="ttdoc">Construye el generador.</div><div class="ttdef"><b>Definición</b> GeneradorPuntos.hpp:128</div></div>
+<div class="ttc" id="aclassGeneradorCircunferencia_html_af4c1c3066a96d766ca9d0b19a6d065e4"><div class="ttname"><a href="classGeneradorCircunferencia.html#af4c1c3066a96d766ca9d0b19a6d065e4">GeneradorCircunferencia::generar</a></div><div class="ttdeci">std::vector&lt; Punto&lt; T &gt; &gt; generar(std::size_t n, std::mt19937_64 &amp;rng) const override</div><div class="ttdoc">Genera n puntos, de los cuales max(3, porcentaje * n) estan en la circunferencia.</div><div class="ttdef"><b>Definición</b> GeneradorPuntos.hpp:137</div></div>
+<div class="ttc" id="aclassGeneradorCuadrado_html_a0d082c665b986550a8882ac5ac9c37d9"><div class="ttname"><a href="classGeneradorCuadrado.html#a0d082c665b986550a8882ac5ac9c37d9">GeneradorCuadrado::GeneradorCuadrado</a></div><div class="ttdeci">GeneradorCuadrado(double porcentaje, double angulo)</div><div class="ttdoc">Construye el generador.</div><div class="ttdef"><b>Definición</b> GeneradorPuntos.hpp:188</div></div>
+<div class="ttc" id="aclassGeneradorCuadrado_html_a4ff45b1725092d31c779d4bce3441d49"><div class="ttname"><a href="classGeneradorCuadrado.html#a4ff45b1725092d31c779d4bce3441d49">GeneradorCuadrado::porcentaje</a></div><div class="ttdeci">double porcentaje</div><div class="ttdoc">Fraccion de los puntos sobre el borde.</div><div class="ttdef"><b>Definición</b> GeneradorPuntos.hpp:236</div></div>
+<div class="ttc" id="aclassGeneradorCuadrado_html_a531cf20b3cb092e5c046c95b9ba477c6"><div class="ttname"><a href="classGeneradorCuadrado.html#a531cf20b3cb092e5c046c95b9ba477c6">GeneradorCuadrado::rotado</a></div><div class="ttdeci">Punto&lt; T &gt; rotado(double x, double y) const</div><div class="ttdoc">Rota (x, y) en el angulo del generador y lo convierte a T.</div><div class="ttdef"><b>Definición</b> GeneradorPuntos.hpp:246</div></div>
+<div class="ttc" id="aclassGeneradorCuadrado_html_ae0e2db5eea0bf8bfc17518da7a8cec63"><div class="ttname"><a href="classGeneradorCuadrado.html#ae0e2db5eea0bf8bfc17518da7a8cec63">GeneradorCuadrado::angulo</a></div><div class="ttdeci">double angulo</div><div class="ttdoc">Rotacion del cuadrado, en radianes.</div><div class="ttdef"><b>Definición</b> GeneradorPuntos.hpp:237</div></div>
+<div class="ttc" id="aclassGeneradorCuadrado_html_aefe1f0badeb14a32fe3ff40d5ca645b0"><div class="ttname"><a href="classGeneradorCuadrado.html#aefe1f0badeb14a32fe3ff40d5ca645b0">GeneradorCuadrado::generar</a></div><div class="ttdeci">std::vector&lt; Punto&lt; T &gt; &gt; generar(std::size_t n, std::mt19937_64 &amp;rng) const override</div><div class="ttdoc">Genera n puntos, de los cuales max(4, porcentaje * n) estan en el borde.</div><div class="ttdef"><b>Definición</b> GeneradorPuntos.hpp:197</div></div>
+<div class="ttc" id="aclassGeneradorCuadrado_html_af1f62b643a614ab11da3ebc3fdbb4e06"><div class="ttname"><a href="classGeneradorCuadrado.html#af1f62b643a614ab11da3ebc3fdbb4e06">GeneradorCuadrado::nombre</a></div><div class="ttdeci">std::string nombre() const override</div><div class="ttdoc">Nombre del generador.</div><div class="ttdef"><b>Definición</b> GeneradorPuntos.hpp:233</div></div>
+<div class="ttc" id="aclassGeneradorPuntos_html"><div class="ttname"><a href="classGeneradorPuntos.html">GeneradorPuntos</a></div><div class="ttdoc">Estrategia de generacion de una nube de puntos de prueba.</div><div class="ttdef"><b>Definición</b> GeneradorPuntos.hpp:27</div></div>
+<div class="ttc" id="aclassGeneradorPuntos_html_a500b79ab85c7ea15ab32346c60133781"><div class="ttname"><a href="classGeneradorPuntos.html#a500b79ab85c7ea15ab32346c60133781">GeneradorPuntos::cantidad</a></div><div class="ttdeci">static std::size_t cantidad(double porcentaje, std::size_t n, std::size_t minimo)</div><div class="ttdoc">Cantidad de puntos que corresponde a un porcentaje.</div><div class="ttdef"><b>Definición</b> GeneradorPuntos.hpp:72</div></div>
+<div class="ttc" id="aclassGeneradorPuntos_html_a5a4e287659e8af63ff35bf43ff00ae79"><div class="ttname"><a href="classGeneradorPuntos.html#a5a4e287659e8af63ff35bf43ff00ae79">GeneradorPuntos::nombre</a></div><div class="ttdeci">virtual std::string nombre() const =0</div><div class="ttdoc">Nombre corto del generador, para tablas y archivos de datos.</div></div>
+<div class="ttc" id="aclassGeneradorPuntos_html_a70e8a47053e12f4600c6691c01d4a733"><div class="ttname"><a href="classGeneradorPuntos.html#a70e8a47053e12f4600c6691c01d4a733">GeneradorPuntos::crear</a></div><div class="ttdeci">static Punto&lt; T &gt; crear(double x, double y)</div><div class="ttdoc">Convierte coordenadas double al tipo T.</div><div class="ttdef"><b>Definición</b> GeneradorPuntos.hpp:56</div></div>
+<div class="ttc" id="aclassGeneradorPuntos_html_a7d670237f8a320c5cbd850d04fe61401"><div class="ttname"><a href="classGeneradorPuntos.html#a7d670237f8a320c5cbd850d04fe61401">GeneradorPuntos::RADIO</a></div><div class="ttdeci">static constexpr double RADIO</div><div class="ttdef"><b>Definición</b> GeneradorPuntos.hpp:47</div></div>
+<div class="ttc" id="aclassGeneradorPuntos_html_a7fe553457717b6c1b9ee34b9b2dbdb9f"><div class="ttname"><a href="classGeneradorPuntos.html#a7fe553457717b6c1b9ee34b9b2dbdb9f">GeneradorPuntos::generar</a></div><div class="ttdeci">virtual std::vector&lt; Punto&lt; T &gt; &gt; generar(std::size_t n, std::mt19937_64 &amp;rng) const =0</div><div class="ttdoc">Genera la nube.</div></div>
+<div class="ttc" id="aclassGeneradorPuntos_html_a8625f8567adfc38fd243e966491c39c5"><div class="ttname"><a href="classGeneradorPuntos.html#a8625f8567adfc38fd243e966491c39c5">GeneradorPuntos::~GeneradorPuntos</a></div><div class="ttdeci">virtual ~GeneradorPuntos()=default</div><div class="ttdoc">Destructor virtual: los generadores se usan por puntero a la base.</div></div>
+<div class="ttc" id="aclassGeneradorPuntos_html_aab2254d15ac2a38883659d1ed67e833c"><div class="ttname"><a href="classGeneradorPuntos.html#aab2254d15ac2a38883659d1ed67e833c">GeneradorPuntos::PI</a></div><div class="ttdeci">static constexpr double PI</div><div class="ttdoc">El numero pi.</div><div class="ttdef"><b>Definición</b> GeneradorPuntos.hpp:48</div></div>
+<div class="ttc" id="aclassGeneradorUniforme_html"><div class="ttname"><a href="classGeneradorUniforme.html">GeneradorUniforme</a></div><div class="ttdoc">Puntos uniformes en el cuadrado [-RADIO, RADIO]^2.</div><div class="ttdef"><b>Definición</b> GeneradorPuntos.hpp:85</div></div>
+<div class="ttc" id="aclassGeneradorUniforme_html_a1f67e2b3a6421bc20380ac47d2d7f081"><div class="ttname"><a href="classGeneradorUniforme.html#a1f67e2b3a6421bc20380ac47d2d7f081">GeneradorUniforme::generar</a></div><div class="ttdeci">std::vector&lt; Punto&lt; T &gt; &gt; generar(std::size_t n, std::mt19937_64 &amp;rng) const override</div><div class="ttdoc">Genera n puntos uniformes en el cuadrado.</div><div class="ttdef"><b>Definición</b> GeneradorPuntos.hpp:93</div></div>
+<div class="ttc" id="aclassGeneradorUniforme_html_a7ac456bac3ceb9311bd1f6b7944472e9"><div class="ttname"><a href="classGeneradorUniforme.html#a7ac456bac3ceb9311bd1f6b7944472e9">GeneradorUniforme::nombre</a></div><div class="ttdeci">std::string nombre() const override</div><div class="ttdoc">Nombre del generador.</div><div class="ttdef"><b>Definición</b> GeneradorPuntos.hpp:107</div></div>
+<div class="ttc" id="aclassPunto_html"><div class="ttname"><a href="classPunto.html">Punto</a></div><div class="ttdoc">Punto en el plano, con una coordenada z auxiliar.</div><div class="ttdef"><b>Definición</b> Punto.hpp:18</div></div>
+<div class="ttc" id="aclassPunto_html_a53ddef91de1715180b1ccf4ac052d3a4"><div class="ttname"><a href="classPunto.html#a53ddef91de1715180b1ccf4ac052d3a4">Punto::Punto</a></div><div class="ttdeci">Punto()</div><div class="ttdoc">Construye el punto en el origen.</div><div class="ttdef"><b>Definición</b> Punto.hpp:46</div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+</div><!-- container -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><b>include</b></li><li class="navelem"><a href="GeneradorPuntos_8hpp.html">GeneradorPuntos.hpp</a></li>
+    <li class="footer">Generado por <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.18.0 </li>
+  </ul>
+</div>
+</body>
+</html>

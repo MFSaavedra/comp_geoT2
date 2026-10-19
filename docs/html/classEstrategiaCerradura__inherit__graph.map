@@ -1,0 +1,7 @@
+<map id="EstrategiaCerradura&lt; T &gt;" name="EstrategiaCerradura&lt; T &gt;">
+<area shape="rect" id="Node000001" title="Estrategia de calculo de la cerradura convexa de una nube de puntos." alt="" coords="137,5,326,33"/>
+<area shape="rect" id="Node000002" href="$classIncrementalAlgorithm.html" title="Cerradura convexa incremental sobre los puntos ordenados, O(n log n)." alt="" coords="5,81,207,109"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="199,41,129,83,127,78,194,41"/>
+<area shape="rect" id="Node000003" href="$classRandomIncrementalAlgorithm.html" title="Cerradura convexa incremental en orden aleatorio, O(n log n) esperado." alt="" coords="230,81,486,109"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="268,38,338,81,333,81,266,44"/>
+</map>

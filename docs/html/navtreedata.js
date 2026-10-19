@@ -24,22 +24,32 @@
 */
 var NAVTREE =
 [
-  [ "comp_geoT1", "index.html", [
-    [ "Estructura", "index.html#autotoc_md1", null ],
-    [ "Requisitos", "index.html#autotoc_md2", null ],
-    [ "Compilar", "index.html#autotoc_md3", null ],
-    [ "Ejecutar los tests", "index.html#autotoc_md4", null ],
-    [ "Ejecutar el main", "index.html#autotoc_md5", null ],
-    [ "Sin CMake", "index.html#autotoc_md6", null ],
-    [ "Documentación", "index.html#autotoc_md7", null ],
-    [ "Notas de diseño", "index.html#autotoc_md8", null ],
+  [ "comp_geoT2", "index.html", [
+    [ "Estructura", "index.html#autotoc_md1", [
+      [ "Generadores", "index.html#autotoc_md2", null ]
+    ] ],
+    [ "Requisitos", "index.html#autotoc_md3", null ],
+    [ "Compilar", "index.html#autotoc_md4", null ],
+    [ "Ejecutar", "index.html#autotoc_md5", null ],
+    [ "Experimento completo", "index.html#autotoc_md6", null ],
+    [ "Regenerar el informe", "index.html#autotoc_md7", [
+      [ "Verificación exacta del caso casi colineal", "index.html#autotoc_md8", null ]
+    ] ],
+    [ "Ejecutar los tests", "index.html#autotoc_md9", null ],
+    [ "Sin CMake", "index.html#autotoc_md10", null ],
+    [ "Documentación", "index.html#autotoc_md11", null ],
+    [ "Supuestos", "index.html#autotoc_md12", null ],
+    [ "Agregados a la Tarea 1", "index.html#autotoc_md13", null ],
+    [ "Declaración de uso de IA", "index.html#autotoc_md14", null ],
     [ "Clases", "annotated.html", [
       [ "Lista de clases", "annotated.html", "annotated_dup" ],
       [ "Índice de clases", "classes.html", null ],
+      [ "Jerarquía de clases", "hierarchy.html", "hierarchy" ],
       [ "Miembros de clases", "functions.html", [
         [ "Todos", "functions.html", null ],
         [ "Funciones", "functions_func.html", null ],
         [ "Variables", "functions_vars.html", null ],
+        [ "typedefs", "functions_type.html", null ],
         [ "Símbolos relacionados", "functions_rela.html", null ]
       ] ]
     ] ],
@@ -47,7 +57,8 @@ var NAVTREE =
       [ "Lista de archivos", "files.html", "files_dup" ],
       [ "Miembros de los archivos", "globals.html", [
         [ "Todos", "globals.html", null ],
-        [ "Funciones", "globals_func.html", null ]
+        [ "Funciones", "globals_func.html", null ],
+        [ "typedefs", "globals_type.html", null ]
       ] ]
     ] ]
   ] ]
@@ -55,7 +66,7 @@ var NAVTREE =
 
 var NAVTREEINDEX =
 [
-"Poligono_8hpp.html"
+"EstrategiaCerradura_8hpp.html"
 ];
 
 const SYNCONMSG = 'pulsar para deshabilitar sincronización';

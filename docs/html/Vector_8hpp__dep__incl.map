@@ -1,0 +1,15 @@
+<map id="include/Vector.hpp" name="include/Vector.hpp">
+<area shape="rect" id="Node000001" title="Clase Vector: vector matematico en el plano." alt="" coords="180,5,321,33"/>
+<area shape="rect" id="Node000002" href="$Geometria_8hpp.html" title="Predicados geometricos que comparten los algoritmos de cerradura." alt="" coords="166,81,335,109"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="252,46,253,82,248,80,249,51"/>
+<area shape="rect" id="Node000003" href="$IncrementalAlgorithm_8hpp.html" title="Algoritmo incremental: ordenar, construir el upper hull y luego el lower hull (de Berg et al...." alt="" coords="5,165,248,193"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="216,119,148,167,145,162,220,116"/>
+<area shape="rect" id="Node000006" href="$RandomIncrementalAlgorithm_8hpp.html" title="Algoritmo incremental aleatorio con listas de conflicto (notas de 15&#45;451 de CMU, seccion 2...." alt="" coords="272,157,477,201"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="284,115,344,156,339,156,283,120"/>
+<area shape="rect" id="Node000004" href="$experimento_8cpp.html" title="Experimento completo de ANALISIS.pdf; escribe un archivo CSV." alt="" coords="96,249,250,277"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="143,204,168,249,163,249,140,209"/>
+<area shape="rect" id="Node000005" href="$main_8cpp.html" title="Ejemplo de uso de las estrategias y comparacion rapida entre ellas." alt="" coords="298,249,403,277"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="177,196,317,248,312,250,176,201"/>
+<area shape="poly" id="edge6_Node000006_Node000004" title=" " alt="" coords="310,207,206,251,205,246,305,208"/>
+<area shape="poly" id="edge7_Node000006_Node000005" title=" " alt="" coords="366,215,356,251,353,247,362,218"/>
+</map>

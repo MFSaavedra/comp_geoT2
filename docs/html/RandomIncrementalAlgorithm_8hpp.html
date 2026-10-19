@@ -1,0 +1,220 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.18.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>comp_geoT2: Referencia del archivo include/RandomIncrementalAlgorithm.hpp</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="codefolding.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">comp_geoT2
+   </div>
+   <div id="projectbrief">Tarea 2 - CC5502 Geometría Computacional: cerradura convexa</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generado por Doxygen 1.18.0 -->
+<script type="text/javascript">
+let searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', codefold.init);
+</script>
+<script type="application/json" id="doxygen-config">
+{
+  "relPath": "",
+  "generateTreeView": true,
+  "searchEngine": true,
+  "serverBasedSearch": false,
+  "disableIndex": false,
+  "dynamicMenus": true,
+  "fullSidebar": false
+}
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<div id="main-nav-mobile">
+<div class="sm sm-dox"><input id="main-menu-state" type="checkbox"/>
+<label class="main-menu-btn" for="main-menu-state">
+<span class="main-menu-btn-icon"></span> Toggle main menu visibility</label>
+<span id="searchBoxPos1"></span>
+</div>
+</div><!-- main-nav-mobile -->
+<div id="main-nav">
+  <ul class="sm sm-dox" id="main-menu">
+    <li id="searchBoxPos2">
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="Buscar" accesskey="S"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+    </li>
+  </ul>
+</div><!-- main-nav -->
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded',() => { initNavTree('RandomIncrementalAlgorithm_8hpp.html','',''); });
+</script>
+<div id="container">
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Cargando...</div>
+<div class="SRStatus" id="Searching">Buscando...</div>
+<div class="SRStatus" id="NoMatches">Nada coincide</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">Referencia del archivo RandomIncrementalAlgorithm.hpp</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>Algoritmo incremental aleatorio con listas de conflicto (notas de 15-451 de CMU, seccion 2.2).  
+<a href="#details">Más...</a></p>
+<div class="textblock"><code>#include &lt;algorithm&gt;</code><br />
+<code>#include &lt;cstddef&gt;</code><br />
+<code>#include &lt;cstdint&gt;</code><br />
+<code>#include &lt;random&gt;</code><br />
+<code>#include &lt;string&gt;</code><br />
+<code>#include &lt;utility&gt;</code><br />
+<code>#include &lt;vector&gt;</code><br />
+<code>#include &quot;<a class="el" href="EstrategiaCerradura_8hpp_source.html">EstrategiaCerradura.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="Geometria_8hpp_source.html">Geometria.hpp</a>&quot;</code><br />
+</div><div class="textblock"><div class="dynheader">
+Gráfico de dependencias incluidas en RandomIncrementalAlgorithm.hpp:</div>
+<div class="dyncontent">
+<div class="center"><img src="RandomIncrementalAlgorithm_8hpp__incl.png" border="0" usemap="#ainclude_2RandomIncrementalAlgorithm_8hpp" loading="lazy" alt=""/></div>
+<map name="ainclude_2RandomIncrementalAlgorithm_8hpp" id="ainclude_2RandomIncrementalAlgorithm_8hpp">
+<area shape="rect" title="Algoritmo incremental aleatorio con listas de conflicto (notas de 15&#45;451 de CMU, seccion 2...." alt="" coords="133,5,337,50"/>
+<area shape="rect" title=" " alt="" coords="274,325,358,353"/>
+<area shape="poly" title=" " alt="" coords="130,36,99,45,66,57,36,75,12,99,9,111,12,125,19,175,32,213,55,245,93,275,134,296,177,311,261,331,256,332,176,316,132,301,91,279,51,249,27,216,14,176,7,126,3,111,7,97,32,71,63,52,97,39,134,32"/>
+<area shape="rect" title=" " alt="" coords="104,249,173,277"/>
+<area shape="poly" title=" " alt="" coords="130,39,102,48,73,60,47,77,26,99,18,118,17,137,24,156,36,175,70,210,107,240,102,242,66,214,31,178,19,158,12,138,12,117,22,97,44,73,71,56,101,43,134,35"/>
+<area shape="rect" title=" " alt="" coords="37,98,102,126"/>
+<area shape="poly" title=" " alt="" coords="189,53,111,93,108,89,192,48"/>
+<area shape="rect" title=" " alt="" coords="126,98,197,126"/>
+<area shape="poly" title=" " alt="" coords="214,53,185,88,181,84,217,48"/>
+<area shape="rect" title=" " alt="" coords="219,174,277,201"/>
+<area shape="poly" title=" " alt="" coords="238,48,248,159,243,157,235,52"/>
+<area shape="rect" title=" " alt="" coords="272,98,331,126"/>
+<area shape="poly" title=" " alt="" coords="252,48,284,86,278,86,252,53"/>
+<area shape="rect" title=" " alt="" coords="454,249,517,277"/>
+<area shape="poly" title=" " alt="" coords="337,35,401,44,463,57,515,74,535,84,549,96,558,114,562,133,560,152,553,172,533,209,509,240,506,236,529,206,549,170,554,151,556,133,553,116,545,100,532,89,513,79,462,62,400,49,338,41"/>
+<area shape="rect" href="EstrategiaCerradura_8hpp.html" title="Interfaz comun de los algoritmos de cerradura convexa (patron Strategy)." alt="" coords="356,98,535,126"/>
+<area shape="poly" title=" " alt="" coords="291,48,400,91,395,93,291,53"/>
+<area shape="rect" href="Geometria_8hpp.html" title="Predicados geometricos que comparten los algoritmos de cerradura." alt="" coords="621,98,739,126"/>
+<area shape="poly" title=" " alt="" coords="337,45,607,95,603,98,337,50"/>
+<area shape="poly" title=" " alt="" coords="408,128,293,172,291,167,412,125"/>
+<area shape="poly" title=" " alt="" coords="450,124,480,235,475,233,447,128"/>
+<area shape="rect" href="Poligono_8hpp.html" title="Clase Poligono: poligono en un espacio bidimensional." alt="" coords="314,174,419,201"/>
+<area shape="poly" title=" " alt="" coords="433,125,393,165,390,161,429,128"/>
+<area shape="rect" href="Punto_8hpp.html" title="Clase Punto: punto en un espacio bidimensional." alt="" coords="541,249,627,277"/>
+<area shape="poly" title=" " alt="" coords="458,123,564,238,559,238,456,128"/>
+<area shape="poly" title=" " alt="" coords="365,200,327,312,323,308,360,203"/>
+<area shape="poly" title=" " alt="" coords="324,203,189,248,187,243,328,200"/>
+<area shape="poly" title=" " alt="" coords="388,199,454,241,449,241,387,204"/>
+<area shape="rect" title=" " alt="" coords="421,325,483,353"/>
+<area shape="poly" title=" " alt="" coords="371,199,383,236,401,276,430,315,425,313,396,278,378,237,368,204"/>
+<area shape="rect" title=" " alt="" coords="609,325,684,353"/>
+<area shape="poly" title=" " alt="" coords="375,199,403,237,422,258,444,275,503,295,596,324,591,323,501,300,441,279,419,261,399,241,373,204"/>
+<area shape="poly" title=" " alt="" coords="406,199,534,244,528,244,405,205"/>
+<area shape="poly" title=" " alt="" coords="543,276,374,324,373,319,538,277"/>
+<area shape="poly" title=" " alt="" coords="563,277,490,320,488,315,558,278"/>
+<area shape="poly" title=" " alt="" coords="596,275,628,314,623,312,594,280"/>
+<area shape="rect" title=" " alt="" coords="527,325,585,353"/>
+<area shape="poly" title=" " alt="" coords="581,276,568,313,565,308,577,279"/>
+<area shape="rect" title=" " alt="" coords="718,325,810,353"/>
+<area shape="poly" title=" " alt="" coords="617,275,721,319,716,319,616,280"/>
+<area shape="poly" title=" " alt="" coords="672,124,638,175,600,238,597,234,634,172,668,127"/>
+<area shape="poly" title=" " alt="" coords="703,124,730,144,752,172,765,208,771,245,770,311,765,308,765,245,759,209,747,175,726,148,702,129"/>
+<area shape="rect" href="Vector_8hpp.html" title="Clase Vector: vector matematico en el plano." alt="" coords="647,174,737,201"/>
+<area shape="poly" title=" " alt="" coords="684,124,690,160,685,157,681,128"/>
+<area shape="poly" title=" " alt="" coords="690,200,657,312,653,308,686,203"/>
+<area shape="poly" title=" " alt="" coords="675,201,617,243,615,238,670,203"/>
+</map>
+</div>
+</div><div class="textblock"><div class="dynheader">
+Gráfico de los archivos que directa o indirectamente incluyen a este archivo:</div>
+<div class="dyncontent">
+<div class="center"><img src="RandomIncrementalAlgorithm_8hpp__dep__incl.png" border="0" usemap="#ainclude_2RandomIncrementalAlgorithm_8hppdep" loading="lazy" alt=""/></div>
+<map name="ainclude_2RandomIncrementalAlgorithm_8hppdep" id="ainclude_2RandomIncrementalAlgorithm_8hppdep">
+<area shape="rect" title="Algoritmo incremental aleatorio con listas de conflicto (notas de 15&#45;451 de CMU, seccion 2...." alt="" coords="56,5,261,50"/>
+<area shape="rect" href="experimento_8cpp.html" title="Experimento completo de ANALISIS.pdf; escribe un archivo CSV." alt="" coords="5,98,160,126"/>
+<area shape="poly" title=" " alt="" coords="131,61,96,99,93,95,126,62"/>
+<area shape="rect" href="main_8cpp.html" title="Ejemplo de uso de las estrategias y comparacion rapida entre ellas." alt="" coords="184,98,288,126"/>
+<area shape="poly" title=" " alt="" coords="190,59,226,98,221,97,188,64"/>
+</map>
+</div>
+</div>
+<p><a href="RandomIncrementalAlgorithm_8hpp_source.html">Ir al código fuente de este archivo.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-nested-classes" class="groupheader"><a id="nested-classes" name="nested-classes"></a>
+Clases</h2></td></tr>
+<tr class="memitem:RandomIncrementalAlgorithm_3C_20T_20_3E" id="r_RandomIncrementalAlgorithm_3C_20T_20_3E"><td class="memItemLeft">class &#160;</td><td class="memItemRight"><a class="el" href="classRandomIncrementalAlgorithm.html">RandomIncrementalAlgorithm&lt; T &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cerradura convexa incremental en orden aleatorio, O(n log n) esperado.  <a href="classRandomIncrementalAlgorithm.html#details">Más...</a><br /></td></tr>
+</table>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Descripción detallada</h2>
+<div class="textblock"><p>Algoritmo incremental aleatorio con listas de conflicto (notas de 15-451 de CMU, seccion 2.2). </p>
+</div></div><!-- contents -->
+</div><!-- doc-content -->
+<div id="page-nav" class="page-nav-panel">
+<div id="page-nav-resize-handle"></div>
+<div id="page-nav-tree">
+<div id="page-nav-contents">
+</div><!-- page-nav-contents -->
+</div><!-- page-nav-tree -->
+</div><!-- page-nav -->
+</div><!-- container -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><b>include</b></li><li class="navelem"><a href="RandomIncrementalAlgorithm_8hpp.html">RandomIncrementalAlgorithm.hpp</a></li>
+    <li class="footer">Generado por <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.18.0 </li>
+  </ul>
+</div>
+</body>
+</html>

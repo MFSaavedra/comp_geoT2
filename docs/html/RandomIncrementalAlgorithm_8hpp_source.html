@@ -1,0 +1,383 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.18.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>comp_geoT2: Archivo de código fuente include/RandomIncrementalAlgorithm.hpp</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="codefolding.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">comp_geoT2
+   </div>
+   <div id="projectbrief">Tarea 2 - CC5502 Geometría Computacional: cerradura convexa</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generado por Doxygen 1.18.0 -->
+<script type="text/javascript">
+let searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', codefold.init);
+</script>
+<script type="application/json" id="doxygen-config">
+{
+  "relPath": "",
+  "generateTreeView": true,
+  "searchEngine": true,
+  "serverBasedSearch": false,
+  "disableIndex": false,
+  "dynamicMenus": true,
+  "fullSidebar": false
+}
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<div id="main-nav-mobile">
+<div class="sm sm-dox"><input id="main-menu-state" type="checkbox"/>
+<label class="main-menu-btn" for="main-menu-state">
+<span class="main-menu-btn-icon"></span> Toggle main menu visibility</label>
+<span id="searchBoxPos1"></span>
+</div>
+</div><!-- main-nav-mobile -->
+<div id="main-nav">
+  <ul class="sm sm-dox" id="main-menu">
+    <li id="searchBoxPos2">
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="Buscar" accesskey="S"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+    </li>
+  </ul>
+</div><!-- main-nav -->
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded',() => { initNavTree('RandomIncrementalAlgorithm_8hpp_source.html','',''); });
+</script>
+<div id="container">
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Cargando...</div>
+<div class="SRStatus" id="Searching">Buscando...</div>
+<div class="SRStatus" id="NoMatches">Nada coincide</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">RandomIncrementalAlgorithm.hpp</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="RandomIncrementalAlgorithm_8hpp.html">Ir a la documentación de este archivo.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span> </div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#pragma once</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span> </div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#include &lt;algorithm&gt;</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#include &lt;cstddef&gt;</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#include &lt;cstdint&gt;</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#include &lt;random&gt;</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#include &lt;string&gt;</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="preprocessor">#include &lt;utility&gt;</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="preprocessor">#include &lt;vector&gt;</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span> </div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="preprocessor">#include &quot;<a class="code" href="EstrategiaCerradura_8hpp.html">EstrategiaCerradura.hpp</a>&quot;</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="preprocessor">#include &quot;<a class="code" href="Geometria_8hpp.html">Geometria.hpp</a>&quot;</span></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span></div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
+<div class="foldopen" id="foldopen00041" data-start="{" data-end="};">
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno"><a class="line" href="classRandomIncrementalAlgorithm.html">   41</a></span><span class="keyword">class </span><a class="code hl_function" href="classRandomIncrementalAlgorithm.html#a9ff330cd19ca28f9a9fcaaac32363740">RandomIncrementalAlgorithm</a> : <span class="keyword">public</span> <a class="code hl_class" href="classEstrategiaCerradura.html">EstrategiaCerradura</a>&lt;T&gt; {</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span><span class="keyword">public</span>:</div>
+<div class="foldopen" id="foldopen00047" data-start="{" data-end="}">
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno"><a class="line" href="classRandomIncrementalAlgorithm.html#a9ff330cd19ca28f9a9fcaaac32363740">   47</a></span>  <span class="keyword">explicit</span> <a class="code hl_function" href="classRandomIncrementalAlgorithm.html#a9ff330cd19ca28f9a9fcaaac32363740">RandomIncrementalAlgorithm</a>(std::uint64_t <a class="code hl_variable" href="classRandomIncrementalAlgorithm.html#ade39c0d67a384ef010fe5c0587fbd145">semilla</a> = 1)</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>      : <a class="code hl_variable" href="classRandomIncrementalAlgorithm.html#ade39c0d67a384ef010fe5c0587fbd145">semilla</a>(<a class="code hl_variable" href="classRandomIncrementalAlgorithm.html#ade39c0d67a384ef010fe5c0587fbd145">semilla</a>) {}</div>
+</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span></div>
+<div class="foldopen" id="foldopen00055" data-start="{" data-end="}">
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno"><a class="line" href="classRandomIncrementalAlgorithm.html#a3219c4377f4339868e70d3721531a8d9">   55</a></span>  <a class="code hl_class" href="classPoligono.html">Poligono&lt;T&gt;</a> <a class="code hl_function" href="classRandomIncrementalAlgorithm.html#a3219c4377f4339868e70d3721531a8d9">apply</a>(<span class="keyword">const</span> std::vector&lt;<a class="code hl_class" href="classPunto.html">Punto&lt;T&gt;</a>&gt; &amp;nube)<span class="keyword"> override </span>{</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>    <a class="code hl_variable" href="classRandomIncrementalAlgorithm.html#ac970dd241f3acb9b7c9b120007ed650f">p</a> = nube;</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>    std::mt19937_64 rng(<a class="code hl_variable" href="classRandomIncrementalAlgorithm.html#ade39c0d67a384ef010fe5c0587fbd145">semilla</a>);</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>    std::shuffle(<a class="code hl_variable" href="classRandomIncrementalAlgorithm.html#ac970dd241f3acb9b7c9b120007ed650f">p</a>.begin(), <a class="code hl_variable" href="classRandomIncrementalAlgorithm.html#ac970dd241f3acb9b7c9b120007ed650f">p</a>.end(), rng);</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>    <a class="code hl_variable" href="classRandomIncrementalAlgorithm.html#a306ddb0d5ae4e676088b1b7e8aa14905">reasignaciones</a> = 0;</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span> </div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>    <a class="code hl_class" href="classPoligono.html">Poligono&lt;T&gt;</a> cerradura =</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>        <a class="code hl_function" href="classRandomIncrementalAlgorithm.html#af7dbd98a53420a0706bfebe04971c760">moverTrianguloAlInicio</a>() ? <a class="code hl_function" href="classRandomIncrementalAlgorithm.html#ae60e143b273d597520dd42dcccf60b33">construir</a>() : <a class="code hl_function" href="classRandomIncrementalAlgorithm.html#a8bb9581cec70b150a693056a03925ded">cerraduraDegenerada</a>();</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>    <a class="code hl_function" href="classRandomIncrementalAlgorithm.html#a4bc338d36b27b1fc2e1e51b96e862733">liberarMemoria</a>();</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>    <span class="keywordflow">return</span> cerradura;</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>  }</div>
+</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span></div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno"><a class="line" href="classRandomIncrementalAlgorithm.html#a6433975b01d7396bc607a392ea00403c">   68</a></span>  std::string <a class="code hl_function" href="classRandomIncrementalAlgorithm.html#a6433975b01d7396bc607a392ea00403c">nombre</a>()<span class="keyword"> const override </span>{ <span class="keywordflow">return</span> <span class="stringliteral">&quot;random_incremental&quot;</span>; }</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span></div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno"><a class="line" href="classRandomIncrementalAlgorithm.html#aa42b21d11cd58b441db9cc9a7e2d18dd">   75</a></span>  std::size_t <a class="code hl_function" href="classRandomIncrementalAlgorithm.html#aa42b21d11cd58b441db9cc9a7e2d18dd">getReasignaciones</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classRandomIncrementalAlgorithm.html#a306ddb0d5ae4e676088b1b7e8aa14905">reasignaciones</a>; }</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span> </div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno"><a class="line" href="classRandomIncrementalAlgorithm.html#a89e2935570e41b23d73708f3f5451ec7">   78</a></span>  <span class="keyword">using </span><a class="code hl_typedef" href="classRandomIncrementalAlgorithm.html#a89e2935570e41b23d73708f3f5451ec7">W</a> = <a class="code hl_typedef" href="Geometria_8hpp.html#abf72cd67860d5c11f219d8645587d44d">Ancho&lt;T&gt;</a>;                </div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno"><a class="line" href="classRandomIncrementalAlgorithm.html#a873bed1db06a409f27268439ffadc441">   79</a></span>  <span class="keyword">static</span> <span class="keyword">constexpr</span> <span class="keywordtype">int</span> <a class="code hl_variable" href="classRandomIncrementalAlgorithm.html#a873bed1db06a409f27268439ffadc441">NINGUNA</a> = -1; </div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span> </div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno"><a class="line" href="classRandomIncrementalAlgorithm.html#ade39c0d67a384ef010fe5c0587fbd145">   81</a></span>  std::uint64_t <a class="code hl_variable" href="classRandomIncrementalAlgorithm.html#ade39c0d67a384ef010fe5c0587fbd145">semilla</a>;          </div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno"><a class="line" href="classRandomIncrementalAlgorithm.html#a306ddb0d5ae4e676088b1b7e8aa14905">   82</a></span>  std::size_t <a class="code hl_variable" href="classRandomIncrementalAlgorithm.html#a306ddb0d5ae4e676088b1b7e8aa14905">reasignaciones</a> = 0; </div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span> </div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>  <span class="comment">// Estado de una llamada a apply; los arreglos se indexan por punto.</span></div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno"><a class="line" href="classRandomIncrementalAlgorithm.html#ac970dd241f3acb9b7c9b120007ed650f">   85</a></span>  std::vector&lt;Punto&lt;T&gt;&gt; <a class="code hl_variable" href="classRandomIncrementalAlgorithm.html#ac970dd241f3acb9b7c9b120007ed650f">p</a>; </div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno"><a class="line" href="classRandomIncrementalAlgorithm.html#a02d6eedf9858232bf12faeb3fc4ab5f3">   86</a></span>  std::vector&lt;int&gt; <a class="code hl_variable" href="classRandomIncrementalAlgorithm.html#a02d6eedf9858232bf12faeb3fc4ab5f3">sig</a>;    </div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno"><a class="line" href="classRandomIncrementalAlgorithm.html#a44a8143b943482996fdd545e1c8f29c4">   87</a></span>  std::vector&lt;int&gt; <a class="code hl_variable" href="classRandomIncrementalAlgorithm.html#a44a8143b943482996fdd545e1c8f29c4">ant</a>;    </div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno"><a class="line" href="classRandomIncrementalAlgorithm.html#a54c4fda63e6e7c7653725a3c78048d44">   88</a></span>  std::vector&lt;int&gt; <a class="code hl_variable" href="classRandomIncrementalAlgorithm.html#a54c4fda63e6e7c7653725a3c78048d44">arista</a>; </div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno"><a class="line" href="classRandomIncrementalAlgorithm.html#a827ce0af76a2a6a2cd3a7d5073339d03">   90</a></span>  std::vector&lt;std::vector&lt;int&gt;&gt; <a class="code hl_variable" href="classRandomIncrementalAlgorithm.html#a827ce0af76a2a6a2cd3a7d5073339d03">cubeta</a>;</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno"><a class="line" href="classRandomIncrementalAlgorithm.html#ac0d6cd40dc2a40dfa21c009cbc382ec1">   91</a></span>  std::vector&lt;std::vector&lt;int&gt;&gt; <a class="code hl_variable" href="classRandomIncrementalAlgorithm.html#ac0d6cd40dc2a40dfa21c009cbc382ec1">eliminadas</a>; </div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno"><a class="line" href="classRandomIncrementalAlgorithm.html#a4c80dd5f0c62ad90a905b65f341bc0aa">   92</a></span>  <a class="code hl_typedef" href="classRandomIncrementalAlgorithm.html#a89e2935570e41b23d73708f3f5451ec7">W</a> <a class="code hl_variable" href="classRandomIncrementalAlgorithm.html#a4c80dd5f0c62ad90a905b65f341bc0aa">sumaX</a> = 0; </div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno"><a class="line" href="classRandomIncrementalAlgorithm.html#a80078882edb9c6545de2b082e9444666">   93</a></span>  <a class="code hl_typedef" href="classRandomIncrementalAlgorithm.html#a89e2935570e41b23d73708f3f5451ec7">W</a> <a class="code hl_variable" href="classRandomIncrementalAlgorithm.html#a80078882edb9c6545de2b082e9444666">sumaY</a> = 0; </div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span></div>
+<div class="foldopen" id="foldopen00102" data-start="{" data-end="}">
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno"><a class="line" href="classRandomIncrementalAlgorithm.html#af7dbd98a53420a0706bfebe04971c760">  102</a></span>  <span class="keywordtype">bool</span> <a class="code hl_function" href="classRandomIncrementalAlgorithm.html#af7dbd98a53420a0706bfebe04971c760">moverTrianguloAlInicio</a>() {</div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>    <span class="keyword">const</span> std::size_t n = <a class="code hl_variable" href="classRandomIncrementalAlgorithm.html#ac970dd241f3acb9b7c9b120007ed650f">p</a>.size();</div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>    std::size_t j = 1;</div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>    <span class="keywordflow">while</span> (j &lt; n &amp;&amp; <a class="code hl_function" href="Geometria_8hpp.html#ad99926d2bb523b772ef96d5c9d11f50d">mismoPunto</a>(<a class="code hl_variable" href="classRandomIncrementalAlgorithm.html#ac970dd241f3acb9b7c9b120007ed650f">p</a>[j], <a class="code hl_variable" href="classRandomIncrementalAlgorithm.html#ac970dd241f3acb9b7c9b120007ed650f">p</a>[0])) {</div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>      ++j;</div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>    }</div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>    std::size_t k = j + 1;</div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>    <span class="keywordflow">while</span> (k &lt; n &amp;&amp; <a class="code hl_function" href="Geometria_8hpp.html#a599326effcecd0b5f1aa3b78f0c6f6aa">orientacion</a>(<a class="code hl_variable" href="classRandomIncrementalAlgorithm.html#ac970dd241f3acb9b7c9b120007ed650f">p</a>[0], <a class="code hl_variable" href="classRandomIncrementalAlgorithm.html#ac970dd241f3acb9b7c9b120007ed650f">p</a>[j], <a class="code hl_variable" href="classRandomIncrementalAlgorithm.html#ac970dd241f3acb9b7c9b120007ed650f">p</a>[k]) == 0) {</div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>      ++k;</div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>    }</div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>    <span class="keywordflow">if</span> (k &gt;= n) {</div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>      <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>    }</div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>    std::swap(<a class="code hl_variable" href="classRandomIncrementalAlgorithm.html#ac970dd241f3acb9b7c9b120007ed650f">p</a>[1], <a class="code hl_variable" href="classRandomIncrementalAlgorithm.html#ac970dd241f3acb9b7c9b120007ed650f">p</a>[j]);</div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>    std::swap(<a class="code hl_variable" href="classRandomIncrementalAlgorithm.html#ac970dd241f3acb9b7c9b120007ed650f">p</a>[2], <a class="code hl_variable" href="classRandomIncrementalAlgorithm.html#ac970dd241f3acb9b7c9b120007ed650f">p</a>[k]);</div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>    <span class="keywordflow">if</span> (<a class="code hl_function" href="Geometria_8hpp.html#a599326effcecd0b5f1aa3b78f0c6f6aa">orientacion</a>(<a class="code hl_variable" href="classRandomIncrementalAlgorithm.html#ac970dd241f3acb9b7c9b120007ed650f">p</a>[0], <a class="code hl_variable" href="classRandomIncrementalAlgorithm.html#ac970dd241f3acb9b7c9b120007ed650f">p</a>[1], <a class="code hl_variable" href="classRandomIncrementalAlgorithm.html#ac970dd241f3acb9b7c9b120007ed650f">p</a>[2]) &lt; 0) {</div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>      std::swap(<a class="code hl_variable" href="classRandomIncrementalAlgorithm.html#ac970dd241f3acb9b7c9b120007ed650f">p</a>[1], <a class="code hl_variable" href="classRandomIncrementalAlgorithm.html#ac970dd241f3acb9b7c9b120007ed650f">p</a>[2]);</div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>    }</div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>    <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>  }</div>
+</div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span></div>
+<div class="foldopen" id="foldopen00127" data-start="{" data-end="}">
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno"><a class="line" href="classRandomIncrementalAlgorithm.html#a8bb9581cec70b150a693056a03925ded">  127</a></span>  <a class="code hl_class" href="classPoligono.html">Poligono&lt;T&gt;</a> <a class="code hl_function" href="classRandomIncrementalAlgorithm.html#a8bb9581cec70b150a693056a03925ded">cerraduraDegenerada</a>()<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span>    <span class="keywordflow">if</span> (<a class="code hl_variable" href="classRandomIncrementalAlgorithm.html#ac970dd241f3acb9b7c9b120007ed650f">p</a>.empty()) {</div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>      <span class="keywordflow">return</span> <a class="code hl_function" href="classPoligono.html#a016dafa2a65d2784ef03f28763a452ee">Poligono&lt;T&gt;</a>();</div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>    }</div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span>    <span class="keyword">const</span> <span class="keyword">auto</span> [menor, mayor] = std::minmax_element(<a class="code hl_variable" href="classRandomIncrementalAlgorithm.html#ac970dd241f3acb9b7c9b120007ed650f">p</a>.begin(), <a class="code hl_variable" href="classRandomIncrementalAlgorithm.html#ac970dd241f3acb9b7c9b120007ed650f">p</a>.end());</div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span>    <span class="keywordflow">if</span> (<a class="code hl_function" href="Geometria_8hpp.html#ad99926d2bb523b772ef96d5c9d11f50d">mismoPunto</a>(*menor, *mayor)) {</div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>      <span class="keywordflow">return</span> <a class="code hl_function" href="classPoligono.html#a016dafa2a65d2784ef03f28763a452ee">Poligono&lt;T&gt;</a>({*menor});</div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span>    }</div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span>    <span class="keywordflow">return</span> <a class="code hl_function" href="classPoligono.html#a016dafa2a65d2784ef03f28763a452ee">Poligono&lt;T&gt;</a>({*menor, *mayor});</div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span>  }</div>
+</div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span></div>
+<div class="foldopen" id="foldopen00142" data-start="{" data-end="}">
+<div class="line"><a id="l00142" name="l00142"></a><span class="lineno"><a class="line" href="classRandomIncrementalAlgorithm.html#ae60e143b273d597520dd42dcccf60b33">  142</a></span>  <a class="code hl_class" href="classPoligono.html">Poligono&lt;T&gt;</a> <a class="code hl_function" href="classRandomIncrementalAlgorithm.html#ae60e143b273d597520dd42dcccf60b33">construir</a>() {</div>
+<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span>    <span class="keyword">const</span> <span class="keywordtype">int</span> n = <span class="keyword">static_cast&lt;</span><span class="keywordtype">int</span><span class="keyword">&gt;</span>(<a class="code hl_variable" href="classRandomIncrementalAlgorithm.html#ac970dd241f3acb9b7c9b120007ed650f">p</a>.size());</div>
+<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span>    <a class="code hl_variable" href="classRandomIncrementalAlgorithm.html#a02d6eedf9858232bf12faeb3fc4ab5f3">sig</a>.assign(n, <a class="code hl_variable" href="classRandomIncrementalAlgorithm.html#a873bed1db06a409f27268439ffadc441">NINGUNA</a>);</div>
+<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span>    <a class="code hl_variable" href="classRandomIncrementalAlgorithm.html#a44a8143b943482996fdd545e1c8f29c4">ant</a>.assign(n, <a class="code hl_variable" href="classRandomIncrementalAlgorithm.html#a873bed1db06a409f27268439ffadc441">NINGUNA</a>);</div>
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span>    <a class="code hl_variable" href="classRandomIncrementalAlgorithm.html#a54c4fda63e6e7c7653725a3c78048d44">arista</a>.assign(n, <a class="code hl_variable" href="classRandomIncrementalAlgorithm.html#a873bed1db06a409f27268439ffadc441">NINGUNA</a>);</div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span>    <a class="code hl_variable" href="classRandomIncrementalAlgorithm.html#a827ce0af76a2a6a2cd3a7d5073339d03">cubeta</a>.assign(n, {});</div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span> </div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span>    <a class="code hl_variable" href="classRandomIncrementalAlgorithm.html#a02d6eedf9858232bf12faeb3fc4ab5f3">sig</a>[0] = 1, <a class="code hl_variable" href="classRandomIncrementalAlgorithm.html#a02d6eedf9858232bf12faeb3fc4ab5f3">sig</a>[1] = 2, <a class="code hl_variable" href="classRandomIncrementalAlgorithm.html#a02d6eedf9858232bf12faeb3fc4ab5f3">sig</a>[2] = 0;</div>
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span>    <a class="code hl_variable" href="classRandomIncrementalAlgorithm.html#a44a8143b943482996fdd545e1c8f29c4">ant</a>[0] = 2, <a class="code hl_variable" href="classRandomIncrementalAlgorithm.html#a44a8143b943482996fdd545e1c8f29c4">ant</a>[1] = 0, <a class="code hl_variable" href="classRandomIncrementalAlgorithm.html#a44a8143b943482996fdd545e1c8f29c4">ant</a>[2] = 1;</div>
+<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span>    <a class="code hl_variable" href="classRandomIncrementalAlgorithm.html#a4c80dd5f0c62ad90a905b65f341bc0aa">sumaX</a> = <a class="code hl_typedef" href="classRandomIncrementalAlgorithm.html#a89e2935570e41b23d73708f3f5451ec7">W</a>(<a class="code hl_variable" href="classRandomIncrementalAlgorithm.html#ac970dd241f3acb9b7c9b120007ed650f">p</a>[0].getX()) + <a class="code hl_typedef" href="classRandomIncrementalAlgorithm.html#a89e2935570e41b23d73708f3f5451ec7">W</a>(<a class="code hl_variable" href="classRandomIncrementalAlgorithm.html#ac970dd241f3acb9b7c9b120007ed650f">p</a>[1].getX()) + <a class="code hl_typedef" href="classRandomIncrementalAlgorithm.html#a89e2935570e41b23d73708f3f5451ec7">W</a>(<a class="code hl_variable" href="classRandomIncrementalAlgorithm.html#ac970dd241f3acb9b7c9b120007ed650f">p</a>[2].getX());</div>
+<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span>    <a class="code hl_variable" href="classRandomIncrementalAlgorithm.html#a80078882edb9c6545de2b082e9444666">sumaY</a> = <a class="code hl_typedef" href="classRandomIncrementalAlgorithm.html#a89e2935570e41b23d73708f3f5451ec7">W</a>(<a class="code hl_variable" href="classRandomIncrementalAlgorithm.html#ac970dd241f3acb9b7c9b120007ed650f">p</a>[0].getY()) + <a class="code hl_typedef" href="classRandomIncrementalAlgorithm.html#a89e2935570e41b23d73708f3f5451ec7">W</a>(<a class="code hl_variable" href="classRandomIncrementalAlgorithm.html#ac970dd241f3acb9b7c9b120007ed650f">p</a>[1].getY()) + <a class="code hl_typedef" href="classRandomIncrementalAlgorithm.html#a89e2935570e41b23d73708f3f5451ec7">W</a>(<a class="code hl_variable" href="classRandomIncrementalAlgorithm.html#ac970dd241f3acb9b7c9b120007ed650f">p</a>[2].getY());</div>
+<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span> </div>
+<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> q = 3; q &lt; n; ++q) {</div>
+<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span>      <a class="code hl_function" href="classRandomIncrementalAlgorithm.html#a519cf35fe50cfab76cba9ed84c51025f">asignarEnTriangulo</a>(q);</div>
+<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span>    }</div>
+<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span> </div>
+<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span>    <span class="keywordtype">int</span> ultimo = 0; <span class="comment">// un vertice de la cerradura actual</span></div>
+<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> q = 3; q &lt; n; ++q) {</div>
+<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span>      <span class="keywordflow">if</span> (<a class="code hl_variable" href="classRandomIncrementalAlgorithm.html#a54c4fda63e6e7c7653725a3c78048d44">arista</a>[q] != <a class="code hl_variable" href="classRandomIncrementalAlgorithm.html#a873bed1db06a409f27268439ffadc441">NINGUNA</a>) { <span class="comment">// si es NINGUNA, q quedo dentro</span></div>
+<div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span>        <a class="code hl_function" href="classRandomIncrementalAlgorithm.html#add4352b9a7a4d1587df1fed7aff3d4c6">insertar</a>(q);</div>
+<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span>        ultimo = q;</div>
+<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span>      }</div>
+<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span>    }</div>
+<div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span>    <span class="keywordflow">return</span> <a class="code hl_function" href="classRandomIncrementalAlgorithm.html#aaca7c26d463fd387b405d79d433b8cae">recorrer</a>(ultimo);</div>
+<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span>  }</div>
+</div>
+<div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span></div>
+<div class="foldopen" id="foldopen00176" data-start="{" data-end="}">
+<div class="line"><a id="l00176" name="l00176"></a><span class="lineno"><a class="line" href="classRandomIncrementalAlgorithm.html#a519cf35fe50cfab76cba9ed84c51025f">  176</a></span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classRandomIncrementalAlgorithm.html#a519cf35fe50cfab76cba9ed84c51025f">asignarEnTriangulo</a>(<span class="keywordtype">int</span> q) {</div>
+<div class="line"><a id="l00177" name="l00177"></a><span class="lineno">  177</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> v = 0; v &lt; 3; ++v) {</div>
+<div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span>      <span class="keywordflow">if</span> (<a class="code hl_function" href="classRandomIncrementalAlgorithm.html#abe507fae8f67178ec2bc42a7d2cd6b17">ladoDelRayo</a>(v, q) &gt;= 0 &amp;&amp; <a class="code hl_function" href="classRandomIncrementalAlgorithm.html#abe507fae8f67178ec2bc42a7d2cd6b17">ladoDelRayo</a>(<a class="code hl_variable" href="classRandomIncrementalAlgorithm.html#a02d6eedf9858232bf12faeb3fc4ab5f3">sig</a>[v], q) &lt; 0) {</div>
+<div class="line"><a id="l00179" name="l00179"></a><span class="lineno">  179</span>        <a class="code hl_function" href="classRandomIncrementalAlgorithm.html#ac5a2d7299ee21c6148d06515f2f2f825">asignar</a>(q, v);</div>
+<div class="line"><a id="l00180" name="l00180"></a><span class="lineno">  180</span>        <span class="keywordflow">return</span>;</div>
+<div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span>      }</div>
+<div class="line"><a id="l00182" name="l00182"></a><span class="lineno">  182</span>    }</div>
+<div class="line"><a id="l00183" name="l00183"></a><span class="lineno">  183</span>  }</div>
+</div>
+<div class="line"><a id="l00184" name="l00184"></a><span class="lineno">  184</span></div>
+<div class="foldopen" id="foldopen00189" data-start="{" data-end="}">
+<div class="line"><a id="l00189" name="l00189"></a><span class="lineno"><a class="line" href="classRandomIncrementalAlgorithm.html#add4352b9a7a4d1587df1fed7aff3d4c6">  189</a></span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classRandomIncrementalAlgorithm.html#add4352b9a7a4d1587df1fed7aff3d4c6">insertar</a>(<span class="keywordtype">int</span> q) {</div>
+<div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span>    <span class="comment">// 1. Cadena de aristas visibles, desde arista[q] hacia ambos lados. Una</span></div>
+<div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span>    <span class="comment">//    arista cuya recta pasa por q tambien se elimina: q queda en su</span></div>
+<div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span>    <span class="comment">//    prolongacion, y el vertice que comparten deja de ser extremo. Los</span></div>
+<div class="line"><a id="l00193" name="l00193"></a><span class="lineno">  193</span>    <span class="comment">//    topes (ant[l] != fin, r != l) solo actuan con aritmetica inexacta.</span></div>
+<div class="line"><a id="l00194" name="l00194"></a><span class="lineno">  194</span>    <span class="keyword">const</span> <span class="keywordtype">int</span> inicio = <a class="code hl_variable" href="classRandomIncrementalAlgorithm.html#a54c4fda63e6e7c7653725a3c78048d44">arista</a>[q];</div>
+<div class="line"><a id="l00195" name="l00195"></a><span class="lineno">  195</span>    <span class="keyword">const</span> <span class="keywordtype">int</span> fin = <a class="code hl_variable" href="classRandomIncrementalAlgorithm.html#a02d6eedf9858232bf12faeb3fc4ab5f3">sig</a>[inicio];</div>
+<div class="line"><a id="l00196" name="l00196"></a><span class="lineno">  196</span>    <span class="keywordtype">int</span> l = inicio;</div>
+<div class="line"><a id="l00197" name="l00197"></a><span class="lineno">  197</span>    <span class="keywordflow">while</span> (<a class="code hl_variable" href="classRandomIncrementalAlgorithm.html#a44a8143b943482996fdd545e1c8f29c4">ant</a>[l] != fin &amp;&amp; <a class="code hl_function" href="Geometria_8hpp.html#a599326effcecd0b5f1aa3b78f0c6f6aa">orientacion</a>(<a class="code hl_variable" href="classRandomIncrementalAlgorithm.html#ac970dd241f3acb9b7c9b120007ed650f">p</a>[<a class="code hl_variable" href="classRandomIncrementalAlgorithm.html#a44a8143b943482996fdd545e1c8f29c4">ant</a>[l]], <a class="code hl_variable" href="classRandomIncrementalAlgorithm.html#ac970dd241f3acb9b7c9b120007ed650f">p</a>[l], <a class="code hl_variable" href="classRandomIncrementalAlgorithm.html#ac970dd241f3acb9b7c9b120007ed650f">p</a>[q]) &lt;= 0) {</div>
+<div class="line"><a id="l00198" name="l00198"></a><span class="lineno">  198</span>      l = <a class="code hl_variable" href="classRandomIncrementalAlgorithm.html#a44a8143b943482996fdd545e1c8f29c4">ant</a>[l];</div>
+<div class="line"><a id="l00199" name="l00199"></a><span class="lineno">  199</span>    }</div>
+<div class="line"><a id="l00200" name="l00200"></a><span class="lineno">  200</span>    <span class="keywordtype">int</span> r = fin;</div>
+<div class="line"><a id="l00201" name="l00201"></a><span class="lineno">  201</span>    <span class="keywordflow">while</span> (r != l &amp;&amp; <a class="code hl_function" href="Geometria_8hpp.html#a599326effcecd0b5f1aa3b78f0c6f6aa">orientacion</a>(<a class="code hl_variable" href="classRandomIncrementalAlgorithm.html#ac970dd241f3acb9b7c9b120007ed650f">p</a>[r], <a class="code hl_variable" href="classRandomIncrementalAlgorithm.html#ac970dd241f3acb9b7c9b120007ed650f">p</a>[<a class="code hl_variable" href="classRandomIncrementalAlgorithm.html#a02d6eedf9858232bf12faeb3fc4ab5f3">sig</a>[r]], <a class="code hl_variable" href="classRandomIncrementalAlgorithm.html#ac970dd241f3acb9b7c9b120007ed650f">p</a>[q]) &lt;= 0) {</div>
+<div class="line"><a id="l00202" name="l00202"></a><span class="lineno">  202</span>      r = <a class="code hl_variable" href="classRandomIncrementalAlgorithm.html#a02d6eedf9858232bf12faeb3fc4ab5f3">sig</a>[r];</div>
+<div class="line"><a id="l00203" name="l00203"></a><span class="lineno">  203</span>    }</div>
+<div class="line"><a id="l00204" name="l00204"></a><span class="lineno">  204</span> </div>
+<div class="line"><a id="l00205" name="l00205"></a><span class="lineno">  205</span>    <span class="comment">// 2. Sacar las cubetas de las aristas eliminadas, de l hasta r.</span></div>
+<div class="line"><a id="l00206" name="l00206"></a><span class="lineno">  206</span>    <a class="code hl_variable" href="classRandomIncrementalAlgorithm.html#ac0d6cd40dc2a40dfa21c009cbc382ec1">eliminadas</a>.clear();</div>
+<div class="line"><a id="l00207" name="l00207"></a><span class="lineno">  207</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> v = l; v != r; v = <a class="code hl_variable" href="classRandomIncrementalAlgorithm.html#a02d6eedf9858232bf12faeb3fc4ab5f3">sig</a>[v]) {</div>
+<div class="line"><a id="l00208" name="l00208"></a><span class="lineno">  208</span>      <a class="code hl_variable" href="classRandomIncrementalAlgorithm.html#ac0d6cd40dc2a40dfa21c009cbc382ec1">eliminadas</a>.push_back(std::move(<a class="code hl_variable" href="classRandomIncrementalAlgorithm.html#a827ce0af76a2a6a2cd3a7d5073339d03">cubeta</a>[v]));</div>
+<div class="line"><a id="l00209" name="l00209"></a><span class="lineno">  209</span>      <a class="code hl_variable" href="classRandomIncrementalAlgorithm.html#a827ce0af76a2a6a2cd3a7d5073339d03">cubeta</a>[v].clear();</div>
+<div class="line"><a id="l00210" name="l00210"></a><span class="lineno">  210</span>    }</div>
+<div class="line"><a id="l00211" name="l00211"></a><span class="lineno">  211</span> </div>
+<div class="line"><a id="l00212" name="l00212"></a><span class="lineno">  212</span>    <span class="comment">// 3. Reemplazar la cadena l .. r por l -&gt; q -&gt; r.</span></div>
+<div class="line"><a id="l00213" name="l00213"></a><span class="lineno">  213</span>    <a class="code hl_variable" href="classRandomIncrementalAlgorithm.html#a02d6eedf9858232bf12faeb3fc4ab5f3">sig</a>[l] = q, <a class="code hl_variable" href="classRandomIncrementalAlgorithm.html#a44a8143b943482996fdd545e1c8f29c4">ant</a>[q] = l;</div>
+<div class="line"><a id="l00214" name="l00214"></a><span class="lineno">  214</span>    <a class="code hl_variable" href="classRandomIncrementalAlgorithm.html#a02d6eedf9858232bf12faeb3fc4ab5f3">sig</a>[q] = r, <a class="code hl_variable" href="classRandomIncrementalAlgorithm.html#a44a8143b943482996fdd545e1c8f29c4">ant</a>[r] = q;</div>
+<div class="line"><a id="l00215" name="l00215"></a><span class="lineno">  215</span>    <a class="code hl_variable" href="classRandomIncrementalAlgorithm.html#a54c4fda63e6e7c7653725a3c78048d44">arista</a>[q] = <a class="code hl_variable" href="classRandomIncrementalAlgorithm.html#a873bed1db06a409f27268439ffadc441">NINGUNA</a>;</div>
+<div class="line"><a id="l00216" name="l00216"></a><span class="lineno">  216</span> </div>
+<div class="line"><a id="l00217" name="l00217"></a><span class="lineno">  217</span>    <span class="comment">// 4. Cada punto de esas cubetas cruza ahora l -&gt; q o q -&gt; r: lo decide de</span></div>
+<div class="line"><a id="l00218" name="l00218"></a><span class="lineno">  218</span>    <span class="comment">//    que lado del rayo C -&gt; q esta.</span></div>
+<div class="line"><a id="l00219" name="l00219"></a><span class="lineno">  219</span>    <span class="keywordflow">for</span> (<span class="keyword">const</span> std::vector&lt;int&gt; &amp;vieja : <a class="code hl_variable" href="classRandomIncrementalAlgorithm.html#ac0d6cd40dc2a40dfa21c009cbc382ec1">eliminadas</a>) {</div>
+<div class="line"><a id="l00220" name="l00220"></a><span class="lineno">  220</span>      <span class="keywordflow">for</span> (<span class="keywordtype">int</span> f : vieja) {</div>
+<div class="line"><a id="l00221" name="l00221"></a><span class="lineno">  221</span>        <span class="keywordflow">if</span> (f != q) {</div>
+<div class="line"><a id="l00222" name="l00222"></a><span class="lineno">  222</span>          ++<a class="code hl_variable" href="classRandomIncrementalAlgorithm.html#a306ddb0d5ae4e676088b1b7e8aa14905">reasignaciones</a>;</div>
+<div class="line"><a id="l00223" name="l00223"></a><span class="lineno">  223</span>          <a class="code hl_function" href="classRandomIncrementalAlgorithm.html#ac5a2d7299ee21c6148d06515f2f2f825">asignar</a>(f, <a class="code hl_function" href="classRandomIncrementalAlgorithm.html#abe507fae8f67178ec2bc42a7d2cd6b17">ladoDelRayo</a>(q, f) &lt; 0 ? l : q);</div>
+<div class="line"><a id="l00224" name="l00224"></a><span class="lineno">  224</span>        }</div>
+<div class="line"><a id="l00225" name="l00225"></a><span class="lineno">  225</span>      }</div>
+<div class="line"><a id="l00226" name="l00226"></a><span class="lineno">  226</span>    }</div>
+<div class="line"><a id="l00227" name="l00227"></a><span class="lineno">  227</span>  }</div>
+</div>
+<div class="line"><a id="l00228" name="l00228"></a><span class="lineno">  228</span></div>
+<div class="foldopen" id="foldopen00235" data-start="{" data-end="}">
+<div class="line"><a id="l00235" name="l00235"></a><span class="lineno"><a class="line" href="classRandomIncrementalAlgorithm.html#ac5a2d7299ee21c6148d06515f2f2f825">  235</a></span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classRandomIncrementalAlgorithm.html#ac5a2d7299ee21c6148d06515f2f2f825">asignar</a>(<span class="keywordtype">int</span> f, <span class="keywordtype">int</span> v) {</div>
+<div class="line"><a id="l00236" name="l00236"></a><span class="lineno">  236</span>    <span class="keywordflow">if</span> (<a class="code hl_function" href="Geometria_8hpp.html#a599326effcecd0b5f1aa3b78f0c6f6aa">orientacion</a>(<a class="code hl_variable" href="classRandomIncrementalAlgorithm.html#ac970dd241f3acb9b7c9b120007ed650f">p</a>[v], <a class="code hl_variable" href="classRandomIncrementalAlgorithm.html#ac970dd241f3acb9b7c9b120007ed650f">p</a>[<a class="code hl_variable" href="classRandomIncrementalAlgorithm.html#a02d6eedf9858232bf12faeb3fc4ab5f3">sig</a>[v]], <a class="code hl_variable" href="classRandomIncrementalAlgorithm.html#ac970dd241f3acb9b7c9b120007ed650f">p</a>[f]) &lt; 0) {</div>
+<div class="line"><a id="l00237" name="l00237"></a><span class="lineno">  237</span>      <a class="code hl_variable" href="classRandomIncrementalAlgorithm.html#a54c4fda63e6e7c7653725a3c78048d44">arista</a>[f] = v;</div>
+<div class="line"><a id="l00238" name="l00238"></a><span class="lineno">  238</span>      <a class="code hl_variable" href="classRandomIncrementalAlgorithm.html#a827ce0af76a2a6a2cd3a7d5073339d03">cubeta</a>[v].push_back(f);</div>
+<div class="line"><a id="l00239" name="l00239"></a><span class="lineno">  239</span>    } <span class="keywordflow">else</span> {</div>
+<div class="line"><a id="l00240" name="l00240"></a><span class="lineno">  240</span>      <a class="code hl_variable" href="classRandomIncrementalAlgorithm.html#a54c4fda63e6e7c7653725a3c78048d44">arista</a>[f] = <a class="code hl_variable" href="classRandomIncrementalAlgorithm.html#a873bed1db06a409f27268439ffadc441">NINGUNA</a>;</div>
+<div class="line"><a id="l00241" name="l00241"></a><span class="lineno">  241</span>    }</div>
+<div class="line"><a id="l00242" name="l00242"></a><span class="lineno">  242</span>  }</div>
+</div>
+<div class="line"><a id="l00243" name="l00243"></a><span class="lineno">  243</span></div>
+<div class="foldopen" id="foldopen00253" data-start="{" data-end="}">
+<div class="line"><a id="l00253" name="l00253"></a><span class="lineno"><a class="line" href="classRandomIncrementalAlgorithm.html#abe507fae8f67178ec2bc42a7d2cd6b17">  253</a></span>  <span class="keywordtype">int</span> <a class="code hl_function" href="classRandomIncrementalAlgorithm.html#abe507fae8f67178ec2bc42a7d2cd6b17">ladoDelRayo</a>(<span class="keywordtype">int</span> v, <span class="keywordtype">int</span> f)<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l00254" name="l00254"></a><span class="lineno">  254</span>    <span class="keyword">const</span> <a class="code hl_class" href="classPunto.html">Punto&lt;W&gt;</a> origen;</div>
+<div class="line"><a id="l00255" name="l00255"></a><span class="lineno">  255</span>    <span class="keyword">const</span> <a class="code hl_class" href="classPunto.html">Punto&lt;W&gt;</a> cv(3 * <a class="code hl_typedef" href="classRandomIncrementalAlgorithm.html#a89e2935570e41b23d73708f3f5451ec7">W</a>(<a class="code hl_variable" href="classRandomIncrementalAlgorithm.html#ac970dd241f3acb9b7c9b120007ed650f">p</a>[v].getX()) - <a class="code hl_variable" href="classRandomIncrementalAlgorithm.html#a4c80dd5f0c62ad90a905b65f341bc0aa">sumaX</a>, 3 * <a class="code hl_typedef" href="classRandomIncrementalAlgorithm.html#a89e2935570e41b23d73708f3f5451ec7">W</a>(<a class="code hl_variable" href="classRandomIncrementalAlgorithm.html#ac970dd241f3acb9b7c9b120007ed650f">p</a>[v].getY()) - <a class="code hl_variable" href="classRandomIncrementalAlgorithm.html#a80078882edb9c6545de2b082e9444666">sumaY</a>);</div>
+<div class="line"><a id="l00256" name="l00256"></a><span class="lineno">  256</span>    <span class="keyword">const</span> <a class="code hl_class" href="classPunto.html">Punto&lt;W&gt;</a> cf(3 * <a class="code hl_typedef" href="classRandomIncrementalAlgorithm.html#a89e2935570e41b23d73708f3f5451ec7">W</a>(<a class="code hl_variable" href="classRandomIncrementalAlgorithm.html#ac970dd241f3acb9b7c9b120007ed650f">p</a>[f].getX()) - <a class="code hl_variable" href="classRandomIncrementalAlgorithm.html#a4c80dd5f0c62ad90a905b65f341bc0aa">sumaX</a>, 3 * <a class="code hl_typedef" href="classRandomIncrementalAlgorithm.html#a89e2935570e41b23d73708f3f5451ec7">W</a>(<a class="code hl_variable" href="classRandomIncrementalAlgorithm.html#ac970dd241f3acb9b7c9b120007ed650f">p</a>[f].getY()) - <a class="code hl_variable" href="classRandomIncrementalAlgorithm.html#a80078882edb9c6545de2b082e9444666">sumaY</a>);</div>
+<div class="line"><a id="l00257" name="l00257"></a><span class="lineno">  257</span>    <span class="keywordflow">return</span> <a class="code hl_function" href="Geometria_8hpp.html#a599326effcecd0b5f1aa3b78f0c6f6aa">orientacion</a>(origen, cv, cf);</div>
+<div class="line"><a id="l00258" name="l00258"></a><span class="lineno">  258</span>  }</div>
+</div>
+<div class="line"><a id="l00259" name="l00259"></a><span class="lineno">  259</span></div>
+<div class="foldopen" id="foldopen00265" data-start="{" data-end="}">
+<div class="line"><a id="l00265" name="l00265"></a><span class="lineno"><a class="line" href="classRandomIncrementalAlgorithm.html#aaca7c26d463fd387b405d79d433b8cae">  265</a></span>  <a class="code hl_class" href="classPoligono.html">Poligono&lt;T&gt;</a> <a class="code hl_function" href="classRandomIncrementalAlgorithm.html#aaca7c26d463fd387b405d79d433b8cae">recorrer</a>(<span class="keywordtype">int</span> desde)<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l00266" name="l00266"></a><span class="lineno">  266</span>    std::vector&lt;Punto&lt;T&gt;&gt; vertices;</div>
+<div class="line"><a id="l00267" name="l00267"></a><span class="lineno">  267</span>    <span class="keywordtype">int</span> v = desde;</div>
+<div class="line"><a id="l00268" name="l00268"></a><span class="lineno">  268</span>    <span class="keywordflow">do</span> {</div>
+<div class="line"><a id="l00269" name="l00269"></a><span class="lineno">  269</span>      vertices.push_back(<a class="code hl_variable" href="classRandomIncrementalAlgorithm.html#ac970dd241f3acb9b7c9b120007ed650f">p</a>[v]);</div>
+<div class="line"><a id="l00270" name="l00270"></a><span class="lineno">  270</span>      v = <a class="code hl_variable" href="classRandomIncrementalAlgorithm.html#a02d6eedf9858232bf12faeb3fc4ab5f3">sig</a>[v];</div>
+<div class="line"><a id="l00271" name="l00271"></a><span class="lineno">  271</span>    } <span class="keywordflow">while</span> (v != desde);</div>
+<div class="line"><a id="l00272" name="l00272"></a><span class="lineno">  272</span>    <a class="code hl_class" href="classPoligono.html">Poligono&lt;T&gt;</a> cerradura(vertices);</div>
+<div class="line"><a id="l00273" name="l00273"></a><span class="lineno">  273</span>    cerradura.<a class="code hl_function" href="classPoligono.html#aab384411b21bab28c8b44578e78954de">normalizar</a>();</div>
+<div class="line"><a id="l00274" name="l00274"></a><span class="lineno">  274</span>    <span class="keywordflow">return</span> cerradura;</div>
+<div class="line"><a id="l00275" name="l00275"></a><span class="lineno">  275</span>  }</div>
+</div>
+<div class="line"><a id="l00276" name="l00276"></a><span class="lineno">  276</span></div>
+<div class="foldopen" id="foldopen00282" data-start="{" data-end="}">
+<div class="line"><a id="l00282" name="l00282"></a><span class="lineno"><a class="line" href="classRandomIncrementalAlgorithm.html#a4bc338d36b27b1fc2e1e51b96e862733">  282</a></span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classRandomIncrementalAlgorithm.html#a4bc338d36b27b1fc2e1e51b96e862733">liberarMemoria</a>() {</div>
+<div class="line"><a id="l00283" name="l00283"></a><span class="lineno">  283</span>    std::vector&lt;Punto&lt;T&gt;&gt;().swap(<a class="code hl_variable" href="classRandomIncrementalAlgorithm.html#ac970dd241f3acb9b7c9b120007ed650f">p</a>);</div>
+<div class="line"><a id="l00284" name="l00284"></a><span class="lineno">  284</span>    std::vector&lt;int&gt;().swap(<a class="code hl_variable" href="classRandomIncrementalAlgorithm.html#a02d6eedf9858232bf12faeb3fc4ab5f3">sig</a>);</div>
+<div class="line"><a id="l00285" name="l00285"></a><span class="lineno">  285</span>    std::vector&lt;int&gt;().swap(<a class="code hl_variable" href="classRandomIncrementalAlgorithm.html#a44a8143b943482996fdd545e1c8f29c4">ant</a>);</div>
+<div class="line"><a id="l00286" name="l00286"></a><span class="lineno">  286</span>    std::vector&lt;int&gt;().swap(<a class="code hl_variable" href="classRandomIncrementalAlgorithm.html#a54c4fda63e6e7c7653725a3c78048d44">arista</a>);</div>
+<div class="line"><a id="l00287" name="l00287"></a><span class="lineno">  287</span>    std::vector&lt;std::vector&lt;int&gt;&gt;().swap(<a class="code hl_variable" href="classRandomIncrementalAlgorithm.html#a827ce0af76a2a6a2cd3a7d5073339d03">cubeta</a>);</div>
+<div class="line"><a id="l00288" name="l00288"></a><span class="lineno">  288</span>    std::vector&lt;std::vector&lt;int&gt;&gt;().swap(<a class="code hl_variable" href="classRandomIncrementalAlgorithm.html#ac0d6cd40dc2a40dfa21c009cbc382ec1">eliminadas</a>);</div>
+<div class="line"><a id="l00289" name="l00289"></a><span class="lineno">  289</span>  }</div>
+</div>
+<div class="line"><a id="l00290" name="l00290"></a><span class="lineno">  290</span>};</div>
+</div>
+<div class="ttc" id="aEstrategiaCerradura_8hpp_html"><div class="ttname"><a href="EstrategiaCerradura_8hpp.html">EstrategiaCerradura.hpp</a></div><div class="ttdoc">Interfaz comun de los algoritmos de cerradura convexa (patron Strategy).</div></div>
+<div class="ttc" id="aGeometria_8hpp_html"><div class="ttname"><a href="Geometria_8hpp.html">Geometria.hpp</a></div><div class="ttdoc">Predicados geometricos que comparten los algoritmos de cerradura.</div></div>
+<div class="ttc" id="aGeometria_8hpp_html_a599326effcecd0b5f1aa3b78f0c6f6aa"><div class="ttname"><a href="Geometria_8hpp.html#a599326effcecd0b5f1aa3b78f0c6f6aa">orientacion</a></div><div class="ttdeci">int orientacion(const Punto&lt; T &gt; &amp;a, const Punto&lt; T &gt; &amp;b, const Punto&lt; T &gt; &amp;c)</div><div class="ttdoc">Orientacion del triangulo (a, b, c): signo del producto cruz (b - a) x (c - a).</div><div class="ttdef"><b>Definición</b> Geometria.hpp:35</div></div>
+<div class="ttc" id="aGeometria_8hpp_html_abf72cd67860d5c11f219d8645587d44d"><div class="ttname"><a href="Geometria_8hpp.html#abf72cd67860d5c11f219d8645587d44d">Ancho</a></div><div class="ttdeci">std::conditional_t&lt; std::is_integral_v&lt; T &gt;, long long, double &gt; Ancho</div><div class="ttdoc">Tipo en que se calcula el producto cruz de coordenadas de tipo T.</div><div class="ttdef"><b>Definición</b> Geometria.hpp:20</div></div>
+<div class="ttc" id="aGeometria_8hpp_html_ad99926d2bb523b772ef96d5c9d11f50d"><div class="ttname"><a href="Geometria_8hpp.html#ad99926d2bb523b772ef96d5c9d11f50d">mismoPunto</a></div><div class="ttdeci">bool mismoPunto(const Punto&lt; T &gt; &amp;a, const Punto&lt; T &gt; &amp;b)</div><div class="ttdoc">Igualdad exacta de las coordenadas x e y.</div><div class="ttdef"><b>Definición</b> Geometria.hpp:52</div></div>
+<div class="ttc" id="aclassEstrategiaCerradura_html"><div class="ttname"><a href="classEstrategiaCerradura.html">EstrategiaCerradura</a></div><div class="ttdoc">Estrategia de calculo de la cerradura convexa de una nube de puntos.</div><div class="ttdef"><b>Definición</b> EstrategiaCerradura.hpp:29</div></div>
+<div class="ttc" id="aclassPoligono_html"><div class="ttname"><a href="classPoligono.html">Poligono</a></div><div class="ttdoc">Poligono en el plano, dado por sus vertices en orden.</div><div class="ttdef"><b>Definición</b> Poligono.hpp:20</div></div>
+<div class="ttc" id="aclassPoligono_html_a016dafa2a65d2784ef03f28763a452ee"><div class="ttname"><a href="classPoligono.html#a016dafa2a65d2784ef03f28763a452ee">Poligono::Poligono</a></div><div class="ttdeci">Poligono()=default</div><div class="ttdoc">Construye un poligono sin vertices.</div></div>
+<div class="ttc" id="aclassPoligono_html_aab384411b21bab28c8b44578e78954de"><div class="ttname"><a href="classPoligono.html#aab384411b21bab28c8b44578e78954de">Poligono::normalizar</a></div><div class="ttdeci">void normalizar()</div><div class="ttdoc">Deja el poligono en CCW y comenzando en su menor vertice (orden lexicografico de Punto).</div><div class="ttdef"><b>Definición</b> Poligono.hpp:83</div></div>
+<div class="ttc" id="aclassPunto_html"><div class="ttname"><a href="classPunto.html">Punto</a></div><div class="ttdoc">Punto en el plano, con una coordenada z auxiliar.</div><div class="ttdef"><b>Definición</b> Punto.hpp:18</div></div>
+<div class="ttc" id="aclassRandomIncrementalAlgorithm_html_a02d6eedf9858232bf12faeb3fc4ab5f3"><div class="ttname"><a href="classRandomIncrementalAlgorithm.html#a02d6eedf9858232bf12faeb3fc4ab5f3">RandomIncrementalAlgorithm::sig</a></div><div class="ttdeci">std::vector&lt; int &gt; sig</div><div class="ttdoc">Si es vertice: siguiente vertice en CCW.</div><div class="ttdef"><b>Definición</b> RandomIncrementalAlgorithm.hpp:86</div></div>
+<div class="ttc" id="aclassRandomIncrementalAlgorithm_html_a306ddb0d5ae4e676088b1b7e8aa14905"><div class="ttname"><a href="classRandomIncrementalAlgorithm.html#a306ddb0d5ae4e676088b1b7e8aa14905">RandomIncrementalAlgorithm::reasignaciones</a></div><div class="ttdeci">std::size_t reasignaciones</div><div class="ttdoc">Contador de la ultima llamada a apply.</div><div class="ttdef"><b>Definición</b> RandomIncrementalAlgorithm.hpp:82</div></div>
+<div class="ttc" id="aclassRandomIncrementalAlgorithm_html_a3219c4377f4339868e70d3721531a8d9"><div class="ttname"><a href="classRandomIncrementalAlgorithm.html#a3219c4377f4339868e70d3721531a8d9">RandomIncrementalAlgorithm::apply</a></div><div class="ttdeci">Poligono&lt; T &gt; apply(const std::vector&lt; Punto&lt; T &gt; &gt; &amp;nube) override</div><div class="ttdoc">Calcula la cerradura convexa de la nube.</div><div class="ttdef"><b>Definición</b> RandomIncrementalAlgorithm.hpp:55</div></div>
+<div class="ttc" id="aclassRandomIncrementalAlgorithm_html_a44a8143b943482996fdd545e1c8f29c4"><div class="ttname"><a href="classRandomIncrementalAlgorithm.html#a44a8143b943482996fdd545e1c8f29c4">RandomIncrementalAlgorithm::ant</a></div><div class="ttdeci">std::vector&lt; int &gt; ant</div><div class="ttdoc">Si es vertice: vertice anterior en CCW.</div><div class="ttdef"><b>Definición</b> RandomIncrementalAlgorithm.hpp:87</div></div>
+<div class="ttc" id="aclassRandomIncrementalAlgorithm_html_a4bc338d36b27b1fc2e1e51b96e862733"><div class="ttname"><a href="classRandomIncrementalAlgorithm.html#a4bc338d36b27b1fc2e1e51b96e862733">RandomIncrementalAlgorithm::liberarMemoria</a></div><div class="ttdeci">void liberarMemoria()</div><div class="ttdoc">Libera los arreglos de trabajo.</div><div class="ttdef"><b>Definición</b> RandomIncrementalAlgorithm.hpp:282</div></div>
+<div class="ttc" id="aclassRandomIncrementalAlgorithm_html_a4c80dd5f0c62ad90a905b65f341bc0aa"><div class="ttname"><a href="classRandomIncrementalAlgorithm.html#a4c80dd5f0c62ad90a905b65f341bc0aa">RandomIncrementalAlgorithm::sumaX</a></div><div class="ttdeci">W sumaX</div><div class="ttdoc">Coordenada x de 3C, la suma de los vertices iniciales.</div><div class="ttdef"><b>Definición</b> RandomIncrementalAlgorithm.hpp:92</div></div>
+<div class="ttc" id="aclassRandomIncrementalAlgorithm_html_a519cf35fe50cfab76cba9ed84c51025f"><div class="ttname"><a href="classRandomIncrementalAlgorithm.html#a519cf35fe50cfab76cba9ed84c51025f">RandomIncrementalAlgorithm::asignarEnTriangulo</a></div><div class="ttdeci">void asignarEnTriangulo(int q)</div><div class="ttdoc">Asocia el punto q a la arista del triangulo inicial que cruza el rayo C -&gt; q, o lo descarta si queda ...</div><div class="ttdef"><b>Definición</b> RandomIncrementalAlgorithm.hpp:176</div></div>
+<div class="ttc" id="aclassRandomIncrementalAlgorithm_html_a54c4fda63e6e7c7653725a3c78048d44"><div class="ttname"><a href="classRandomIncrementalAlgorithm.html#a54c4fda63e6e7c7653725a3c78048d44">RandomIncrementalAlgorithm::arista</a></div><div class="ttdeci">std::vector&lt; int &gt; arista</div><div class="ttdef"><b>Definición</b> RandomIncrementalAlgorithm.hpp:88</div></div>
+<div class="ttc" id="aclassRandomIncrementalAlgorithm_html_a6433975b01d7396bc607a392ea00403c"><div class="ttname"><a href="classRandomIncrementalAlgorithm.html#a6433975b01d7396bc607a392ea00403c">RandomIncrementalAlgorithm::nombre</a></div><div class="ttdeci">std::string nombre() const override</div><div class="ttdoc">Nombre de la estrategia.</div><div class="ttdef"><b>Definición</b> RandomIncrementalAlgorithm.hpp:68</div></div>
+<div class="ttc" id="aclassRandomIncrementalAlgorithm_html_a80078882edb9c6545de2b082e9444666"><div class="ttname"><a href="classRandomIncrementalAlgorithm.html#a80078882edb9c6545de2b082e9444666">RandomIncrementalAlgorithm::sumaY</a></div><div class="ttdeci">W sumaY</div><div class="ttdoc">Coordenada y de 3C.</div><div class="ttdef"><b>Definición</b> RandomIncrementalAlgorithm.hpp:93</div></div>
+<div class="ttc" id="aclassRandomIncrementalAlgorithm_html_a827ce0af76a2a6a2cd3a7d5073339d03"><div class="ttname"><a href="classRandomIncrementalAlgorithm.html#a827ce0af76a2a6a2cd3a7d5073339d03">RandomIncrementalAlgorithm::cubeta</a></div><div class="ttdeci">std::vector&lt; std::vector&lt; int &gt; &gt; cubeta</div><div class="ttdoc">Si es vertice: la cubeta de su arista, con los puntos que la ven.</div><div class="ttdef"><b>Definición</b> RandomIncrementalAlgorithm.hpp:90</div></div>
+<div class="ttc" id="aclassRandomIncrementalAlgorithm_html_a873bed1db06a409f27268439ffadc441"><div class="ttname"><a href="classRandomIncrementalAlgorithm.html#a873bed1db06a409f27268439ffadc441">RandomIncrementalAlgorithm::NINGUNA</a></div><div class="ttdeci">static constexpr int NINGUNA</div><div class="ttdoc">Indice nulo.</div><div class="ttdef"><b>Definición</b> RandomIncrementalAlgorithm.hpp:79</div></div>
+<div class="ttc" id="aclassRandomIncrementalAlgorithm_html_a89e2935570e41b23d73708f3f5451ec7"><div class="ttname"><a href="classRandomIncrementalAlgorithm.html#a89e2935570e41b23d73708f3f5451ec7">RandomIncrementalAlgorithm::W</a></div><div class="ttdeci">Ancho&lt; T &gt; W</div><div class="ttdoc">Tipo de los calculos con C.</div><div class="ttdef"><b>Definición</b> RandomIncrementalAlgorithm.hpp:78</div></div>
+<div class="ttc" id="aclassRandomIncrementalAlgorithm_html_a8bb9581cec70b150a693056a03925ded"><div class="ttname"><a href="classRandomIncrementalAlgorithm.html#a8bb9581cec70b150a693056a03925ded">RandomIncrementalAlgorithm::cerraduraDegenerada</a></div><div class="ttdeci">Poligono&lt; T &gt; cerraduraDegenerada() const</div><div class="ttdoc">Cerradura de puntos todos colineales: el segmento entre los extremos.</div><div class="ttdef"><b>Definición</b> RandomIncrementalAlgorithm.hpp:127</div></div>
+<div class="ttc" id="aclassRandomIncrementalAlgorithm_html_a9ff330cd19ca28f9a9fcaaac32363740"><div class="ttname"><a href="classRandomIncrementalAlgorithm.html#a9ff330cd19ca28f9a9fcaaac32363740">RandomIncrementalAlgorithm::RandomIncrementalAlgorithm</a></div><div class="ttdeci">RandomIncrementalAlgorithm(std::uint64_t semilla=1)</div><div class="ttdoc">Construye la estrategia.</div><div class="ttdef"><b>Definición</b> RandomIncrementalAlgorithm.hpp:47</div></div>
+<div class="ttc" id="aclassRandomIncrementalAlgorithm_html_aa42b21d11cd58b441db9cc9a7e2d18dd"><div class="ttname"><a href="classRandomIncrementalAlgorithm.html#aa42b21d11cd58b441db9cc9a7e2d18dd">RandomIncrementalAlgorithm::getReasignaciones</a></div><div class="ttdeci">std::size_t getReasignaciones() const</div><div class="ttdoc">Cantidad de veces que un punto paso a una arista nueva durante la ultima llamada a apply.</div><div class="ttdef"><b>Definición</b> RandomIncrementalAlgorithm.hpp:75</div></div>
+<div class="ttc" id="aclassRandomIncrementalAlgorithm_html_aaca7c26d463fd387b405d79d433b8cae"><div class="ttname"><a href="classRandomIncrementalAlgorithm.html#aaca7c26d463fd387b405d79d433b8cae">RandomIncrementalAlgorithm::recorrer</a></div><div class="ttdeci">Poligono&lt; T &gt; recorrer(int desde) const</div><div class="ttdoc">Recorre la cerradura final desde un vertice.</div><div class="ttdef"><b>Definición</b> RandomIncrementalAlgorithm.hpp:265</div></div>
+<div class="ttc" id="aclassRandomIncrementalAlgorithm_html_abe507fae8f67178ec2bc42a7d2cd6b17"><div class="ttname"><a href="classRandomIncrementalAlgorithm.html#abe507fae8f67178ec2bc42a7d2cd6b17">RandomIncrementalAlgorithm::ladoDelRayo</a></div><div class="ttdeci">int ladoDelRayo(int v, int f) const</div><div class="ttdoc">Orientacion de (C, p[v], p[f]), sin calcular C.</div><div class="ttdef"><b>Definición</b> RandomIncrementalAlgorithm.hpp:253</div></div>
+<div class="ttc" id="aclassRandomIncrementalAlgorithm_html_ac0d6cd40dc2a40dfa21c009cbc382ec1"><div class="ttname"><a href="classRandomIncrementalAlgorithm.html#ac0d6cd40dc2a40dfa21c009cbc382ec1">RandomIncrementalAlgorithm::eliminadas</a></div><div class="ttdeci">std::vector&lt; std::vector&lt; int &gt; &gt; eliminadas</div><div class="ttdoc">Cubetas por vaciar al insertar.</div><div class="ttdef"><b>Definición</b> RandomIncrementalAlgorithm.hpp:91</div></div>
+<div class="ttc" id="aclassRandomIncrementalAlgorithm_html_ac5a2d7299ee21c6148d06515f2f2f825"><div class="ttname"><a href="classRandomIncrementalAlgorithm.html#ac5a2d7299ee21c6148d06515f2f2f825">RandomIncrementalAlgorithm::asignar</a></div><div class="ttdeci">void asignar(int f, int v)</div><div class="ttdoc">Pone el punto f en la cubeta de la arista v -&gt; sig[v] si la ve; si no la ve, f esta dentro de la cerr...</div><div class="ttdef"><b>Definición</b> RandomIncrementalAlgorithm.hpp:235</div></div>
+<div class="ttc" id="aclassRandomIncrementalAlgorithm_html_ac970dd241f3acb9b7c9b120007ed650f"><div class="ttname"><a href="classRandomIncrementalAlgorithm.html#ac970dd241f3acb9b7c9b120007ed650f">RandomIncrementalAlgorithm::p</a></div><div class="ttdeci">std::vector&lt; Punto&lt; T &gt; &gt; p</div><div class="ttdoc">Copia barajada de la nube.</div><div class="ttdef"><b>Definición</b> RandomIncrementalAlgorithm.hpp:85</div></div>
+<div class="ttc" id="aclassRandomIncrementalAlgorithm_html_add4352b9a7a4d1587df1fed7aff3d4c6"><div class="ttname"><a href="classRandomIncrementalAlgorithm.html#add4352b9a7a4d1587df1fed7aff3d4c6">RandomIncrementalAlgorithm::insertar</a></div><div class="ttdeci">void insertar(int q)</div><div class="ttdoc">Inserta el punto q, que esta fuera de la cerradura actual.</div><div class="ttdef"><b>Definición</b> RandomIncrementalAlgorithm.hpp:189</div></div>
+<div class="ttc" id="aclassRandomIncrementalAlgorithm_html_ade39c0d67a384ef010fe5c0587fbd145"><div class="ttname"><a href="classRandomIncrementalAlgorithm.html#ade39c0d67a384ef010fe5c0587fbd145">RandomIncrementalAlgorithm::semilla</a></div><div class="ttdeci">std::uint64_t semilla</div><div class="ttdoc">Semilla del barajado.</div><div class="ttdef"><b>Definición</b> RandomIncrementalAlgorithm.hpp:81</div></div>
+<div class="ttc" id="aclassRandomIncrementalAlgorithm_html_ae60e143b273d597520dd42dcccf60b33"><div class="ttname"><a href="classRandomIncrementalAlgorithm.html#ae60e143b273d597520dd42dcccf60b33">RandomIncrementalAlgorithm::construir</a></div><div class="ttdeci">Poligono&lt; T &gt; construir()</div><div class="ttdoc">El algoritmo, una vez que p[0], p[1], p[2] forman un triangulo CCW.</div><div class="ttdef"><b>Definición</b> RandomIncrementalAlgorithm.hpp:142</div></div>
+<div class="ttc" id="aclassRandomIncrementalAlgorithm_html_af7dbd98a53420a0706bfebe04971c760"><div class="ttname"><a href="classRandomIncrementalAlgorithm.html#af7dbd98a53420a0706bfebe04971c760">RandomIncrementalAlgorithm::moverTrianguloAlInicio</a></div><div class="ttdeci">bool moverTrianguloAlInicio()</div><div class="ttdoc">Deja en p[0], p[1], p[2] un triangulo no degenerado, en CCW.</div><div class="ttdef"><b>Definición</b> RandomIncrementalAlgorithm.hpp:102</div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+</div><!-- container -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><b>include</b></li><li class="navelem"><a href="RandomIncrementalAlgorithm_8hpp.html">RandomIncrementalAlgorithm.hpp</a></li>
+    <li class="footer">Generado por <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.18.0 </li>
+  </ul>
+</div>
+</body>
+</html>

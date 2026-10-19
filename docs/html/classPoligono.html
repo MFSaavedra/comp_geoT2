@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.18.0"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>comp_geoT1: Referencia de la plantilla de la clase Poligono&lt; T &gt;</title>
+<title>comp_geoT2: Referencia de la plantilla de la clase Poligono&lt; T &gt;</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="codefolding.js"></script>
 <script type="text/javascript" src="clipboard.js"></script>
@@ -25,9 +25,9 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">comp_geoT1
+   <div id="projectname">comp_geoT2
    </div>
-   <div id="projectbrief">Tarea 1 - CC5502 Geometría Computacional</div>
+   <div id="projectbrief">Tarea 2 - CC5502 Geometría Computacional: cerradura convexa</div>
   </td>
  </tr>
  </tbody>
@@ -120,6 +120,9 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('classPoligono.
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Métodos públicos</h2></td></tr>
+<tr class="memitem:a016dafa2a65d2784ef03f28763a452ee" id="r_a016dafa2a65d2784ef03f28763a452ee"><td class="memItemLeft"><a id="a016dafa2a65d2784ef03f28763a452ee" name="a016dafa2a65d2784ef03f28763a452ee"></a>
+&#160;</td><td class="memItemRight"><b>Poligono</b> ()=default</td></tr>
+<tr class="memdesc:a016dafa2a65d2784ef03f28763a452ee"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construye un poligono sin vertices. <br /></td></tr>
 <tr class="memitem:a8f00289d84db1c5453d453bb6c5cb0f6" id="r_a8f00289d84db1c5453d453bb6c5cb0f6"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a8f00289d84db1c5453d453bb6c5cb0f6">Poligono</a> (const std::vector&lt; <a class="el" href="classPunto.html">Punto</a>&lt; T &gt; &gt; &amp;puntos)</td></tr>
 <tr class="memdesc:a8f00289d84db1c5453d453bb6c5cb0f6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construye el poligono con los puntos dados, en ese orden.  <br /></td></tr>
 <tr class="memitem:a04ca8386a5dd43f8108442101c83681a" id="r_a04ca8386a5dd43f8108442101c83681a"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#a04ca8386a5dd43f8108442101c83681a">cantidadPuntos</a> () const</td></tr>
@@ -131,6 +134,12 @@ void&#160;</td><td class="memItemRight"><b>hacerCCW</b> ()</td></tr>
 <tr class="memdesc:ab12d62d05ff99715322e38fe12539cf6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Si el poligono esta en CW, invierte sus vertices para dejarlo en CCW. <br /></td></tr>
 <tr class="memitem:a039acd7996f8f96b2ab4a8830f1cbd5f" id="r_a039acd7996f8f96b2ab4a8830f1cbd5f"><td class="memItemLeft">double&#160;</td><td class="memItemRight"><a class="el" href="#a039acd7996f8f96b2ab4a8830f1cbd5f">area</a> () const</td></tr>
 <tr class="memdesc:a039acd7996f8f96b2ab4a8830f1cbd5f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Area del poligono.  <br /></td></tr>
+<tr class="memitem:aab384411b21bab28c8b44578e78954de" id="r_aab384411b21bab28c8b44578e78954de"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#aab384411b21bab28c8b44578e78954de">normalizar</a> ()</td></tr>
+<tr class="memdesc:aab384411b21bab28c8b44578e78954de"><td class="mdescLeft">&#160;</td><td class="mdescRight">Deja el poligono en CCW y comenzando en su menor vertice (orden lexicografico de <a class="el" href="classPunto.html" title="Punto en el plano, con una coordenada z auxiliar.">Punto</a>).  <br /></td></tr>
+<tr class="memitem:ad494e088f0c1b96fd00f4192d19277a2" id="r_ad494e088f0c1b96fd00f4192d19277a2"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#ad494e088f0c1b96fd00f4192d19277a2">operator==</a> (const <a class="el" href="classPoligono.html">Poligono</a>&lt; T &gt; &amp;other) const</td></tr>
+<tr class="memdesc:ad494e088f0c1b96fd00f4192d19277a2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compara dos poligonos vertice a vertice, en el orden guardado.  <br /></td></tr>
+<tr class="memitem:af5420ac881f163d0488301c32fc8a0ad" id="r_af5420ac881f163d0488301c32fc8a0ad"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#af5420ac881f163d0488301c32fc8a0ad">operator!=</a> (const <a class="el" href="classPoligono.html">Poligono</a>&lt; T &gt; &amp;other) const</td></tr>
+<tr class="memdesc:af5420ac881f163d0488301c32fc8a0ad"><td class="mdescLeft">&#160;</td><td class="mdescRight">Verifica si 2 poligonos son distintos.  <br /></td></tr>
 <tr class="memitem:ab475edbfde8f6c9ccec9a5379b4d2441" id="r_ab475edbfde8f6c9ccec9a5379b4d2441"><td class="memItemLeft"><a class="el" href="classPunto.html">Punto</a>&lt; T &gt; &amp;&#160;</td><td class="memItemRight"><a class="el" href="#ab475edbfde8f6c9ccec9a5379b4d2441">operator[]</a> (int i)</td></tr>
 <tr class="memdesc:ab475edbfde8f6c9ccec9a5379b4d2441"><td class="mdescLeft">&#160;</td><td class="mdescRight">Acceso al punto en la posicion i.  <br /></td></tr>
 <tr class="memitem:a33204fb2cd44574c7b4a46e11b79a85e" id="r_a33204fb2cd44574c7b4a46e11b79a85e"><td class="memItemLeft">const <a class="el" href="classPunto.html">Punto</a>&lt; T &gt; &amp;&#160;</td><td class="memItemRight"><a class="el" href="#a33204fb2cd44574c7b4a46e11b79a85e">operator[]</a> (int i) const</td></tr>
@@ -316,6 +325,108 @@ template&lt;typename T&gt; </div>
 
 <p>Area del poligono. </p>
 <dl class="section return"><dt>Devuelve</dt><dd>El area en double, sin signo. </dd></dl>
+
+</div>
+</div>
+<a id="aab384411b21bab28c8b44578e78954de" name="aab384411b21bab28c8b44578e78954de"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aab384411b21bab28c8b44578e78954de">&#9670;&#160;</a></span>normalizar()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="classPoligono.html">Poligono</a>&lt; T &gt;::normalizar </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Deja el poligono en CCW y comenzando en su menor vertice (orden lexicografico de <a class="el" href="classPunto.html" title="Punto en el plano, con una coordenada z auxiliar.">Punto</a>). </p>
+<dl class="section note"><dt>Nota</dt><dd>Forma canonica: dos cerraduras convexas del mismo conjunto quedan con los mismos vertices en el mismo orden, y se comparan con ==. </dd></dl>
+
+</div>
+</div>
+<a id="ad494e088f0c1b96fd00f4192d19277a2" name="ad494e088f0c1b96fd00f4192d19277a2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad494e088f0c1b96fd00f4192d19277a2">&#9670;&#160;</a></span>operator==()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool <a class="el" href="classPoligono.html">Poligono</a>&lt; T &gt;::operator== </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classPoligono.html">Poligono</a>&lt; T &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>other</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Compara dos poligonos vertice a vertice, en el orden guardado. </p>
+<dl class="params"><dt>Parámetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">other</td><td><a class="el" href="classPoligono.html" title="Poligono en el plano, dado por sus vertices en orden.">Poligono</a> a comparar. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Devuelve</dt><dd>true si tienen los mismos vertices en el mismo orden. </dd></dl>
+
+</div>
+</div>
+<a id="af5420ac881f163d0488301c32fc8a0ad" name="af5420ac881f163d0488301c32fc8a0ad"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af5420ac881f163d0488301c32fc8a0ad">&#9670;&#160;</a></span>operator!=()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool <a class="el" href="classPoligono.html">Poligono</a>&lt; T &gt;::operator!= </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classPoligono.html">Poligono</a>&lt; T &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>other</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Verifica si 2 poligonos son distintos. </p>
+<dl class="params"><dt>Parámetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">other</td><td><a class="el" href="classPoligono.html" title="Poligono en el plano, dado por sus vertices en orden.">Poligono</a> a comparar. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Devuelve</dt><dd>true si difieren en algun vertice o en la cantidad. </dd></dl>
 
 </div>
 </div>

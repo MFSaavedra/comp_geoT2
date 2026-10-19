@@ -1,0 +1,20 @@
+<map id="include/Geometria.hpp" name="include/Geometria.hpp">
+<area shape="rect" id="Node000001" title="Predicados geometricos que comparten los algoritmos de cerradura." alt="" coords="126,5,296,33"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,232,97,260"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="204,35,71,221,67,218,200,32"/>
+<area shape="rect" id="Node000003" href="$Punto_8hpp.html" title="Clase Punto: punto en un espacio bidimensional." alt="" coords="217,157,304,184"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="216,31,240,108,252,143,247,141,235,110,213,35"/>
+<area shape="rect" id="Node000008" href="$Vector_8hpp.html" title="Clase Vector: vector matematico en el plano." alt="" coords="249,81,338,109"/>
+<area shape="poly" id="edge8_Node000001_Node000008" title=" " alt="" coords="226,31,270,70,265,71,225,36"/>
+<area shape="poly" id="edge7_Node000003_Node000002" title=" " alt="" coords="224,187,103,229,102,224,222,182"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="121,232,205,260"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="245,184,193,225,191,221,240,186"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="229,232,292,260"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="262,183,263,218,258,215,258,187"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="315,232,374,260"/>
+<area shape="poly" id="edge5_Node000003_Node000006" title=" " alt="" coords="276,182,321,222,315,222,274,187"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="397,232,473,260"/>
+<area shape="poly" id="edge6_Node000003_Node000007" title=" " alt="" coords="292,182,393,226,388,226,291,187"/>
+<area shape="poly" id="edge10_Node000008_Node000003" title=" " alt="" coords="290,107,275,144,271,141,286,111"/>
+<area shape="poly" id="edge9_Node000008_Node000007" title=" " alt="" coords="307,106,415,221,409,221,304,111"/>
+</map>
