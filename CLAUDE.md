@@ -33,18 +33,18 @@ doxygen                                       # docs/html/, committed
 All templates, so header-only: `src/` holds only `main.cpp` and `experimento.cpp`.
 
 - `Punto` / `Vector` / `Poligono` — Tarea 1. Additions for Tarea 2: `Punto::operator<` (exact lexicographic), `Poligono()`, `Poligono::normalizar()` (CCW + rotate to the smallest vertex), `Poligono::operator==` (vertex by vertex).
-- `Geometria.hpp` — `orientacion(a,b,c)` returns the sign (-1/0/1) of the cross product computed in `Ancho<T>` (`long long` for integral T, `double` otherwise) **through `Vector::productoCruz`**; `mismoPunto` is exact equality. Both algorithms use only these predicates.
+- `Geometria.hpp` — `orientacion(a,b,c)` returns the sign (-1/0/1) of the cross product computed in `Ancho<T>` **through `Vector::productoCruz`** (via `signoCruz`); `mismoPunto` is exact equality. Both algorithms use only these predicates. `Ancho<T>`: `long long` for integral T up to 32 bits, `Entero128` (`__int128`) for `long long`, `std::common_type_t<T, double>` for floating T (so `long double` stays `long double`). `esTipoCoordenada<T>` lists the accepted types — short, int, unsigned, long long, float, double, long double — and both Strategy bases `static_assert` on it. `Punto`/`Vector`/`Poligono` stay unconstrained: the predicates themselves instantiate `Vector<long long>` and `Vector<Entero128>`.
 - `EstrategiaCerradura<T>` — `apply` (non-const: strategies may keep state such as the reassignment counter) and `nombre`. The output convention (extreme vertices only, normalized, degenerate cases) is documented there and is what makes `==` meaningful; keep both algorithms on it.
 - `IncrementalAlgorithm` — sort, unique, upper hull left→right, lower hull right→left, pop on `orientacion >= 0`.
-- `RandomIncrementalAlgorithm` — CMU notes §2.2. Fixed interior point C = centroid of the first triangle, handled as 3C (`sumaX/sumaY`) so integer math stays exact; each future point stores the edge its ray from C crosses (`arista`, edge = tail vertex), each edge a contiguous bucket (`std::vector<int>`). Strict outside test, non-strict walk (removes edges whose line passes through q). Points that fall inside are dropped at reassignment. Integral T requires |coords| < 2^28.
-- `GeneradorPuntos.hpp` — uniform square, circle (p·n on the circle, rest in the inscribed disk of the regular k-gon), rotated square boundary (collinear). Work in double in radius 1e8, round for integral T, so int and double runs see the same figure.
+- `RandomIncrementalAlgorithm` — CMU notes §2.2. Fixed interior point C = centroid of the first triangle, handled as 3C (`sumaX/sumaY`) so integer math stays exact; each future point stores the edge its ray from C crosses (`arista`, edge = tail vertex), each edge a contiguous bucket (`std::vector<int>`). Strict outside test, non-strict walk (removes edges whose line passes through q). Points that fall inside are dropped at reassignment. `ladoDelRayo` calls `signoCruz` on vectors already in `Ancho<T>` (calling `orientacion` would promote them again, to `Entero128` for int). Integral T requires, per axis, max − min < 2^29 (≤ 32-bit T) or < 2^61 (`long long`): the 3C cross product is < 18 L².
+- `GeneradorPuntos.hpp` — uniform square, circle (p·n on the circle, rest in the inscribed disk of the regular k-gon), rotated square boundary (collinear). Work in double in radius `RADIO` (1e8; 2e4 for short so the rotated corners fit), round for integral T and add `CENTRO` (141421357 for unsigned, else 0), so every type sees the same figure up to scale/translation. int and double output must stay bit-identical: the report's data depends on it.
 
 Performance history (in `resultados/versiones_random_incremental.txt` and the report): intrusive bucket lists and an array-of-structs layout were both slower than the contiguous `std::vector<int>` buckets. Don't reintroduce them without measuring.
 
 ## Conventions
 
 - Doxygen on every member: `@brief` always, `@param`/`@return`/`@tparam` where they apply, `@note` for code that looks wrong without an explanation. Short blocks.
-- Metric results return `double`; promote before arithmetic that can overflow. Exact predicates promote to `long long`, not `double`.
+- Metric results return `double`; promote before arithmetic that can overflow. Exact predicates promote to `Ancho<T>`, not `double`.
 - `Punto::operator==` is tolerant for floating point; inside algorithms use the exact `mismoPunto`.
 - Every public method has a test.
 - Keep the code simple and readable — the user asked for it explicitly.

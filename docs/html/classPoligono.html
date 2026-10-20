@@ -234,7 +234,7 @@ template&lt;typename T&gt; </div>
 
 <p>Area con signo segun la formula del shoelace. </p>
 <dl class="section return"><dt>Devuelve</dt><dd>Positiva si los vertices van en CCW, negativa si van en CW. </dd></dl>
-<dl class="section note"><dt>Nota</dt><dd>Base de esCCW, hacerCCW y area. Promueve a double antes de multiplicar: con T entero, coordenadas grandes desbordarian. </dd></dl>
+<dl class="section note"><dt>Nota</dt><dd>Base de esCCW, hacerCCW y area. Promueve a double antes de multiplicar: con T entero, coordenadas grandes desbordarian. Con long double suma en long double: en double, vertices que solo difieren despues del bit 53 se confundirian, y hacerCCW podria no dar vuelta un poligono en CW. </dd></dl>
 
 </div>
 </div>

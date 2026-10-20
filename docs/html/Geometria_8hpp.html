@@ -148,17 +148,25 @@ Gráfico de los archivos que directa o indirectamente incluyen a este archivo:</
 <div class="dyncontent">
 <div class="center"><img src="Geometria_8hpp__dep__incl.png" border="0" usemap="#ainclude_2Geometria_8hppdep" loading="lazy" alt=""/></div>
 <map name="ainclude_2Geometria_8hppdep" id="ainclude_2Geometria_8hppdep">
-<area shape="rect" title="Predicados geometricos que comparten los algoritmos de cerradura." alt="" coords="166,5,335,33"/>
-<area shape="rect" href="IncrementalAlgorithm_8hpp.html" title="Algoritmo incremental: ordenar, construir el upper hull y luego el lower hull (de Berg et al...." alt="" coords="5,90,248,117"/>
-<area shape="poly" title=" " alt="" coords="216,43,148,91,145,87,220,40"/>
-<area shape="rect" href="RandomIncrementalAlgorithm_8hpp.html" title="Algoritmo incremental aleatorio con listas de conflicto (notas de 15&#45;451 de CMU, seccion 2...." alt="" coords="272,81,477,126"/>
-<area shape="poly" title=" " alt="" coords="284,39,344,80,339,81,283,45"/>
-<area shape="rect" href="experimento_8cpp.html" title="Experimento completo de ANALISIS.pdf; escribe un archivo CSV." alt="" coords="96,174,250,201"/>
-<area shape="poly" title=" " alt="" coords="143,129,168,174,163,173,140,133"/>
-<area shape="rect" href="main_8cpp.html" title="Ejemplo de uso de las estrategias y comparacion rapida entre ellas." alt="" coords="298,174,403,201"/>
-<area shape="poly" title=" " alt="" coords="177,120,317,172,312,174,176,125"/>
-<area shape="poly" title=" " alt="" coords="310,132,206,176,205,171,305,132"/>
-<area shape="poly" title=" " alt="" coords="366,139,356,175,353,171,362,142"/>
+<area shape="rect" title="Predicados geometricos que comparten los algoritmos de cerradura." alt="" coords="270,5,439,33"/>
+<area shape="rect" href="EstrategiaCerradura_8hpp.html" title="Interfaz comun de los algoritmos de cerradura convexa (patron Strategy)." alt="" coords="163,81,394,109"/>
+<area shape="poly" title=" " alt="" coords="332,42,294,83,290,79,328,46"/>
+<area shape="rect" href="IncrementalAlgorithm_8hpp.html" title="Algoritmo incremental: ordenar, construir el upper hull y luego el lower hull (de Berg et al...." alt="" coords="5,165,248,193"/>
+<area shape="poly" title=" " alt="" coords="252,31,201,50,176,65,154,83,141,102,133,125,129,166,124,164,128,124,136,100,150,79,173,60,198,46,257,28"/>
+<area shape="rect" href="RandomIncrementalAlgorithm_8hpp.html" title="Algoritmo incremental aleatorio con listas de conflicto (notas de 15&#45;451 de CMU, seccion 2...." alt="" coords="272,157,477,201"/>
+<area shape="poly" title=" " alt="" coords="382,42,397,60,408,80,411,101,408,122,391,158,388,155,403,120,406,101,403,82,393,63,381,47"/>
+<area shape="rect" href="GeneradorPuntos_8hpp.html" title="Generadores de nubes de puntos de prueba (patron Strategy)." alt="" coords="500,165,713,193"/>
+<area shape="poly" title=" " alt="" coords="389,39,588,164,583,165,388,44"/>
+<area shape="poly" title=" " alt="" coords="239,118,152,167,150,162,243,115"/>
+<area shape="poly" title=" " alt="" coords="306,116,352,156,346,156,305,122"/>
+<area shape="rect" href="experimento_8cpp.html" title="Experimento completo de ANALISIS.pdf; escribe un archivo CSV." alt="" coords="220,249,374,277"/>
+<area shape="poly" title=" " alt="" coords="168,197,272,248,267,250,167,203"/>
+<area shape="rect" href="main_8cpp.html" title="Ejemplo de uso de las estrategias y comparacion rapida entre ellas." alt="" coords="398,249,503,277"/>
+<area shape="poly" title=" " alt="" coords="194,195,401,247,397,251,193,200"/>
+<area shape="poly" title=" " alt="" coords="346,212,311,251,308,246,341,214"/>
+<area shape="poly" title=" " alt="" coords="406,210,441,249,436,248,404,215"/>
+<area shape="poly" title=" " alt="" coords="545,197,347,251,346,246,540,197"/>
+<area shape="poly" title=" " alt="" coords="571,200,476,251,475,246,566,201"/>
 </map>
 </div>
 </div>
@@ -166,24 +174,34 @@ Gráfico de los archivos que directa o indirectamente incluyen a este archivo:</
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-typedef-members" class="groupheader"><a id="typedef-members" name="typedef-members"></a>
 typedefs</h2></td></tr>
-<tr class="memitem:abf72cd67860d5c11f219d8645587d44d" id="r_abf72cd67860d5c11f219d8645587d44d"><td class="memTemplParams" colspan="2">template&lt;typename T&gt; </td></tr>
-<tr class="memitem:abf72cd67860d5c11f219d8645587d44d template"><td class="memItemLeft">using&#160;</td><td class="memItemRight"><a class="el" href="#abf72cd67860d5c11f219d8645587d44d">Ancho</a> = std::conditional_t&lt;std::is_integral_v&lt;T&gt;, long long, double&gt;</td></tr>
-<tr class="memdesc:abf72cd67860d5c11f219d8645587d44d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tipo en que se calcula el producto cruz de coordenadas de tipo T.  <br /></td></tr>
+<tr class="memitem:a86dbe17db5f68ac3fd2ffa29c388f935" id="r_a86dbe17db5f68ac3fd2ffa29c388f935"><td class="memTemplParams" colspan="2">template&lt;typename T&gt; </td></tr>
+<tr class="memitem:a86dbe17db5f68ac3fd2ffa29c388f935 template"><td class="memItemLeft">using&#160;</td><td class="memItemRight"><a class="el" href="#a86dbe17db5f68ac3fd2ffa29c388f935">Ancho</a></td></tr>
+<tr class="memdesc:a86dbe17db5f68ac3fd2ffa29c388f935"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tipo en que se calcula el producto cruz de coordenadas de tipo T.  <br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-func-members" class="groupheader"><a id="func-members" name="func-members"></a>
 Funciones</h2></td></tr>
+<tr class="memitem:adf0f349d2fdd14201056c638ffb57dfc" id="r_adf0f349d2fdd14201056c638ffb57dfc"><td class="memTemplParams" colspan="2">template&lt;typename W&gt; </td></tr>
+<tr class="memitem:adf0f349d2fdd14201056c638ffb57dfc template"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#adf0f349d2fdd14201056c638ffb57dfc">signoCruz</a> (const <a class="el" href="classVector.html">Vector</a>&lt; W &gt; &amp;u, const <a class="el" href="classVector.html">Vector</a>&lt; W &gt; &amp;v)</td></tr>
+<tr class="memdesc:adf0f349d2fdd14201056c638ffb57dfc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Signo del producto cruz u x v.  <br /></td></tr>
 <tr class="memitem:a599326effcecd0b5f1aa3b78f0c6f6aa" id="r_a599326effcecd0b5f1aa3b78f0c6f6aa"><td class="memTemplParams" colspan="2">template&lt;typename T&gt; </td></tr>
 <tr class="memitem:a599326effcecd0b5f1aa3b78f0c6f6aa template"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#a599326effcecd0b5f1aa3b78f0c6f6aa">orientacion</a> (const <a class="el" href="classPunto.html">Punto</a>&lt; T &gt; &amp;a, const <a class="el" href="classPunto.html">Punto</a>&lt; T &gt; &amp;b, const <a class="el" href="classPunto.html">Punto</a>&lt; T &gt; &amp;c)</td></tr>
 <tr class="memdesc:a599326effcecd0b5f1aa3b78f0c6f6aa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Orientacion del triangulo (a, b, c): signo del producto cruz (b - a) x (c - a).  <br /></td></tr>
 <tr class="memitem:ad99926d2bb523b772ef96d5c9d11f50d" id="r_ad99926d2bb523b772ef96d5c9d11f50d"><td class="memTemplParams" colspan="2">template&lt;typename T&gt; </td></tr>
 <tr class="memitem:ad99926d2bb523b772ef96d5c9d11f50d template"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#ad99926d2bb523b772ef96d5c9d11f50d">mismoPunto</a> (const <a class="el" href="classPunto.html">Punto</a>&lt; T &gt; &amp;a, const <a class="el" href="classPunto.html">Punto</a>&lt; T &gt; &amp;b)</td></tr>
 <tr class="memdesc:ad99926d2bb523b772ef96d5c9d11f50d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Igualdad exacta de las coordenadas x e y.  <br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-var-members" class="groupheader"><a id="var-members" name="var-members"></a>
+Variables</h2></td></tr>
+<tr class="memitem:ac3203bf4c278676e66236a387542712d" id="r_ac3203bf4c278676e66236a387542712d"><td class="memItemLeft">__extension__ typedef __int128&#160;</td><td class="memItemRight"><a class="el" href="#ac3203bf4c278676e66236a387542712d">Entero128</a></td></tr>
+<tr class="memitem:acc4698c66e3b29cbbb80f454ddb0030c" id="r_acc4698c66e3b29cbbb80f454ddb0030c"><td class="memTemplParams" colspan="2">template&lt;typename T&gt; </td></tr>
+<tr class="memitem:acc4698c66e3b29cbbb80f454ddb0030c template"><td class="memItemLeft">constexpr bool&#160;</td><td class="memItemRight"><a class="el" href="#acc4698c66e3b29cbbb80f454ddb0030c">esTipoCoordenada</a></td></tr>
+<tr class="memdesc:acc4698c66e3b29cbbb80f454ddb0030c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Indica si T es uno de los tipos de coordenadas que aceptan los algoritmos y los generadores.  <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Descripción detallada</h2>
 <div class="textblock"><p>Predicados geometricos que comparten los algoritmos de cerradura. </p>
 </div><a name="doc-typedef-members" id="doc-typedef-members"></a><h2 id="header-doc-typedef-members" class="groupheader">Documentación de «typedef»</h2>
-<a id="abf72cd67860d5c11f219d8645587d44d" name="abf72cd67860d5c11f219d8645587d44d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#abf72cd67860d5c11f219d8645587d44d">&#9670;&#160;</a></span>Ancho</h2>
+<a id="a86dbe17db5f68ac3fd2ffa29c388f935" name="a86dbe17db5f68ac3fd2ffa29c388f935"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a86dbe17db5f68ac3fd2ffa29c388f935">&#9670;&#160;</a></span>Ancho</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -191,11 +209,15 @@ Funciones</h2></td></tr>
 template&lt;typename T&gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">using <a class="el" href="#abf72cd67860d5c11f219d8645587d44d">Ancho</a> = std::conditional_t&lt;std::is_integral_v&lt;T&gt;, long long, double&gt;</td>
+          <td class="memname">using <a class="el" href="#a86dbe17db5f68ac3fd2ffa29c388f935">Ancho</a></td>
         </tr>
       </table>
 </div><div class="memdoc">
-
+<b>Valor inicial:</b><div class="fragment"><div class="line">std::conditional_t&lt;</div>
+<div class="line">   std::is_floating_point_v&lt;T&gt;, std::common_type_t&lt;T, double&gt;,</div>
+<div class="line">   std::conditional_t&lt;(<span class="keyword">sizeof</span>(T) &lt;= 4), <span class="keywordtype">long</span> <span class="keywordtype">long</span>, <a class="code hl_variable" href="#ac3203bf4c278676e66236a387542712d">Entero128</a>&gt;&gt;</div>
+<div class="ttc" id="aGeometria_8hpp_html_ac3203bf4c278676e66236a387542712d"><div class="ttname"><a href="#ac3203bf4c278676e66236a387542712d">Entero128</a></div><div class="ttdeci">__extension__ typedef __int128 Entero128</div><div class="ttdef"><b>Definición</b> Geometria.hpp:31</div></div>
+</div><!-- fragment -->
 <p>Tipo en que se calcula el producto cruz de coordenadas de tipo T. </p>
 <dl class="tparams"><dt>Parámetros de plantilla</dt><dd>
   <table class="tparams">
@@ -203,11 +225,50 @@ template&lt;typename T&gt; </div>
   </table>
   </dd>
 </dl>
-<dl class="section note"><dt>Nota</dt><dd>Con T entero es long long, y el resultado es exacto mientras |coordenadas| &lt; 2^30. Con T flotante es double y hay redondeo. </dd></dl>
+<dl class="section note"><dt>Nota</dt><dd>Con T entero es al menos el doble de ancho que T: long long si T tiene hasta 32 bits, Entero128 si tiene 64. El resultado es exacto mientras, en cada eje, max - min &lt; 2^31 o &lt; 2^63 respectivamente. Con T flotante es el mas preciso entre T y double, asi que nunca pierde precision respecto de T (long double sigue en long double); hay redondeo. </dd></dl>
 
 </div>
 </div>
 <a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Documentación de funciones</h2>
+<a id="adf0f349d2fdd14201056c638ffb57dfc" name="adf0f349d2fdd14201056c638ffb57dfc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adf0f349d2fdd14201056c638ffb57dfc">&#9670;&#160;</a></span>signoCruz()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename W&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">int signoCruz </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classVector.html">Vector</a>&lt; W &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>u</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classVector.html">Vector</a>&lt; W &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>v</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Signo del producto cruz u x v. </p>
+<dl class="tparams"><dt>Parámetros de plantilla</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">W</td><td>Tipo de las componentes, ya promovido a uno donde el producto no se desborda. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parámetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">u</td><td>Primer vector. </td></tr>
+    <tr><td class="paramname">v</td><td>Segundo vector. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Devuelve</dt><dd>1 si v esta a la izquierda de u (giro CCW), -1 si esta a la derecha (giro CW) y 0 si son paralelos. </dd></dl>
+
+</div>
+</div>
 <a id="a599326effcecd0b5f1aa3b78f0c6f6aa" name="a599326effcecd0b5f1aa3b78f0c6f6aa"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a599326effcecd0b5f1aa3b78f0c6f6aa">&#9670;&#160;</a></span>orientacion()</h2>
 
@@ -250,7 +311,7 @@ template&lt;typename T&gt; </div>
   </dd>
 </dl>
 <dl class="section return"><dt>Devuelve</dt><dd>1 si c esta a la izquierda de a -&gt; b (giro CCW), -1 si esta a la derecha (giro CW) y 0 si los tres puntos son colineales. </dd></dl>
-<dl class="section note"><dt>Nota</dt><dd>Promueve a <a class="el" href="#abf72cd67860d5c11f219d8645587d44d" title="Tipo en que se calcula el producto cruz de coordenadas de tipo T.">Ancho&lt;T&gt;</a> antes de restar: con T = int, <a class="el" href="classVector.html" title="Vector en el plano, guardado como el Punto que va del origen a su extremo.">Vector&lt;int&gt;</a> se desborda apenas las coordenadas pasan de 2^15. </dd></dl>
+<dl class="section note"><dt>Nota</dt><dd>Promueve a <a class="el" href="#a86dbe17db5f68ac3fd2ffa29c388f935" title="Tipo en que se calcula el producto cruz de coordenadas de tipo T.">Ancho&lt;T&gt;</a> antes de restar: con T = int, <a class="el" href="classVector.html" title="Vector en el plano, guardado como el Punto que va del origen a su extremo.">Vector&lt;int&gt;</a> se desborda apenas las coordenadas pasan de 2^15, y con T = unsigned restar en T daria la vuelta (3 - 5 = 2^32 - 2). </dd></dl>
 
 </div>
 </div>
@@ -291,6 +352,60 @@ template&lt;typename T&gt; </div>
 </dl>
 <dl class="section return"><dt>Devuelve</dt><dd>true si a y b tienen exactamente las mismas coordenadas. </dd></dl>
 <dl class="section note"><dt>Nota</dt><dd>A diferencia de <a class="el" href="classPunto.html#a7e3269326f2951eb40c1957835cb5858" title="Compara dos puntos componente a componente.">Punto::operator==</a>, no usa tolerancia: los algoritmos solo descartan repetidos exactos, igual que orientacion los ve. </dd></dl>
+
+</div>
+</div>
+<a name="doc-var-members" id="doc-var-members"></a><h2 id="header-doc-var-members" class="groupheader">Documentación de variables</h2>
+<a id="ac3203bf4c278676e66236a387542712d" name="ac3203bf4c278676e66236a387542712d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac3203bf4c278676e66236a387542712d">&#9670;&#160;</a></span>Entero128</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">__extension__ typedef __int128 Entero128</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Entero de 128 bits (extension de GCC y Clang): el producto cruz de coordenadas de 64 bits no cabe en long long. <b>extension</b> evita el aviso de -Wpedantic. </p>
+
+</div>
+</div>
+<a id="acc4698c66e3b29cbbb80f454ddb0030c" name="acc4698c66e3b29cbbb80f454ddb0030c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acc4698c66e3b29cbbb80f454ddb0030c">&#9670;&#160;</a></span>esTipoCoordenada</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool esTipoCoordenada</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel constexpr">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<b>Valor inicial:</b><div class="fragment"><div class="line">                                   =</div>
+<div class="line">std::is_same_v&lt;T, short&gt; || std::is_same_v&lt;T, int&gt; ||</div>
+<div class="line">std::is_same_v&lt;T, unsigned&gt; || std::is_same_v&lt;T, long long&gt; ||</div>
+<div class="line">std::is_same_v&lt;T, float&gt; || std::is_same_v&lt;T, double&gt; ||</div>
+<div class="line">std::is_same_v&lt;T, long double&gt;</div>
+</div><!-- fragment -->
+<p>Indica si T es uno de los tipos de coordenadas que aceptan los algoritmos y los generadores. </p>
+<dl class="tparams"><dt>Parámetros de plantilla</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">T</td><td>Tipo a revisar. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>Nota</dt><dd>Son los tipos para los que estan pensados <a class="el" href="#a86dbe17db5f68ac3fd2ffa29c388f935" title="Tipo en que se calcula el producto cruz de coordenadas de tipo T.">Ancho</a> y los generadores (ver README, seccion Supuestos). Otros, como char o long, compilarian pero no estan revisados. </dd></dl>
 
 </div>
 </div>

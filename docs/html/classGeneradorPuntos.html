@@ -151,7 +151,8 @@ Métodos protegidos estáticos</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pro-static-attribs" class="groupheader"><a id="pro-static-attribs" name="pro-static-attribs"></a>
 Atributos estáticos protegidos</h2></td></tr>
-<tr class="memitem:a7d670237f8a320c5cbd850d04fe61401" id="r_a7d670237f8a320c5cbd850d04fe61401"><td class="memItemLeft">static constexpr double&#160;</td><td class="memItemRight"><a class="el" href="#a7d670237f8a320c5cbd850d04fe61401">RADIO</a> = 1e8</td></tr>
+<tr class="memitem:a7d670237f8a320c5cbd850d04fe61401" id="r_a7d670237f8a320c5cbd850d04fe61401"><td class="memItemLeft">static constexpr double&#160;</td><td class="memItemRight"><a class="el" href="#a7d670237f8a320c5cbd850d04fe61401">RADIO</a> = std::is_same_v&lt;T, short&gt; ? 2e4 : 1e8</td></tr>
+<tr class="memitem:a5ed49bef96ad2e244ada75f90d5ce012" id="r_a5ed49bef96ad2e244ada75f90d5ce012"><td class="memItemLeft">static constexpr long long&#160;</td><td class="memItemRight"><a class="el" href="#a5ed49bef96ad2e244ada75f90d5ce012">CENTRO</a> = std::is_unsigned_v&lt;T&gt; ? 141421357 : 0</td></tr>
 <tr class="memitem:aab2254d15ac2a38883659d1ed67e833c" id="r_aab2254d15ac2a38883659d1ed67e833c"><td class="memItemLeft"><a id="aab2254d15ac2a38883659d1ed67e833c" name="aab2254d15ac2a38883659d1ed67e833c"></a>
 static constexpr double&#160;</td><td class="memItemRight"><b>PI</b> = 3.14159265358979323846</td></tr>
 <tr class="memdesc:aab2254d15ac2a38883659d1ed67e833c"><td class="mdescLeft">&#160;</td><td class="mdescRight">El numero pi. <br /></td></tr>
@@ -161,12 +162,12 @@ static constexpr double&#160;</td><td class="memItemRight"><b>PI</b> = 3.1415926
 class GeneradorPuntos&lt; T &gt;</div><p>Estrategia de generacion de una nube de puntos de prueba. </p>
 <dl class="tparams"><dt>Parámetros de plantilla</dt><dd>
   <table class="tparams">
-    <tr><td class="paramname">T</td><td>Tipo de las coordenadas: int o double.</td></tr>
+    <tr><td class="paramname">T</td><td>Tipo de las coordenadas: short, int, unsigned, long long, float, double o long double (ver esTipoCoordenada).</td></tr>
   </table>
   </dd>
 </dl>
-<p>Todos los generadores trabajan en double dentro del disco de radio RADIO = 10^8 y luego convierten a T: con T entero se redondea al entero mas cercano. Asi un mismo generador con la misma semilla produce la misma figura en int y en double, y la unica diferencia es el redondeo.</p>
-<dl class="section note"><dt>Nota</dt><dd>El static_assert rechaza otros tipos: short o unsigned no representan coordenadas de hasta 1.42e8 con signo, y la conversion de crear las da vuelta en silencio. Ver README, seccion Supuestos. </dd></dl>
+<p>Todos los generadores trabajan en double, en figuras de radio RADIO centradas en el origen, y luego convierten a T: con T entero se redondea al entero mas cercano y se suma CENTRO. RADIO es 10^8 salvo con short, y CENTRO es 0 salvo con unsigned. Asi un mismo generador con la misma semilla produce la misma figura en todos los tipos, salvo escala y traslacion, y la diferencia es el redondeo: a enteros, a float (con paso 8 cerca de 10^8) o ninguno (double y long double).</p>
+<dl class="section note"><dt>Nota</dt><dd>El static_assert rechaza otros tipos: RADIO y CENTRO estan elegidos para que las coordenadas de estos quepan en T y en los calculos exactos de <a class="el" href="classRandomIncrementalAlgorithm.html" title="Cerradura convexa incremental en orden aleatorio, O(n log n) esperado.">RandomIncrementalAlgorithm</a>. Ver README, seccion Supuestos. </dd></dl>
 </div><a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Documentación de funciones miembro</h2>
 <a id="a7fe553457717b6c1b9ee34b9b2dbdb9f" name="a7fe553457717b6c1b9ee34b9b2dbdb9f"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a7fe553457717b6c1b9ee34b9b2dbdb9f">&#9670;&#160;</a></span>generar()</h2>
@@ -279,7 +280,7 @@ template&lt;typename T&gt; </div>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Devuelve</dt><dd>El punto, redondeado si T es entero. </dd></dl>
+<dl class="section return"><dt>Devuelve</dt><dd>El punto, redondeado y trasladado en CENTRO si T es entero. </dd></dl>
 
 </div>
 </div>
@@ -343,7 +344,7 @@ template&lt;typename T&gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">double <a class="el" href="classGeneradorPuntos.html">GeneradorPuntos</a>&lt; T &gt;::RADIO = 1e8</td>
+          <td class="memname">double <a class="el" href="classGeneradorPuntos.html">GeneradorPuntos</a>&lt; T &gt;::RADIO = std::is_same_v&lt;T, short&gt; ? 2e4 : 1e8</td>
         </tr>
       </table>
   </td>
@@ -352,7 +353,32 @@ template&lt;typename T&gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Escala de las coordenadas. Con T entero, |coordenadas| &lt; 2^28 (ver <a class="el" href="classRandomIncrementalAlgorithm.html" title="Cerradura convexa incremental en orden aleatorio, O(n log n) esperado.">RandomIncrementalAlgorithm</a>), incluso en las esquinas del cuadrado. </p>
+<p>Escala de las figuras. Las esquinas del cuadrado rotado quedan a RADIO·√2 del centro: 1.42·10^8, y en cada eje max - min &lt; 2^29 (ver <a class="el" href="classRandomIncrementalAlgorithm.html" title="Cerradura convexa incremental en orden aleatorio, O(n log n) esperado.">RandomIncrementalAlgorithm</a>). Con short es 2·10^4, para no pasar de 32767. </p>
+
+</div>
+</div>
+<a id="a5ed49bef96ad2e244ada75f90d5ce012" name="a5ed49bef96ad2e244ada75f90d5ce012"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5ed49bef96ad2e244ada75f90d5ce012">&#9670;&#160;</a></span>CENTRO</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">long long <a class="el" href="classGeneradorPuntos.html">GeneradorPuntos</a>&lt; T &gt;::CENTRO = std::is_unsigned_v&lt;T&gt; ? 141421357 : 0</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span><span class="mlabel constexpr">constexpr</span><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Traslacion de las coordenadas enteras. Con unsigned es RADIO·√2 redondeado hacia arriba, para que ninguna coordenada sea negativa; como es entera, los puntos son exactamente los de int mas CENTRO. </p>
 
 </div>
 </div>

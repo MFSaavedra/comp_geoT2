@@ -156,7 +156,7 @@ virtual&#160;</td><td class="memItemRight"><b>~EstrategiaCerradura</b> ()=defaul
 <tr class="heading"><td colspan="2"><h2 id="header-pri-types" class="groupheader"><a id="pri-types" name="pri-types"></a>
 Tipos privados</h2></td></tr>
 <tr class="memitem:a89e2935570e41b23d73708f3f5451ec7" id="r_a89e2935570e41b23d73708f3f5451ec7"><td class="memItemLeft"><a id="a89e2935570e41b23d73708f3f5451ec7" name="a89e2935570e41b23d73708f3f5451ec7"></a>
-using&#160;</td><td class="memItemRight"><b>W</b> = <a class="el" href="Geometria_8hpp.html#abf72cd67860d5c11f219d8645587d44d">Ancho</a>&lt;T&gt;</td></tr>
+using&#160;</td><td class="memItemRight"><b>W</b> = <a class="el" href="Geometria_8hpp.html#a86dbe17db5f68ac3fd2ffa29c388f935">Ancho</a>&lt;T&gt;</td></tr>
 <tr class="memdesc:a89e2935570e41b23d73708f3f5451ec7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tipo de los calculos con C. <br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pri-methods" class="groupheader"><a id="pri-methods" name="pri-methods"></a>
@@ -222,7 +222,7 @@ static constexpr int&#160;</td><td class="memItemRight"><b>NINGUNA</b> = -1</td>
 class RandomIncrementalAlgorithm&lt; T &gt;</div><p>Cerradura convexa incremental en orden aleatorio, O(n log n) esperado. </p>
 <dl class="tparams"><dt>Parámetros de plantilla</dt><dd>
   <table class="tparams">
-    <tr><td class="paramname">T</td><td>Tipo numerico de las coordenadas. Con T entero se requiere |coordenadas| &lt; 2^28 para que todos los calculos sean exactos.</td></tr>
+    <tr><td class="paramname">T</td><td>Tipo de las coordenadas (ver esTipoCoordenada). Con T entero, los calculos son exactos si en cada eje max - min &lt; 2^29 (T de hasta 32 bits) o &lt; 2^61 (T de 64 bits); ver ladoDelRayo.</td></tr>
   </table>
   </dd>
 </dl>
@@ -605,7 +605,7 @@ template&lt;typename T&gt; </div>
   </dd>
 </dl>
 <dl class="section return"><dt>Devuelve</dt><dd>1 si p[f] esta a la izquierda del rayo, -1 a la derecha, 0 sobre su recta. </dd></dl>
-<dl class="section note"><dt>Nota</dt><dd>C = suma / 3 no tiene coordenadas enteras; se usa 3p - suma, que es 3 veces el vector C -&gt; p y tiene la misma orientacion. </dd></dl>
+<dl class="section note"><dt>Nota</dt><dd>C = suma / 3 no tiene coordenadas enteras; se usa 3p - suma, que es 3 veces el vector C -&gt; p y tiene la misma orientacion. Si en un eje max - min = L, entonces |3p - suma| &lt; 3L y el producto cruz es menor que 18 L^2: cabe en long long si L &lt; 2^29 y en Entero128 si L &lt; 2^61. Usa signoCruz y no orientacion porque los vectores ya estan en <a class="el" href="#a89e2935570e41b23d73708f3f5451ec7" title="Tipo de los calculos con C.">W</a>, y orientacion los volveria a promover. </dd></dl>
 
 </div>
 </div>

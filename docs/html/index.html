@@ -139,7 +139,7 @@ Estructura</h1>
 <div class="line">├── docs/html/                      # documentación generada con Doxygen</div>
 <div class="line">├── include/</div>
 <div class="line">│   ├── Punto.hpp, Vector.hpp, Poligono.hpp   # Tarea 1 (con algunos agregados)</div>
-<div class="line">│   ├── Geometria.hpp               # orientacion() y mismoPunto()</div>
+<div class="line">│   ├── Geometria.hpp               # orientacion(), mismoPunto() y los tipos válidos</div>
 <div class="line">│   ├── EstrategiaCerradura.hpp     # interfaz Strategy de los algoritmos</div>
 <div class="line">│   ├── IncrementalAlgorithm.hpp</div>
 <div class="line">│   ├── RandomIncrementalAlgorithm.hpp</div>
@@ -155,7 +155,7 @@ Estructura</h1>
 </div><!-- fragment --><p>Como todo son templates, el código vive en los headers de <span class="tt">include/</span>; <span class="tt">src/</span> solo contiene los dos programas.</p>
 <h2 class="doxsection"><a class="anchor" id="autotoc_md2"></a>
 Generadores</h2>
-<p>Todos heredan de <span class="tt"><a class="el" href="classGeneradorPuntos.html" title="Estrategia de generacion de una nube de puntos de prueba.">GeneradorPuntos</a></span> y trabajan en un disco de radio 10^8; con coordenadas <span class="tt">int</span> se redondea al entero más cercano.</p>
+<p>Todos heredan de <span class="tt"><a class="el" href="classGeneradorPuntos.html" title="Estrategia de generacion de una nube de puntos de prueba.">GeneradorPuntos</a></span> y trabajan en un disco de radio 10^8 (2·10^4 con <span class="tt">short</span>); con coordenadas enteras se redondea al entero más cercano, y con <span class="tt">unsigned</span> la figura se traslada para que no haya coordenadas negativas (ver la sección Supuestos).</p>
 <table class="markdownTable">
 <tr class="markdownTableHead">
 <th class="markdownTableHeadNone">Generador  </th><th class="markdownTableHeadNone">Nube  </th></tr>
@@ -182,7 +182,7 @@ Compilar</h1>
 <h1 class="doxsection"><a class="anchor" id="autotoc_md5"></a>
 Ejecutar</h1>
 <div class="fragment"><div class="line">./build/main</div>
-</div><!-- fragment --><p>Calcula la cerradura de un ejemplo pequeño con ambas estrategias y luego, para cada generador, <span class="tt">int</span> y <span class="tt">double</span>, y n = 10^4, 10^5 y 10^6, mide las dos sobre la misma nube e indica si las cerraduras son idénticas (unos 10 segundos). Termina con código 0 si todas coinciden.</p>
+</div><!-- fragment --><p>Calcula la cerradura de un ejemplo pequeño con ambas estrategias y luego, para cada tipo de coordenadas y cada generador, mide las dos sobre la misma nube e indica si las cerraduras son idénticas: <span class="tt">int</span> y <span class="tt">double</span> con n = 10^4, 10^5 y 10^6, y los demás tipos con n = 10^4 y 10^5 (unos 12 segundos). Termina con código 0 si todas coinciden.</p>
 <h1 class="doxsection"><a class="anchor" id="autotoc_md6"></a>
 Experimento completo</h1>
 <div class="fragment"><div class="line">mkdir -p resultados</div>
@@ -218,15 +218,38 @@ Documentación</h1>
 <h1 class="doxsection"><a class="anchor" id="autotoc_md12"></a>
 Supuestos</h1>
 <ul>
-<li>Los algoritmos y los generadores solo aceptan coordenadas <span class="tt">int</span> o <span class="tt">double</span>: un <span class="tt">static_assert</span> en <span class="tt"><a class="el" href="classEstrategiaCerradura.html" title="Estrategia de calculo de la cerradura convexa de una nube de puntos.">EstrategiaCerradura</a></span> y en <span class="tt"><a class="el" href="classGeneradorPuntos.html" title="Estrategia de generacion de una nube de puntos de prueba.">GeneradorPuntos</a></span> rechaza cualquier otro tipo al compilar. Con otros tipos el código compilaría pero daría resultados incorrectos sin aviso: <span class="tt">long double</span> se redondea a <span class="tt">double</span> dentro de <span class="tt"><a class="el" href="Geometria_8hpp.html#a599326effcecd0b5f1aa3b78f0c6f6aa" title="Orientacion del triangulo (a, b, c): signo del producto cruz (b - a) x (c - a).">orientacion</a></span>, <span class="tt">long long</span> no tiene un tipo más ancho donde calcular el producto cruz y se desborda, y <span class="tt">short</span> o <span class="tt">unsigned</span> no pueden representar las coordenadas de los generadores (con signo, hasta 1.42·10^8). <span class="tt"><a class="el" href="classPunto.html" title="Punto en el plano, con una coordenada z auxiliar.">Punto</a></span>, <span class="tt"><a class="el" href="classVector.html" title="Vector en el plano, guardado como el Punto que va del origen a su extremo.">Vector</a></span> y <span class="tt"><a class="el" href="classPoligono.html" title="Poligono en el plano, dado por sus vertices en orden.">Poligono</a></span> siguen siendo genéricos, porque los predicados usan <span class="tt"><a class="el" href="classPunto.html" title="Punto en el plano, con una coordenada z auxiliar.">Punto</a>&lt;long long&gt;</span> internamente.</li>
-<li>Con coordenadas enteras, |coordenadas| &lt; 2^28: así el producto cruz, que se calcula en <span class="tt">long long</span>, es exacto también en los cálculos con el centroide del Random Incremental. Los generadores usan |coordenadas| ≤ 1.42·10^8.</li>
-<li>Con <span class="tt">double</span> el producto cruz se redondea; con puntos casi colineales los algoritmos pueden no coincidir (ver <span class="tt">ANALISIS.pdf</span>, sección de colinealidad).</li>
+<li>Los algoritmos y los generadores aceptan coordenadas <span class="tt">short</span>, <span class="tt">int</span>, <span class="tt">unsigned</span>, <span class="tt">long long</span>, <span class="tt">float</span>, <span class="tt">double</span> y <span class="tt">long double</span> (<span class="tt"><a class="el" href="Geometria_8hpp.html#acc4698c66e3b29cbbb80f454ddb0030c" title="Indica si T es uno de los tipos de coordenadas que aceptan los algoritmos y los generadores.">esTipoCoordenada</a></span>, en <span class="tt"><a class="el" href="Geometria_8hpp.html" title="Predicados geometricos que comparten los algoritmos de cerradura.">Geometria.hpp</a></span>); un <span class="tt">static_assert</span> en <span class="tt"><a class="el" href="classEstrategiaCerradura.html" title="Estrategia de calculo de la cerradura convexa de una nube de puntos.">EstrategiaCerradura</a></span> y en <span class="tt"><a class="el" href="classGeneradorPuntos.html" title="Estrategia de generacion de una nube de puntos de prueba.">GeneradorPuntos</a></span> rechaza cualquier otro tipo al compilar. El producto cruz se calcula en <span class="tt"><a class="el" href="Geometria_8hpp.html#a86dbe17db5f68ac3fd2ffa29c388f935" title="Tipo en que se calcula el producto cruz de coordenadas de tipo T.">Ancho</a>&lt;T&gt;</span>, que nunca es menos preciso que <span class="tt">T</span>:</li>
+</ul>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">Tipo  </th><th class="markdownTableHeadNone"><span class="tt"><a class="el" href="Geometria_8hpp.html#a86dbe17db5f68ac3fd2ffa29c388f935" title="Tipo en que se calcula el producto cruz de coordenadas de tipo T.">Ancho</a>&lt;T&gt;</span>  </th><th class="markdownTableHeadNone">Coordenadas válidas  </th><th class="markdownTableHeadNone">Generadores  </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone"><span class="tt">short</span>  </td><td class="markdownTableBodyNone"><span class="tt">long long</span>  </td><td class="markdownTableBodyNone">todo el rango del tipo  </td><td class="markdownTableBodyNone">radio 2·10^4  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone"><span class="tt">int</span>  </td><td class="markdownTableBodyNone"><span class="tt">long long</span>  </td><td class="markdownTableBodyNone">en cada eje, máx − mín &lt; 2^29 (p. ej. ±2^28)  </td><td class="markdownTableBodyNone">radio 10^8  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone"><span class="tt">unsigned</span>  </td><td class="markdownTableBodyNone"><span class="tt">long long</span>  </td><td class="markdownTableBodyNone">en cada eje, máx − mín &lt; 2^29  </td><td class="markdownTableBodyNone">radio 10^8, trasladado en 141 421 357  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone"><span class="tt">long long</span>  </td><td class="markdownTableBodyNone"><span class="tt">__int128</span>  </td><td class="markdownTableBodyNone">en cada eje, máx − mín &lt; 2^61  </td><td class="markdownTableBodyNone">radio 10^8  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone"><span class="tt">float</span>  </td><td class="markdownTableBodyNone"><span class="tt">double</span>  </td><td class="markdownTableBodyNone">cualquiera, con redondeo  </td><td class="markdownTableBodyNone">radio 10^8  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone"><span class="tt">double</span>  </td><td class="markdownTableBodyNone"><span class="tt">double</span>  </td><td class="markdownTableBodyNone">cualquiera, con redondeo  </td><td class="markdownTableBodyNone">radio 10^8  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone"><span class="tt">long double</span>  </td><td class="markdownTableBodyNone"><span class="tt">long double</span>  </td><td class="markdownTableBodyNone">cualquiera, con redondeo  </td><td class="markdownTableBodyNone">radio 10^8  </td></tr>
+</table>
+<ul>
+<li>Con coordenadas enteras dentro de esos rangos los cálculos son exactos. El límite lo pone el Random Incremental, que trabaja con 3 veces el centroide: su producto cruz es menor que 18·(máx − mín)^2 y debe caber en <span class="tt"><a class="el" href="Geometria_8hpp.html#a86dbe17db5f68ac3fd2ffa29c388f935" title="Tipo en que se calcula el producto cruz de coordenadas de tipo T.">Ancho</a>&lt;T&gt;</span>. <span class="tt">__int128</span> es una extensión de GCC y Clang (<span class="tt"><a class="el" href="Geometria_8hpp.html#ac3203bf4c278676e66236a387542712d">Entero128</a></span> en el código).</li>
+<li>Los generadores producen la misma figura en todos los tipos, salvo escala y traslación: las esquinas del cuadrado rotado quedan a radio·√2 del centro, así que con radio 10^8 hay a lo más 2.83·10^8 &lt; 2^29 en cada eje. Con <span class="tt">short</span> el radio es menor para que las coordenadas quepan, y el redondeo saca de la posición convexa a parte de los puntos de la circunferencia (de 1000, quedan unos 800 en la cerradura). Con <span class="tt">unsigned</span> la traslación evita las coordenadas negativas, y los puntos son exactamente los de <span class="tt">int</span> más 141 421 357. Con <span class="tt">float</span> las coordenadas se redondean con paso 8 cerca de 10^8.</li>
+<li>Con tipos flotantes el producto cruz se redondea; con puntos casi colineales los algoritmos pueden no coincidir (ver <span class="tt">ANALISIS.pdf</span>, sección de colinealidad). El informe mide solo <span class="tt">int</span> y <span class="tt">double</span>.</li>
+<li><span class="tt"><a class="el" href="classPunto.html" title="Punto en el plano, con una coordenada z auxiliar.">Punto</a></span>, <span class="tt"><a class="el" href="classVector.html" title="Vector en el plano, guardado como el Punto que va del origen a su extremo.">Vector</a></span> y <span class="tt"><a class="el" href="classPoligono.html" title="Poligono en el plano, dado por sus vertices en orden.">Poligono</a></span> siguen siendo genéricos: los predicados los usan internamente con <span class="tt">long long</span> y <span class="tt">__int128</span>.</li>
 </ul>
 <h1 class="doxsection"><a class="anchor" id="autotoc_md13"></a>
 Agregados a la Tarea 1</h1>
 <ul>
 <li><span class="tt">Punto::operator&lt;</span>: orden lexicográfico exacto, para ordenar.</li>
 <li><span class="tt"><a class="el" href="classPoligono.html" title="Poligono en el plano, dado por sus vertices en orden.">Poligono()</a></span>: polígono vacío; <span class="tt"><a class="el" href="classPoligono.html#aab384411b21bab28c8b44578e78954de" title="Deja el poligono en CCW y comenzando en su menor vertice (orden lexicografico de Punto).">Poligono::normalizar()</a></span>: forma canónica (CCW, desde el menor vértice); <span class="tt"><a class="el" href="classPoligono.html#ad494e088f0c1b96fd00f4192d19277a2" title="Compara dos poligonos vertice a vertice, en el orden guardado.">Poligono::operator==</a></span> y <span class="tt">operator!=</span>.</li>
+<li>Con coordenadas <span class="tt">long double</span>, <span class="tt"><a class="el" href="classPoligono.html" title="Poligono en el plano, dado por sus vertices en orden.">Poligono</a></span> calcula el área con signo en <span class="tt">long double</span> y no en <span class="tt">double</span>, para que <span class="tt">hacerCCW</span> vea la misma precisión que los vértices.</li>
 </ul>
 <h1 class="doxsection"><a class="anchor" id="autotoc_md14"></a>
 Declaración de uso de IA</h1>

@@ -74,4 +74,5 @@ var menudata={children:[
 {text:"Miembros de los archivos",url:"globals.html",children:[
 {text:"Todos",url:"globals.html"},
 {text:"Funciones",url:"globals_func.html"},
+{text:"Variables",url:"globals_vars.html"},
 {text:"typedefs",url:"globals_type.html"}]}]}]}

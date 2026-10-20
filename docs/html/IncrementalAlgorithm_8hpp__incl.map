@@ -1,43 +1,44 @@
 <map id="include/IncrementalAlgorithm.hpp" name="include/IncrementalAlgorithm.hpp">
-<area shape="rect" id="Node000001" title="Algoritmo incremental: ordenar, construir el upper hull y luego el lower hull (de Berg et al...." alt="" coords="5,5,248,33"/>
-<area shape="rect" id="Node000002" title=" " alt="" coords="214,308,298,336"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="106,36,86,56,66,82,41,131,25,174,22,194,24,215,32,236,46,258,69,275,108,289,200,310,196,313,106,294,67,280,42,262,27,238,19,216,17,194,20,173,36,129,62,80,82,52,109,31"/>
-<area shape="rect" id="Node000003" title=" " alt="" coords="56,232,125,260"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="109,36,93,56,78,82,71,117,71,154,84,218,79,218,66,154,66,117,73,80,89,53,112,31"/>
-<area shape="rect" id="Node000004" title=" " alt="" coords="132,157,190,184"/>
-<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="131,31,157,141,152,141,128,36"/>
-<area shape="rect" id="Node000005" title=" " alt="" coords="174,232,236,260"/>
-<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="123,31,117,63,110,101,110,143,115,164,122,183,140,205,163,224,158,225,136,209,118,186,109,165,105,144,105,100,111,61,121,36"/>
-<area shape="rect" id="Node000006" href="$EstrategiaCerradura_8hpp.html" title="Interfaz comun de los algoritmos de cerradura convexa (patron Strategy)." alt="" coords="198,81,378,109"/>
-<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="155,31,248,73,243,76,156,36"/>
-<area shape="rect" id="Node000013" href="$Geometria_8hpp.html" title="Predicados geometricos que comparten los algoritmos de cerradura." alt="" coords="406,81,524,109"/>
-<area shape="poly" id="edge22_Node000001_Node000013" title=" " alt="" coords="187,31,393,76,389,79,188,36"/>
-<area shape="poly" id="edge6_Node000006_Node000004" title=" " alt="" coords="263,111,198,151,195,147,267,107"/>
-<area shape="poly" id="edge8_Node000006_Node000005" title=" " alt="" coords="283,107,222,220,218,217,279,110"/>
-<area shape="rect" id="Node000007" title=" " alt="" coords="590,308,682,336"/>
-<area shape="poly" id="edge7_Node000006_Node000007" title=" " alt="" coords="378,106,516,129,571,142,602,155,624,187,636,224,641,261,640,294,636,291,635,261,631,225,619,189,598,159,570,147,515,134,378,111"/>
-<area shape="rect" id="Node000008" href="$Poligono_8hpp.html" title="Clase Poligono: poligono en un espacio bidimensional." alt="" coords="266,157,371,184"/>
-<area shape="poly" id="edge9_Node000006_Node000008" title=" " alt="" coords="294,107,310,143,305,142,292,112"/>
-<area shape="rect" id="Node000011" href="$Punto_8hpp.html" title="Clase Punto: punto en un espacio bidimensional." alt="" coords="411,232,498,260"/>
-<area shape="poly" id="edge21_Node000006_Node000011" title=" " alt="" coords="314,107,350,128,386,155,416,186,440,220,435,219,412,190,382,159,347,132,313,112"/>
-<area shape="poly" id="edge10_Node000008_Node000002" title=" " alt="" coords="316,183,269,295,265,292,311,186"/>
-<area shape="poly" id="edge12_Node000008_Node000003" title=" " alt="" coords="276,187,141,231,139,226,279,183"/>
-<area shape="poly" id="edge14_Node000008_Node000005" title=" " alt="" coords="301,184,239,226,237,221,296,186"/>
-<area shape="rect" id="Node000009" title=" " alt="" coords="322,308,384,336"/>
-<area shape="poly" id="edge11_Node000008_Node000009" title=" " alt="" coords="323,183,349,293,344,292,320,186"/>
-<area shape="rect" id="Node000010" title=" " alt="" coords="490,308,566,336"/>
-<area shape="poly" id="edge13_Node000008_Node000010" title=" " alt="" coords="329,182,360,219,401,258,439,281,479,302,474,301,437,286,398,262,356,223,327,187"/>
-<area shape="poly" id="edge15_Node000008_Node000011" title=" " alt="" coords="343,182,420,224,414,225,342,188"/>
-<area shape="poly" id="edge16_Node000011_Node000002" title=" " alt="" coords="422,260,306,305,305,300,416,261"/>
-<area shape="poly" id="edge20_Node000011_Node000007" title=" " alt="" coords="487,258,592,302,587,302,486,263"/>
-<area shape="poly" id="edge17_Node000011_Node000009" title=" " alt="" coords="439,260,385,301,382,296,434,261"/>
-<area shape="poly" id="edge19_Node000011_Node000010" title=" " alt="" coords="469,258,507,298,502,296,467,263"/>
-<area shape="rect" id="Node000012" title=" " alt="" coords="408,308,466,336"/>
-<area shape="poly" id="edge18_Node000011_Node000012" title=" " alt="" coords="453,259,446,295,442,291,449,262"/>
-<area shape="poly" id="edge23_Node000013_Node000007" title=" " alt="" coords="524,96,557,103,591,113,621,130,646,155,655,172,661,190,663,227,658,263,648,295,645,291,653,262,658,227,656,191,650,174,642,158,618,135,588,118,556,108,525,102"/>
-<area shape="poly" id="edge24_Node000013_Node000011" title=" " alt="" coords="466,107,459,218,454,216,462,111"/>
-<area shape="rect" id="Node000014" href="$Vector_8hpp.html" title="Clase Vector: vector matematico en el plano." alt="" coords="498,157,587,184"/>
-<area shape="poly" id="edge25_Node000013_Node000014" title=" " alt="" coords="480,107,521,146,515,146,478,112"/>
-<area shape="poly" id="edge26_Node000014_Node000010" title=" " alt="" coords="543,183,533,294,528,291,539,186"/>
-<area shape="poly" id="edge27_Node000014_Node000011" title=" " alt="" coords="529,184,483,225,480,220,524,186"/>
+<area shape="rect" id="Node000001" title="Algoritmo incremental: ordenar, construir el upper hull y luego el lower hull (de Berg et al...." alt="" coords="309,5,551,33"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,384,90,411"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="351,35,256,57,153,87,109,105,73,125,49,147,43,158,41,169,41,247,47,368,42,368,36,248,36,169,38,156,45,143,70,121,106,100,152,82,255,52,355,32"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="574,308,644,336"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="458,31,492,51,523,79,558,133,583,192,599,248,607,294,603,292,593,249,578,194,553,136,519,83,489,56,458,36"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="462,157,521,184"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="441,31,471,80,489,142,484,140,466,82,439,36"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="488,308,551,336"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="446,31,496,82,519,117,535,156,541,193,540,230,529,295,525,291,535,230,535,193,530,157,515,119,492,85,446,36"/>
+<area shape="rect" id="Node000006" href="$EstrategiaCerradura_8hpp.html" title="Interfaz comun de los algoritmos de cerradura convexa (patron Strategy)." alt="" coords="278,81,457,109"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="421,32,390,71,387,67,417,35"/>
+<area shape="rect" id="Node000007" href="$Geometria_8hpp.html" title="Predicados geometricos que comparten los algoritmos de cerradura." alt="" coords="150,157,268,184"/>
+<area shape="poly" id="edge28_Node000001_Node000007" title=" " alt="" coords="365,35,316,54,268,83,241,113,222,145,218,142,237,109,264,79,314,50,369,32"/>
+<area shape="poly" id="edge6_Node000006_Node000004" title=" " alt="" coords="390,107,459,148,454,149,390,112"/>
+<area shape="poly" id="edge7_Node000006_Node000005" title=" " alt="" coords="378,107,463,231,505,296,500,295,459,234,375,112"/>
+<area shape="poly" id="edge8_Node000006_Node000007" title=" " alt="" coords="337,111,252,152,249,148,341,108"/>
+<area shape="rect" id="Node000009" href="$Punto_8hpp.html" title="Clase Punto: punto en un espacio bidimensional." alt="" coords="176,308,263,336"/>
+<area shape="poly" id="edge27_Node000006_Node000009" title=" " alt="" coords="364,107,333,177,309,220,282,262,247,300,244,295,277,258,305,217,328,175,360,111"/>
+<area shape="rect" id="Node000014" href="$Poligono_8hpp.html" title="Clase Poligono: poligono en un espacio bidimensional." alt="" coords="343,232,448,260"/>
+<area shape="poly" id="edge19_Node000006_Node000014" title=" " alt="" coords="371,107,393,218,388,216,368,111"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="114,384,205,411"/>
+<area shape="poly" id="edge9_Node000007_Node000008" title=" " alt="" coords="191,187,176,207,161,233,152,269,150,305,156,369,151,368,145,305,147,268,156,231,172,204,195,183"/>
+<area shape="poly" id="edge10_Node000007_Node000009" title=" " alt="" coords="197,183,173,219,167,239,169,259,180,279,195,298,190,297,175,282,164,261,161,239,168,217,194,187"/>
+<area shape="rect" id="Node000013" href="$Vector_8hpp.html" title="Clase Vector: vector matematico en el plano." alt="" coords="178,232,267,260"/>
+<area shape="poly" id="edge16_Node000007_Node000013" title=" " alt="" coords="212,182,220,218,214,216,210,187"/>
+<area shape="poly" id="edge11_Node000009_Node000002" title=" " alt="" coords="190,339,93,380,91,375,187,334"/>
+<area shape="poly" id="edge15_Node000009_Node000008" title=" " alt="" coords="211,335,181,374,178,369,206,337"/>
+<area shape="rect" id="Node000010" title=" " alt="" coords="415,384,477,411"/>
+<area shape="poly" id="edge12_Node000009_Node000010" title=" " alt="" coords="260,334,403,381,398,382,260,339"/>
+<area shape="rect" id="Node000011" title=" " alt="" coords="229,384,287,411"/>
+<area shape="poly" id="edge13_Node000009_Node000011" title=" " alt="" coords="228,334,247,371,242,369,225,339"/>
+<area shape="rect" id="Node000012" title=" " alt="" coords="311,384,386,411"/>
+<area shape="poly" id="edge14_Node000009_Node000012" title=" " alt="" coords="243,334,315,376,310,376,242,339"/>
+<area shape="poly" id="edge18_Node000013_Node000009" title=" " alt="" coords="223,258,223,293,218,291,220,263"/>
+<area shape="poly" id="edge17_Node000013_Node000012" title=" " alt="" coords="234,258,276,306,331,372,326,372,272,310,232,263"/>
+<area shape="poly" id="edge20_Node000014_Node000002" title=" " alt="" coords="340,256,258,277,211,292,166,310,115,342,74,375,71,371,112,337,164,306,209,287,257,272,345,254"/>
+<area shape="poly" id="edge22_Node000014_Node000003" title=" " alt="" coords="434,258,562,303,556,304,433,263"/>
+<area shape="poly" id="edge25_Node000014_Node000005" title=" " alt="" coords="418,258,487,300,482,300,417,263"/>
+<area shape="poly" id="edge24_Node000014_Node000008" title=" " alt="" coords="382,259,334,298,276,338,202,379,200,374,273,333,331,294,377,262"/>
+<area shape="poly" id="edge26_Node000014_Node000009" title=" " alt="" coords="362,262,266,304,264,299,366,260"/>
+<area shape="poly" id="edge21_Node000014_Node000010" title=" " alt="" coords="402,258,439,369,434,368,398,262"/>
+<area shape="poly" id="edge23_Node000014_Node000012" title=" " alt="" coords="394,258,371,336,360,371,356,367,366,335,390,262"/>
 </map>

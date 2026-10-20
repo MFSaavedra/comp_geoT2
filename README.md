@@ -40,7 +40,7 @@ cerradura de la misma forma, así que se comparan con `==`:
 ├── docs/html/                      # documentación generada con Doxygen
 ├── include/
 │   ├── Punto.hpp, Vector.hpp, Poligono.hpp   # Tarea 1 (con algunos agregados)
-│   ├── Geometria.hpp               # orientacion() y mismoPunto()
+│   ├── Geometria.hpp               # orientacion(), mismoPunto() y los tipos válidos
 │   ├── EstrategiaCerradura.hpp     # interfaz Strategy de los algoritmos
 │   ├── IncrementalAlgorithm.hpp
 │   ├── RandomIncrementalAlgorithm.hpp
@@ -60,8 +60,10 @@ solo contiene los dos programas.
 
 ### Generadores
 
-Todos heredan de `GeneradorPuntos` y trabajan en un disco de radio 10^8;
-con coordenadas `int` se redondea al entero más cercano.
+Todos heredan de `GeneradorPuntos` y trabajan en un disco de radio 10^8
+(2·10^4 con `short`); con coordenadas enteras se redondea al entero más
+cercano, y con `unsigned` la figura se traslada para que no haya coordenadas
+negativas (ver la sección Supuestos).
 
 | Generador | Nube |
 |---|---|
@@ -97,9 +99,10 @@ tiempos medidos no son representativos.
 ```
 
 Calcula la cerradura de un ejemplo pequeño con ambas estrategias y luego, para
-cada generador, `int` y `double`, y n = 10^4, 10^5 y 10^6, mide las dos sobre la
-misma nube e indica si las cerraduras son idénticas (unos 10 segundos). Termina
-con código 0 si todas coinciden.
+cada tipo de coordenadas y cada generador, mide las dos sobre la misma nube e
+indica si las cerraduras son idénticas: `int` y `double` con n = 10^4, 10^5 y
+10^6, y los demás tipos con n = 10^4 y 10^5 (unos 12 segundos). Termina con
+código 0 si todas coinciden.
 
 ## Experimento completo
 
@@ -168,27 +171,50 @@ genera la documentación en `docs/html/index.html`.
 
 ## Supuestos
 
-- Los algoritmos y los generadores solo aceptan coordenadas `int` o `double`:
-  un `static_assert` en `EstrategiaCerradura` y en `GeneradorPuntos` rechaza
-  cualquier otro tipo al compilar. Con otros tipos el código compilaría pero
-  daría resultados incorrectos sin aviso: `long double` se redondea a `double`
-  dentro de `orientacion`, `long long` no tiene un tipo más ancho donde
-  calcular el producto cruz y se desborda, y `short` o `unsigned` no pueden
-  representar las coordenadas de los generadores (con signo, hasta 1.42·10^8).
-  `Punto`, `Vector` y `Poligono` siguen siendo genéricos, porque los
-  predicados usan `Punto<long long>` internamente.
-- Con coordenadas enteras, |coordenadas| < 2^28: así el producto cruz, que se
-  calcula en `long long`, es exacto también en los cálculos con el centroide
-  del Random Incremental. Los generadores usan |coordenadas| ≤ 1.42·10^8.
-- Con `double` el producto cruz se redondea; con puntos casi colineales los
-  algoritmos pueden no coincidir (ver `ANALISIS.pdf`, sección de
-  colinealidad).
+- Los algoritmos y los generadores aceptan coordenadas `short`, `int`,
+  `unsigned`, `long long`, `float`, `double` y `long double`
+  (`esTipoCoordenada`, en `Geometria.hpp`); un `static_assert` en
+  `EstrategiaCerradura` y en `GeneradorPuntos` rechaza cualquier otro tipo al
+  compilar. El producto cruz se calcula en `Ancho<T>`, que nunca es menos
+  preciso que `T`:
+
+  | Tipo | `Ancho<T>` | Coordenadas válidas | Generadores |
+  |---|---|---|---|
+  | `short` | `long long` | todo el rango del tipo | radio 2·10^4 |
+  | `int` | `long long` | en cada eje, máx − mín < 2^29 (p. ej. ±2^28) | radio 10^8 |
+  | `unsigned` | `long long` | en cada eje, máx − mín < 2^29 | radio 10^8, trasladado en 141 421 357 |
+  | `long long` | `__int128` | en cada eje, máx − mín < 2^61 | radio 10^8 |
+  | `float` | `double` | cualquiera, con redondeo | radio 10^8 |
+  | `double` | `double` | cualquiera, con redondeo | radio 10^8 |
+  | `long double` | `long double` | cualquiera, con redondeo | radio 10^8 |
+
+- Con coordenadas enteras dentro de esos rangos los cálculos son exactos. El
+  límite lo pone el Random Incremental, que trabaja con 3 veces el centroide:
+  su producto cruz es menor que 18·(máx − mín)^2 y debe caber en `Ancho<T>`.
+  `__int128` es una extensión de GCC y Clang (`Entero128` en el código).
+- Los generadores producen la misma figura en todos los tipos, salvo escala y
+  traslación: las esquinas del cuadrado rotado quedan a radio·√2 del centro,
+  así que con radio 10^8 hay a lo más 2.83·10^8 < 2^29 en cada eje. Con
+  `short` el radio es menor para que las coordenadas quepan, y el redondeo
+  saca de la posición convexa a parte de los puntos de la circunferencia (de
+  1000, quedan unos 800 en la cerradura). Con `unsigned` la traslación evita
+  las coordenadas negativas, y los puntos son exactamente los de `int` más
+  141 421 357. Con `float` las coordenadas se redondean con paso 8 cerca de
+  10^8.
+- Con tipos flotantes el producto cruz se redondea; con puntos casi colineales
+  los algoritmos pueden no coincidir (ver `ANALISIS.pdf`, sección de
+  colinealidad). El informe mide solo `int` y `double`.
+- `Punto`, `Vector` y `Poligono` siguen siendo genéricos: los predicados los
+  usan internamente con `long long` y `__int128`.
 
 ## Agregados a la Tarea 1
 
 - `Punto::operator<`: orden lexicográfico exacto, para ordenar.
 - `Poligono()`: polígono vacío; `Poligono::normalizar()`: forma canónica
   (CCW, desde el menor vértice); `Poligono::operator==` y `operator!=`.
+- Con coordenadas `long double`, `Poligono` calcula el área con signo en
+  `long double` y no en `double`, para que `hacerCCW` vea la misma precisión
+  que los vértices.
 
 ## Declaración de uso de IA
 
