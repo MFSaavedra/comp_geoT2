@@ -19,8 +19,9 @@
 
 /**
  * @brief Cerradura convexa incremental en orden aleatorio, O(n log n) esperado.
- * @tparam T Tipo numerico de las coordenadas. Con T entero se requiere
- *         |coordenadas| < 2^28 para que todos los calculos sean exactos.
+ * @tparam T Tipo de las coordenadas (ver esTipoCoordenada). Con T entero, los
+ *         calculos son exactos si en cada eje max - min < 2^29 (T de hasta
+ *         32 bits) o < 2^61 (T de 64 bits); ver ladoDelRayo.
  *
  * Parte de un triangulo y agrega los demas puntos en orden aleatorio. Para no
  * buscar en toda la cerradura que aristas ve cada punto nuevo, cada punto que
@@ -248,13 +249,16 @@ private:
    * @return 1 si p[f] esta a la izquierda del rayo, -1 a la derecha, 0 sobre
    *         su recta.
    * @note C = suma / 3 no tiene coordenadas enteras; se usa 3p - suma, que
-   *       es 3 veces el vector C -> p y tiene la misma orientacion.
+   *       es 3 veces el vector C -> p y tiene la misma orientacion. Si en un
+   *       eje max - min = L, entonces |3p - suma| < 3L y el producto cruz es
+   *       menor que 18 L^2: cabe en long long si L < 2^29 y en Entero128 si
+   *       L < 2^61. Usa signoCruz y no orientacion porque los vectores ya
+   *       estan en W, y orientacion los volveria a promover.
    */
   int ladoDelRayo(int v, int f) const {
-    const Punto<W> origen;
-    const Punto<W> cv(3 * W(p[v].getX()) - sumaX, 3 * W(p[v].getY()) - sumaY);
-    const Punto<W> cf(3 * W(p[f].getX()) - sumaX, 3 * W(p[f].getY()) - sumaY);
-    return orientacion(origen, cv, cf);
+    const Vector<W> cv(3 * W(p[v].getX()) - sumaX, 3 * W(p[v].getY()) - sumaY);
+    const Vector<W> cf(3 * W(p[f].getX()) - sumaX, 3 * W(p[f].getY()) - sumaY);
+    return signoCruz(cv, cf);
   }
 
   /**

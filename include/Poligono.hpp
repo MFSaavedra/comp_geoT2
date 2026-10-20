@@ -9,6 +9,7 @@
 #include <cmath>
 #include <cstddef>
 #include <ostream>
+#include <type_traits>
 #include <vector>
 
 #include "Punto.hpp"
@@ -25,18 +26,22 @@ private:
    * @brief Area con signo segun la formula del shoelace.
    * @return Positiva si los vertices van en CCW, negativa si van en CW.
    * @note Base de esCCW, hacerCCW y area. Promueve a double antes de
-   *       multiplicar: con T entero, coordenadas grandes desbordarian.
+   *       multiplicar: con T entero, coordenadas grandes desbordarian. Con
+   *       long double suma en long double: en double, vertices que solo
+   *       difieren despues del bit 53 se confundirian, y hacerCCW podria no
+   *       dar vuelta un poligono en CW.
    */
   double areaConSigno() const {
-    double suma = 0;
+    using R = std::common_type_t<T, double>; // double, o long double
+    R suma = 0;
     const std::size_t n = puntos.size();
     for (std::size_t i = 0; i < n; ++i) {
       const Punto<T> &a = puntos[i];
       const Punto<T> &b = puntos[(i + 1) % n]; // el ultimo cierra con el primero
-      suma += static_cast<double>(a.getX()) * static_cast<double>(b.getY()) -
-              static_cast<double>(b.getX()) * static_cast<double>(a.getY());
+      suma += static_cast<R>(a.getX()) * static_cast<R>(b.getY()) -
+              static_cast<R>(b.getX()) * static_cast<R>(a.getY());
     }
-    return suma / 2;
+    return static_cast<double>(suma / 2);
   }
 
 public:

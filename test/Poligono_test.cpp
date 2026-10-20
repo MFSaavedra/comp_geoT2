@@ -44,6 +44,17 @@ TEST(Poligono, HacerCCW) {
   EXPECT_EQ(q[0], P(0, 0)); // ya era CCW: no cambia
 }
 
+TEST(Poligono, HacerCCWEnLongDouble) {
+  // Los vertices solo difieren despues del bit 53: en double el area es 0 y
+  // hacerCCW no daria vuelta el triangulo, que esta en CW.
+  const long double e = 5e-17L;
+  Poligono<long double> p({{1, 0}, {1, e}, {1 + e, 0}});
+  EXPECT_FALSE(p.esCCW());
+  p.hacerCCW();
+  EXPECT_TRUE(p.esCCW());
+  EXPECT_GT(p.area(), 0);
+}
+
 TEST(Poligono, Area) {
   EXPECT_DOUBLE_EQ(Poligono<int>({{0, 0}, {4, 0}, {0, 3}}).area(), 6.0);
   EXPECT_DOUBLE_EQ(Poligono<int>(cuadradoCW).area(), 1.0); // sin signo
