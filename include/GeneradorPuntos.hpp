@@ -13,24 +13,29 @@
 #include <type_traits>
 #include <vector>
 
+#include "Geometria.hpp"
 #include "Punto.hpp"
 
 /**
  * @brief Estrategia de generacion de una nube de puntos de prueba.
- * @tparam T Tipo de las coordenadas: int o double.
+ * @tparam T Tipo de las coordenadas: short, int, unsigned, long long, float,
+ *         double o long double (ver esTipoCoordenada).
  *
- * Todos los generadores trabajan en double dentro del disco de radio
- * RADIO = 10^8 y luego convierten a T: con T entero se redondea al entero mas
- * cercano. Asi un mismo generador con la misma semilla produce la misma
- * figura en int y en double, y la unica diferencia es el redondeo.
+ * Todos los generadores trabajan en double, en figuras de radio RADIO
+ * centradas en el origen, y luego convierten a T: con T entero se redondea al
+ * entero mas cercano y se suma CENTRO. RADIO es 10^8 salvo con short, y
+ * CENTRO es 0 salvo con unsigned. Asi un mismo generador con la misma semilla
+ * produce la misma figura en todos los tipos, salvo escala y traslacion, y la
+ * diferencia es el redondeo: a enteros, a float (con paso 8 cerca de 10^8) o
+ * ninguno (double y long double).
  *
- * @note El static_assert rechaza otros tipos: short o unsigned no representan
- *       coordenadas de hasta 1.42e8 con signo, y la conversion de crear las
- *       da vuelta en silencio. Ver README, seccion Supuestos.
+ * @note El static_assert rechaza otros tipos: RADIO y CENTRO estan elegidos
+ *       para que las coordenadas de estos quepan en T y en los calculos
+ *       exactos de RandomIncrementalAlgorithm. Ver README, seccion Supuestos.
  */
 template <typename T> class GeneradorPuntos {
-  static_assert(std::is_same_v<T, int> || std::is_same_v<T, double>,
-                "GeneradorPuntos<T>: T debe ser int o double");
+  static_assert(esTipoCoordenada<T>,
+                "GeneradorPuntos<T>: T no es un tipo de coordenadas valido");
 
 public:
   /** @brief Destructor virtual: los generadores se usan por puntero a la base. */
@@ -49,21 +54,28 @@ public:
   virtual std::string nombre() const = 0;
 
 protected:
-  /// Escala de las coordenadas. Con T entero, |coordenadas| < 2^28 (ver
-  /// RandomIncrementalAlgorithm), incluso en las esquinas del cuadrado.
-  static constexpr double RADIO = 1e8;
+  /// Escala de las figuras. Las esquinas del cuadrado rotado quedan a
+  /// RADIO·√2 del centro: 1.42·10^8, y en cada eje max - min < 2^29 (ver
+  /// RandomIncrementalAlgorithm). Con short es 2·10^4, para no pasar de 32767.
+  static constexpr double RADIO = std::is_same_v<T, short> ? 2e4 : 1e8;
+
+  /// Traslacion de las coordenadas enteras. Con unsigned es RADIO·√2
+  /// redondeado hacia arriba, para que ninguna coordenada sea negativa; como
+  /// es entera, los puntos son exactamente los de int mas CENTRO.
+  static constexpr long long CENTRO = std::is_unsigned_v<T> ? 141421357 : 0;
+
   static constexpr double PI = 3.14159265358979323846; ///< El numero pi.
 
   /**
    * @brief Convierte coordenadas double al tipo T.
    * @param x Coordenada x.
    * @param y Coordenada y.
-   * @return El punto, redondeado si T es entero.
+   * @return El punto, redondeado y trasladado en CENTRO si T es entero.
    */
   static Punto<T> crear(double x, double y) {
     if constexpr (std::is_integral_v<T>) {
-      return Punto<T>(static_cast<T>(std::llround(x)),
-                      static_cast<T>(std::llround(y)));
+      return Punto<T>(static_cast<T>(std::llround(x) + CENTRO),
+                      static_cast<T>(std::llround(y) + CENTRO));
     } else {
       return Punto<T>(static_cast<T>(x), static_cast<T>(y));
     }

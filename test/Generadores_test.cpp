@@ -4,7 +4,9 @@
  */
 
 #include <cmath>
+#include <cstddef>
 #include <random>
+#include <type_traits>
 #include <vector>
 
 #include <gtest/gtest.h>
@@ -46,6 +48,62 @@ TEST(Generadores, MismaFiguraEnIntYDouble) {
     EXPECT_EQ(enteros[i].getX(), std::llround(reales[i].getX()));
     EXPECT_EQ(enteros[i].getY(), std::llround(reales[i].getY()));
   }
+}
+
+/// Verifica que gt dibuje la figura de gd, escalada en escala, trasladada en
+/// centro y redondeada a lo mas en tolerancia.
+template <typename T>
+static void compararConDouble(const GeneradorPuntos<double> &gd,
+                              const GeneradorPuntos<T> &gt, double escala,
+                              double centro, double tolerancia) {
+  std::mt19937_64 a(5), b(5);
+  const auto reales = gd.generar(500, a);
+  const auto enT = gt.generar(500, b);
+  ASSERT_EQ(enT.size(), reales.size());
+  for (std::size_t i = 0; i < reales.size(); ++i) {
+    const double x = static_cast<double>(enT[i].getX()) - centro;
+    const double y = static_cast<double>(enT[i].getY()) - centro;
+    EXPECT_LE(std::fabs(x - escala * reales[i].getX()), tolerancia) << gt.nombre();
+    EXPECT_LE(std::fabs(y - escala * reales[i].getY()), tolerancia) << gt.nombre();
+  }
+}
+
+/// Los generadores en todos los tipos de coordenadas.
+template <typename T> class GeneradoresTipos : public ::testing::Test {};
+using TiposCoordenada =
+    ::testing::Types<short, int, unsigned, long long, float, double, long double>;
+TYPED_TEST_SUITE(GeneradoresTipos, TiposCoordenada);
+
+TYPED_TEST(GeneradoresTipos, MismaFiguraQueEnDouble) {
+  // Si una coordenada no cupiera en T, daria la vuelta y quedaria lejos de la
+  // figura. El cuadrado rotado en 45 grados tiene las esquinas mas lejanas.
+  using T = TypeParam;
+  const double escala = std::is_same_v<T, short> ? 2e-4 : 1;
+  const double centro = std::is_unsigned_v<T> ? 141421357 : 0;
+  double tolerancia = 0; // double y long double: la misma figura, sin redondeo
+  if (std::is_integral_v<T>) {
+    tolerancia = 0.5 + 1e-6; // redondeo al entero mas cercano
+  } else if (std::is_same_v<T, float>) {
+    tolerancia = 8; // medio paso de float bajo 2^28
+  }
+  const double pi = 3.14159265358979323846;
+  compararConDouble(GeneradorUniforme<double>(), GeneradorUniforme<T>(), escala,
+                    centro, tolerancia);
+  compararConDouble(GeneradorCircunferencia<double>(0.2),
+                    GeneradorCircunferencia<T>(0.2), escala, centro, tolerancia);
+  compararConDouble(GeneradorCuadrado<double>(0.3, pi / 4),
+                    GeneradorCuadrado<T>(0.3, pi / 4), escala, centro, tolerancia);
+}
+
+TEST(Generadores, CircunferenciaShortYUnsigned) {
+  std::mt19937_64 rng(2);
+  // Con radio 2·10^4 el redondeo saca de la posicion convexa a parte de los
+  // puntos de la circunferencia cuando son muchos (de 1000 quedan unos 800);
+  // con 100, quedan todos.
+  EXPECT_EQ(tamanoCerradura(GeneradorCircunferencia<short>(0.5).generar(200, rng)), 100);
+  // unsigned dibuja la figura de int trasladada: el mismo resultado que int.
+  EXPECT_EQ(tamanoCerradura(GeneradorCircunferencia<unsigned>(0.5).generar(2000, rng)),
+            1000);
 }
 
 TEST(Generadores, CuadradoColineal) {

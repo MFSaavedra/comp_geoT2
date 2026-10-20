@@ -6,15 +6,16 @@
 #pragma once
 
 #include <string>
-#include <type_traits>
 #include <vector>
 
+#include "Geometria.hpp"
 #include "Poligono.hpp"
 #include "Punto.hpp"
 
 /**
  * @brief Estrategia de calculo de la cerradura convexa de una nube de puntos.
- * @tparam T Tipo de las coordenadas: int o double.
+ * @tparam T Tipo de las coordenadas: short, int, unsigned, long long, float,
+ *         double o long double (ver esTipoCoordenada).
  *
  * Cada algoritmo hereda de esta clase y sobreescribe apply. El codigo que
  * mide y compara (main, experimento) solo conoce esta interfaz.
@@ -27,14 +28,13 @@
  * - con menos de 3 puntos no colineales la cerradura es degenerada: vacia,
  *   un punto, o el segmento entre los dos extremos.
  *
- * @note El static_assert rechaza otros tipos: con ellos el codigo compila pero
- *       los predicados de Geometria.hpp fallan en silencio (long double se
- *       redondea a double, long long desborda el producto cruz). Ver README,
- *       seccion Supuestos.
+ * @note El static_assert rechaza otros tipos: Ancho, que usan los predicados
+ *       de Geometria.hpp, solo esta revisado para estos. Ver README, seccion
+ *       Supuestos.
  */
 template <typename T> class EstrategiaCerradura {
-  static_assert(std::is_same_v<T, int> || std::is_same_v<T, double>,
-                "EstrategiaCerradura<T>: T debe ser int o double");
+  static_assert(esTipoCoordenada<T>,
+                "EstrategiaCerradura<T>: T no es un tipo de coordenadas valido");
 
 public:
   /** @brief Destructor virtual: las estrategias se usan por puntero a la base. */
