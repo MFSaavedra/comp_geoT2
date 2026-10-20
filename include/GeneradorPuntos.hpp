@@ -17,14 +17,21 @@
 
 /**
  * @brief Estrategia de generacion de una nube de puntos de prueba.
- * @tparam T Tipo numerico de las coordenadas.
+ * @tparam T Tipo de las coordenadas: int o double.
  *
  * Todos los generadores trabajan en double dentro del disco de radio
  * RADIO = 10^8 y luego convierten a T: con T entero se redondea al entero mas
  * cercano. Asi un mismo generador con la misma semilla produce la misma
  * figura en int y en double, y la unica diferencia es el redondeo.
+ *
+ * @note El static_assert rechaza otros tipos: short o unsigned no representan
+ *       coordenadas de hasta 1.42e8 con signo, y la conversion de crear las
+ *       da vuelta en silencio. Ver README, seccion Supuestos.
  */
 template <typename T> class GeneradorPuntos {
+  static_assert(std::is_same_v<T, int> || std::is_same_v<T, double>,
+                "GeneradorPuntos<T>: T debe ser int o double");
+
 public:
   /** @brief Destructor virtual: los generadores se usan por puntero a la base. */
   virtual ~GeneradorPuntos() = default;

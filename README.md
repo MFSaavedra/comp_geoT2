@@ -168,6 +168,15 @@ genera la documentación en `docs/html/index.html`.
 
 ## Supuestos
 
+- Los algoritmos y los generadores solo aceptan coordenadas `int` o `double`:
+  un `static_assert` en `EstrategiaCerradura` y en `GeneradorPuntos` rechaza
+  cualquier otro tipo al compilar. Con otros tipos el código compilaría pero
+  daría resultados incorrectos sin aviso: `long double` se redondea a `double`
+  dentro de `orientacion`, `long long` no tiene un tipo más ancho donde
+  calcular el producto cruz y se desborda, y `short` o `unsigned` no pueden
+  representar las coordenadas de los generadores (con signo, hasta 1.42·10^8).
+  `Punto`, `Vector` y `Poligono` siguen siendo genéricos, porque los
+  predicados usan `Punto<long long>` internamente.
 - Con coordenadas enteras, |coordenadas| < 2^28: así el producto cruz, que se
   calcula en `long long`, es exacto también en los cálculos con el centroide
   del Random Incremental. Los generadores usan |coordenadas| ≤ 1.42·10^8.

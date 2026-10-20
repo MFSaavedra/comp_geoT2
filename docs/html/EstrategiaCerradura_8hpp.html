@@ -116,6 +116,7 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('EstrategiaCerr
 <p>Interfaz comun de los algoritmos de cerradura convexa (patron Strategy).  
 <a href="#details">Más...</a></p>
 <div class="textblock"><code>#include &lt;string&gt;</code><br />
+<code>#include &lt;type_traits&gt;</code><br />
 <code>#include &lt;vector&gt;</code><br />
 <code>#include &quot;<a class="el" href="Poligono_8hpp_source.html">Poligono.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="Punto_8hpp_source.html">Punto.hpp</a>&quot;</code><br />
@@ -124,32 +125,33 @@ Gráfico de dependencias incluidas en EstrategiaCerradura.hpp:</div>
 <div class="dyncontent">
 <div class="center"><img src="EstrategiaCerradura_8hpp__incl.png" border="0" usemap="#ainclude_2EstrategiaCerradura_8hpp" loading="lazy" alt=""/></div>
 <map name="ainclude_2EstrategiaCerradura_8hpp" id="ainclude_2EstrategiaCerradura_8hpp">
-<area shape="rect" title="Interfaz comun de los algoritmos de cerradura convexa (patron Strategy)." alt="" coords="31,5,262,33"/>
+<area shape="rect" title="Interfaz comun de los algoritmos de cerradura convexa (patron Strategy)." alt="" coords="54,5,284,33"/>
 <area shape="rect" title=" " alt="" coords="5,81,64,109"/>
-<area shape="poly" title=" " alt="" coords="125,36,69,74,65,71,128,31"/>
-<area shape="rect" title=" " alt="" coords="6,157,68,184"/>
-<area shape="poly" title=" " alt="" coords="138,36,58,145,54,142,136,31"/>
-<area shape="rect" href="Poligono_8hpp.html" title="Clase Poligono: poligono en un espacio bidimensional." alt="" coords="139,81,244,109"/>
-<area shape="poly" title=" " alt="" coords="155,31,178,67,173,68,154,36"/>
-<area shape="rect" href="Punto_8hpp.html" title="Clase Punto: punto en un espacio bidimensional." alt="" coords="337,157,423,184"/>
-<area shape="poly" title=" " alt="" coords="173,31,259,79,354,147,349,148,256,83,172,36"/>
-<area shape="poly" title=" " alt="" coords="163,112,80,152,77,147,165,107"/>
-<area shape="rect" title=" " alt="" coords="62,232,146,260"/>
-<area shape="poly" title=" " alt="" coords="187,109,121,220,117,217,182,109"/>
-<area shape="rect" title=" " alt="" coords="270,232,332,260"/>
-<area shape="poly" title=" " alt="" coords="218,107,249,127,277,155,292,186,300,218,295,215,287,187,272,158,246,131,217,112"/>
-<area shape="rect" title=" " alt="" coords="193,157,262,184"/>
-<area shape="poly" title=" " alt="" coords="199,107,217,143,212,142,197,112"/>
-<area shape="rect" title=" " alt="" coords="170,232,246,260"/>
-<area shape="poly" title=" " alt="" coords="189,107,183,143,184,184,196,219,191,218,179,185,178,143,186,111"/>
-<area shape="poly" title=" " alt="" coords="226,107,335,150,330,152,225,112"/>
-<area shape="poly" title=" " alt="" coords="337,186,162,232,160,227,335,181"/>
-<area shape="poly" title=" " alt="" coords="368,184,328,224,325,219,363,186"/>
-<area shape="poly" title=" " alt="" coords="352,184,253,228,252,223,346,185"/>
-<area shape="rect" title=" " alt="" coords="472,232,530,260"/>
-<area shape="poly" title=" " alt="" coords="402,182,469,224,464,224,401,187"/>
-<area shape="rect" title=" " alt="" coords="357,232,448,260"/>
-<area shape="poly" title=" " alt="" coords="385,183,396,219,392,216,382,187"/>
+<area shape="poly" title=" " alt="" coords="144,36,73,76,70,71,146,31"/>
+<area shape="rect" title=" " alt="" coords="85,232,176,260"/>
+<area shape="poly" title=" " alt="" coords="165,31,147,87,129,157,129,184,131,218,126,216,124,184,124,156,142,86,162,36"/>
+<area shape="rect" title=" " alt="" coords="138,157,200,184"/>
+<area shape="poly" title=" " alt="" coords="171,31,172,141,167,140,167,35"/>
+<area shape="rect" href="Poligono_8hpp.html" title="Clase Poligono: poligono en un espacio bidimensional." alt="" coords="295,81,400,109"/>
+<area shape="poly" title=" " alt="" coords="201,31,304,74,300,76,201,36"/>
+<area shape="rect" href="Punto_8hpp.html" title="Clase Punto: punto en un espacio bidimensional." alt="" coords="225,157,311,184"/>
+<area shape="poly" title=" " alt="" coords="179,31,253,143,248,144,176,36"/>
+<area shape="poly" title=" " alt="" coords="314,110,216,153,214,148,318,108"/>
+<area shape="rect" title=" " alt="" coords="499,232,583,260"/>
+<area shape="poly" title=" " alt="" coords="398,107,445,126,490,155,515,185,533,219,528,217,511,188,486,159,442,130,397,112"/>
+<area shape="rect" title=" " alt="" coords="411,232,474,260"/>
+<area shape="poly" title=" " alt="" coords="401,107,439,125,455,139,469,155,474,172,474,189,461,221,458,217,469,188,469,172,464,158,452,142,436,130,400,112"/>
+<area shape="rect" title=" " alt="" coords="385,157,454,184"/>
+<area shape="poly" title=" " alt="" coords="362,107,399,146,394,145,360,112"/>
+<area shape="rect" title=" " alt="" coords="310,232,386,260"/>
+<area shape="poly" title=" " alt="" coords="350,107,350,218,345,215,346,111"/>
+<area shape="poly" title=" " alt="" coords="336,108,295,148,292,144,331,111"/>
+<area shape="poly" title=" " alt="" coords="246,184,169,227,167,222,241,185"/>
+<area shape="poly" title=" " alt="" coords="312,181,487,229,481,230,311,186"/>
+<area shape="poly" title=" " alt="" coords="300,182,400,226,395,226,299,187"/>
+<area shape="poly" title=" " alt="" coords="283,182,325,222,320,221,281,187"/>
+<area shape="rect" title=" " alt="" coords="228,232,286,260"/>
+<area shape="poly" title=" " alt="" coords="268,183,263,219,259,215,264,187"/>
 </map>
 </div>
 </div><div class="textblock"><div class="dynheader">

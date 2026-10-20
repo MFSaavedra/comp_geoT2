@@ -145,7 +145,7 @@ virtual&#160;</td><td class="memItemRight"><b>~EstrategiaCerradura</b> ()=defaul
 class EstrategiaCerradura&lt; T &gt;</div><p>Estrategia de calculo de la cerradura convexa de una nube de puntos. </p>
 <dl class="tparams"><dt>Parámetros de plantilla</dt><dd>
   <table class="tparams">
-    <tr><td class="paramname">T</td><td>Tipo numerico de las coordenadas.</td></tr>
+    <tr><td class="paramname">T</td><td>Tipo de las coordenadas: int o double.</td></tr>
   </table>
   </dd>
 </dl>
@@ -153,8 +153,9 @@ class EstrategiaCerradura&lt; T &gt;</div><p>Estrategia de calculo de la cerradu
 <p>Convencion de la salida, igual en todas las estrategias:</p><ul>
 <li>solo los vertices extremos: un punto colineal sobre una arista no es vertice, y los repetidos aparecen una vez;</li>
 <li>en sentido antihorario (CCW), comenzando en el menor vertice segun el orden lexicografico (ver <a class="el" href="classPoligono.html#aab384411b21bab28c8b44578e78954de" title="Deja el poligono en CCW y comenzando en su menor vertice (orden lexicografico de Punto).">Poligono::normalizar</a>);</li>
-<li>con menos de 3 puntos no colineales la cerradura es degenerada: vacia, un punto, o el segmento entre los dos extremos. </li>
+<li>con menos de 3 puntos no colineales la cerradura es degenerada: vacia, un punto, o el segmento entre los dos extremos.</li>
 </ul>
+<dl class="section note"><dt>Nota</dt><dd>El static_assert rechaza otros tipos: con ellos el codigo compila pero los predicados de <a class="el" href="Geometria_8hpp.html" title="Predicados geometricos que comparten los algoritmos de cerradura.">Geometria.hpp</a> fallan en silencio (long double se redondea a double, long long desborda el producto cruz). Ver README, seccion Supuestos. </dd></dl>
 </div><a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Documentación de funciones miembro</h2>
 <a id="ab588994fc3557518041f933ff7e5ada8" name="ab588994fc3557518041f933ff7e5ada8"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ab588994fc3557518041f933ff7e5ada8">&#9670;&#160;</a></span>apply()</h2>
