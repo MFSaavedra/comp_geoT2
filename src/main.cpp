@@ -3,9 +3,10 @@
  * @brief Ejemplo de uso de las estrategias y comparacion rapida entre ellas.
  *
  * Primero calcula la cerradura de una nube pequena con ambas estrategias.
- * Luego, para cada generador y cada n, mide ambas sobre la misma nube y
- * verifica que las dos cerraduras sean identicas. El experimento completo,
- * con varias instancias por caso, esta en experimento.cpp.
+ * Luego, para cada tipo de coordenadas, cada generador y cada n, mide ambas
+ * sobre la misma nube y verifica que las dos cerraduras sean identicas. El
+ * experimento completo, con varias instancias por caso, esta en
+ * experimento.cpp.
  */
 
 #include <cstdint>
@@ -44,7 +45,7 @@ bool compararUnaVez(const std::string &tipo, const std::string &caso,
   const double tB = medirMs([&] { b = aleatorio.apply(nube); });
 
   const bool iguales = (a == b);
-  std::cout << std::setw(6) << tipo << std::setw(22) << caso << std::setw(9) << n
+  std::cout << std::setw(12) << tipo << std::setw(22) << caso << std::setw(9) << n
             << std::setw(9) << a.cantidadPuntos() << std::setw(14) << tA
             << std::setw(14) << tB << std::setw(10) << (iguales ? "si" : "NO")
             << "\n";
@@ -55,9 +56,11 @@ bool compararUnaVez(const std::string &tipo, const std::string &caso,
  * @brief Recorre los generadores y tamanos de la comparacion rapida.
  * @tparam T Tipo de las coordenadas.
  * @param tipo Nombre del tipo, para la tabla.
+ * @param tamanos Valores de n.
  * @return true si en todos los casos las cerraduras son identicas.
  */
-template <typename T> bool compararTodo(const std::string &tipo) {
+template <typename T>
+bool compararTodo(const std::string &tipo, const std::vector<std::size_t> &tamanos) {
   GeneradorUniforme<T> uniforme;
   GeneradorCircunferencia<T> uno(0.01), diez(0.10), todos(1.0);
   GeneradorCuadrado<T> cuadrado(0.10, 0.0);
@@ -70,7 +73,7 @@ template <typename T> bool compararTodo(const std::string &tipo) {
 
   bool todasIguales = true;
   for (const auto &[caso, g] : casos) {
-    for (std::size_t n : {10000, 100000, 1000000}) {
+    for (std::size_t n : tamanos) {
       todasIguales &= compararUnaVez(tipo, caso, *g, n);
     }
   }
@@ -94,14 +97,21 @@ int main() {
   }
 
   std::cout << "\nComparacion (una instancia por caso, tiempos en ms)\n"
-            << std::setw(6) << "tipo" << std::setw(22) << "generador"
+            << std::setw(12) << "tipo" << std::setw(22) << "generador"
             << std::setw(9) << "n" << std::setw(9) << "h" << std::setw(14)
             << "incremental" << std::setw(14) << "random_incr." << std::setw(10)
             << "iguales" << "\n"
             << std::fixed << std::setprecision(3);
-  const bool igualesDouble = compararTodo<double>("double");
-  const bool igualesInt = compararTodo<int>("int");
-  const bool iguales = igualesDouble && igualesInt;
+  const std::vector<std::size_t> completo = {10000, 100000, 1000000};
+  const std::vector<std::size_t> corto = {10000, 100000};
+  bool iguales = compararTodo<double>("double", completo);
+  iguales &= compararTodo<int>("int", completo);
+  // Los demas tipos, sin el millon de puntos para que main siga siendo rapido.
+  iguales &= compararTodo<float>("float", corto);
+  iguales &= compararTodo<long double>("long double", corto);
+  iguales &= compararTodo<short>("short", corto);
+  iguales &= compararTodo<unsigned>("unsigned", corto);
+  iguales &= compararTodo<long long>("long long", corto);
   std::cout << (iguales ? "\nTodas las cerraduras son identicas.\n"
                         : "\nHay cerraduras distintas.\n");
   return iguales ? 0 : 1;
