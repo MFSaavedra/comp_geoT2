@@ -101,7 +101,7 @@ cerradura, y basta agregarlo al final y sacar los últimos mientras los tres
 izquierda con la misma regla para el \emph{lower hull}
 (\cite{deberg}, sección~1.1). Cada punto entra y sale de la cadena a lo más una
 vez por recorrido, así que tras el orden $O(n\log n)$ el resto es $O(n)$, y el
-costo \emph{no depende} de cuántos puntos quedan en la cerradura.
+costo no depende de cuántos puntos quedan en la cerradura.
 
 \subsection{Random Incremental}
 
@@ -111,7 +111,7 @@ aristas ve. Como en \cite{cmu}, se fija un punto $C$ interior (el centroide del
 triángulo inicial; la cerradura solo crece, así que $C$ sigue dentro) y cada
 punto que falta por insertar guarda la arista que cruza el rayo $C\to q$. Esa
 arista es visible desde $q$ exactamente cuando $q$ está fuera, de modo que
-\emph{$q$ está fuera si y solo si está estrictamente a la derecha de su arista}:
+$q$ está fuera si y solo si está estrictamente a la derecha de su arista:
 una sola orientación. Cada arista guarda, a su vez, la ``cubeta'' de puntos que
 la apuntan. Al insertar $q$:
 
@@ -184,11 +184,11 @@ Los tres trabajan en \code{double}, con coordenadas de hasta $R=10^8$, y con
 dos tipos es el redondeo.
 
 \begin{itemize}
-  \item \code{GeneradorUniforme}: $n$ puntos uniformes en $[-R,R]^2$. Su
-        cerradura tiene en esperanza unos $\tfrac{8}{3}\ln n$ vértices
-        \cite{renyi}, unos \resUniHEsperado{} para $n=10^6$ (se midió una
-        mediana de \resUniH): es el caso de un porcentaje muy pequeño en la
-        cerradura.
+  \item \code{GeneradorUniforme}: $n$ puntos uniformes en $[-R,R]^2$. Por un
+        teorema de Rényi y Sulanke (\cite{orourke}, sección~3.5.7), su
+        cerradura tiene en esperanza unos $\tfrac{8}{3}\ln n$ vértices:
+        \resUniHEsperado{} para $n=10^6$ (se midió una mediana de \resUniH).
+        Es el caso de un porcentaje muy pequeño en la cerradura.
   \item \code{GeneradorCircunferencia(p)}: $k=\max(3,pn)$ puntos equiespaciados
         sobre la circunferencia de radio $R$, con un desfase aleatorio, y el
         resto uniforme en el disco inscrito en ese $k$-ágono, de radio
@@ -293,7 +293,7 @@ La cantidad de operaciones sí crece como $n\log n$: con $n=10^6$ hace
 $2nH_n=\resReasigTodosCota$, y en la \cref{fig:reasignaciones} las
 reasignaciones por punto siguen a $2\ln n$. Pero el tiempo por $n\log_2 n$
 sube de \resCirRanNormMin{} a \resCirRanNormMax{}\,ns: lo que crece es el
-costo de \emph{cada} reasignación, de \resCostoPequeMin--\resCostoPequeMax\,ns
+costo de cada reasignación, de \resCostoPequeMin--\resCostoPequeMax\,ns
 con $n\le 10^5$ a hasta \resCostoGrandeMax\,ns con $n=10^6$. El quiebre está
 entre $2\cdot 10^5$ y $5\cdot 10^5$ puntos, justo donde los datos del algoritmo
 dejan de caber en el caché L3: son unos 60 bytes por punto (el punto, sus
@@ -326,7 +326,7 @@ en la cerradura y $n=10^6$ (\resTodosICociente{} con \code{int}).
 La forma de la curva del \ran{} la da el descarte del paso~3. Un punto interior
 queda dentro de la cerradura parcial tras pocas inserciones y se descarta: con
 un 0.1\,\% en la cerradura el \ran{} hace entre \resRporNMin{} y \resRporNMax{}
-reasignaciones por punto, \emph{sin importar} $n$. Un punto de la cerradura,
+reasignaciones por punto, sin importar $n$. Un punto de la cerradura,
 en cambio, nunca queda dentro y se reasigna hasta que se inserta, del orden de
 $2\ln n$ veces (\cref{fig:reasignaciones}, izquierda). Mientras la fracción en
 la cerradura es pequeña domina el primer caso y el trabajo es lineal; desde
@@ -473,11 +473,9 @@ hasta medio entero. Con $R=10^8$ esa separación baja de 1 cuando
 $k>\pi\sqrt{2R}\approx 44\,000$, y entonces muchos puntos dejan de estar en
 posición convexa. La \cref{fig:reasignaciones} (derecha) lo confirma: las
 pérdidas empiezan con $k=50\,000$ (5\,\% de $10^6$ y 50\,\% de $10^5$), y con
-$n=10^6$ y 100\,\% pedido solo quedan \resIntTodosH{} vértices. No es un
-problema del generador sino de los enteros: en una grilla de $N\times N$ caben
-a lo más del orden de $N^{2/3}$ puntos en posición estrictamente convexa
-\cite{jarnik}. Con \code{int} el porcentaje real se mide en la salida y es el
-que corresponde usar.
+$n=10^6$ y 100\,\% pedido solo quedan \resIntTodosH{} vértices. Con
+\code{int} el porcentaje real se mide en la salida y es el que corresponde
+usar.
 
 \paragraph{Para el \ran, $h$ no es lo que cuesta.} Esa pérdida de vértices casi
 no cambia su trabajo: con $n=10^6$ y 100\,\% pedido hace
@@ -525,14 +523,14 @@ La \cref{tab:colineal} tiene tres situaciones:
         calculan la misma cerradura, la de los puntos enteros que sobresalen de
         cada lado (25 a 58 vértices). Con \code{double} los puntos quedan a un
         redondeo de la recta, las orientaciones entre ellos son del tamaño del
-        error, y las cerraduras \emph{nunca} coinciden.
+        error, y las cerraduras nunca coinciden.
 \end{itemize}
 
 Para saber cuál de las dos es la correcta en el último caso, se recalculó la
 cerradura de los mismos \code{double} con aritmética racional exacta
 (\code{analisis/exactitud.py}, con \code{fractions.Fraction}; cada
 \code{double} es un racional). La \cref{tab:exactitud} muestra que
-\emph{ninguno} de los dos algoritmos entrega la cerradura exacta, y que fallan de
+ninguno de los dos algoritmos entrega la cerradura exacta, y que fallan de
 maneras opuestas. El \inc{} agrega vértices que no lo son: cuando el signo de
 una orientación casi nula sale mal, cree ver una vuelta a la derecha y deja en
 la cadena un punto que debía sacar. El \ran{} pierde vértices verdaderos: el
@@ -613,10 +611,8 @@ no depende de la entrada y es más rápido en casi todos los casos medidos.
 \bibitem{moret} B.~M.~E.~Moret. \emph{Towards a Discipline of Experimental
   Algorithmics}. DIMACS Series in Discrete Mathematics and Theoretical
   Computer Science, vol.~59, 2002.
-\bibitem{renyi} A.~Rényi, R.~Sulanke. Über die konvexe Hülle von $n$ zufällig
-  gewählten Punkten. \emph{Z. Wahrscheinlichkeitstheorie}, 2:75--84, 1963.
-\bibitem{jarnik} V.~Jarník. Über die Gitterpunkte auf konvexen Kurven.
-  \emph{Math. Z.}, 24:500--518, 1926.
+\bibitem{orourke} J.~O'Rourke. \emph{Computational Geometry in C},
+  2.\textsuperscript{a} ed. Cambridge University Press, 1998. Sección~3.5.7.
 \end{thebibliography}
 
 \end{document}

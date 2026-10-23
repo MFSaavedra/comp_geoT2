@@ -4,7 +4,8 @@ Tarea 2 del curso CC5502 Geometría Computacional (DCC): cerradura convexa.
 Implementa, sobre las clases `Punto`, `Vector` y `Poligono` de la Tarea 1, dos
 algoritmos de cerradura convexa con el patrón Strategy, generadores de nubes de
 puntos de prueba y un experimento que los compara. El análisis está en
-`ANALISIS.pdf`.
+`ANALISIS.pdf`, y la documentación de las clases, generada con Doxygen, en
+`docs/html/index.html`.
 
 - **Incremental** (`IncrementalAlgorithm`): ordena los puntos, construye el
   upper hull de izquierda a derecha y luego, devolviéndose, el lower hull.
@@ -192,6 +193,6 @@ genera la documentación en `docs/html/index.html`.
 
 ## Declaración de uso de IA
 
-Se utilizó Claude (Opus 5.5) para implementar el código, los tests y el
+Se utilizó Claude (Opus 5.5) para complementar y revisar el código, los tests y el
 experimento, para discutir conceptos e ideas de diseño, y para redactar el
 informe y la documentación.
