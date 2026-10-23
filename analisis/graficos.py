@@ -253,24 +253,19 @@ def escribir_tex(d, m_esc, filas_cruce, filas_ajuste, filas_var, filas_col):
         s = pares[pares.experimento == exp]
         macro(f"resIguales{nombre}", f"{int(s['iguales'].sum())}/{len(s)}")
 
-    # Tiempos a n = 10^6 del escalamiento, y cocientes.
-    for gen, g in (("uniforme", "Uni"), ("circunferencia", "Cir")):
-        for tipo, t in (("double", "D"), ("int", "I")):
-            for alg, a in ((INC, "Inc"), (RAN, "Ran")):
-                v = m_esc[(m_esc.generador == gen) & (m_esc.tipo == tipo) &
-                          (m_esc.algoritmo == alg) & (m_esc.n == 10**6)]["med"].iloc[0]
-                macro(f"res{g}{t}{a}", numero(v))
-            inc = m_esc[(m_esc.generador == gen) & (m_esc.tipo == tipo) &
-                        (m_esc.algoritmo == INC) & (m_esc.n == 10**6)]["med"].iloc[0]
-            ran = m_esc[(m_esc.generador == gen) & (m_esc.tipo == tipo) &
-                        (m_esc.algoritmo == RAN) & (m_esc.n == 10**6)]["med"].iloc[0]
-            macro(f"res{g}{t}Cociente", numero(ran / inc, 2))
+    # Puntos uniformes a n = 10^6 (escalamiento): tiempos, cocientes e int / double.
+    u = m_esc[(m_esc.generador == "uniforme") & (m_esc.n == 10**6)]
+    u = u.set_index(["tipo", "algoritmo"])["med"]
+    for tipo, t in (("double", "D"), ("int", "I")):
+        macro(f"resUni{t}Inc", numero(u[tipo, INC]))
+        macro(f"resUni{t}Ran", numero(u[tipo, RAN]))
+        macro(f"resUni{t}Cociente", numero(u[tipo, RAN] / u[tipo, INC], 2))
     for alg, a in ((INC, "Inc"), (RAN, "Ran")):
-        for gen, g in (("uniforme", "Uni"), ("circunferencia", "Cir")):
-            sel = (m_esc.generador == gen) & (m_esc.algoritmo == alg) & (m_esc.n == 10**6)
-            di = m_esc[sel & (m_esc.tipo == "int")]["med"].iloc[0]
-            dd = m_esc[sel & (m_esc.tipo == "double")]["med"].iloc[0]
-            macro(f"resIntDouble{g}{a}", numero(di / dd, 2))
+        macro(f"resIntDoubleUni{a}", numero(u["int", alg] / u["double", alg], 2))
+    # Todos en la cerradura a n = 10^6: el mismo cociente que la tabla de cruce.
+    for tipo, n, p, r0, r1 in filas_cruce:
+        if n == 10**6:
+            macro(f"resTodos{'D' if tipo == 'double' else 'I'}Cociente", numero(r1, 2))
     # Rango de ns / (n log2 n) del Incremental uniforme en double.
     s = m_esc[(m_esc.generador == "uniforme") & (m_esc.tipo == "double") & (m_esc.algoritmo == INC)]
     norm = 1e6 * s["med"] / (s["n"] * np.log2(s["n"]))
@@ -287,7 +282,6 @@ def escribir_tex(d, m_esc, filas_cruce, filas_ajuste, filas_var, filas_col):
     macro("resCostoPequeMin", numero(min(pequenos), 0))
     macro("resCostoPequeMax", numero(max(pequenos), 0))
     grandes = [c for (tipo, n), par in costos.items() if n == 10**6 for c in par]
-    macro("resCostoGrandeMin", numero(min(grandes), 0))
     macro("resCostoGrandeMax", numero(max(grandes), 0))
     # Reasignaciones por punto con el menor porcentaje.
     e = d[(d.experimento == "porcentaje") & (d.algoritmo == RAN)]
@@ -332,13 +326,12 @@ def escribir_tex(d, m_esc, filas_cruce, filas_ajuste, filas_var, filas_col):
     macro("resReasigTodos", numero(r.median()))
     macro("resReasigTodosCota", numero(2 * 10**6 * sum(1 / i for i in range(1, 10**6 + 1))))
     macro("resReasigTodosPorN", numero(r.median() / 10**6, 1))
-    # Tamano real con int y 100% a 10^6.
-    hi = d[(d.experimento == "porcentaje") & (d.tipo == "int") & (d.parametro == 1) &
-           (d.n == 10**6) & (d.algoritmo == INC)]["h"]
-    macro("resIntTodosH", numero(hi.median()))
-    hi5 = d[(d.experimento == "porcentaje") & (d.tipo == "int") & (d.n == 10**5) &
-            (d.parametro == 1) & (d.algoritmo == INC)]["h"]
-    macro("resIntTodosHcienmil", numero(hi5.median()))
+    # Con int y 100% a 10^6: tamano real de la cerradura y reasignaciones por punto.
+    ti = d[(d.experimento == "porcentaje") & (d.tipo == "int") & (d.parametro == 1) &
+           (d.n == 10**6)]
+    macro("resIntTodosH", numero(ti[ti.algoritmo == INC]["h"].median()))
+    macro("resIntTodosReasigPorN",
+          numero(ti[ti.algoritmo == RAN]["reasignaciones"].median() / 10**6, 1))
 
     l.append("\\newcommand{\\tablaCruce}{%")
     for tipo, n, p, r0, r1 in filas_cruce:
